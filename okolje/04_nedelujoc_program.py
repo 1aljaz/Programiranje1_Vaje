@@ -1,28 +1,30 @@
 # =============================================================================
-# f-nizi
-#
-# Nize v Pythonu lahko sestavljamo tudi s pomočjo f-nizov. Ti so posebej uporabni,
-# kadar so deli izpisa odvisni od vrednosti spremenljivk v programu, ki jih ne 
-# poznamo vnaprej. Če je, na primer, vrednost spremenljivke `starost` enaka 16,
-# ukaz
-# 
-#       print(f"Star sem {starost} let.")
-# 
-# v konzolo izpiše
-# 
-#       Star sem 16 let.
-# =====================================================================@040369=
+# Nedelujoč program
+# =====================================================================@040361=
 # 1. podnaloga
-# Poleg vrednosti in spremenljivk, lahko v zavite oklepaje vpišemo tudi izraze.
-# Sestavi program, ki uporabnika vpraša po celem številu in izpiše niz kot kaže primer (uporabnik vnese število 4):
+# Program vpraša za dve števili in za njun produkt, ter izpiše uporabnikove odgovore
+# in pravi produkt. Vendar ne dela!
 # 
-#       > Vnesi celo število: 4
-#       Dvakratnik števila 4 je 8, trikratnik pa 12.
+#       ime = input('Kako ti je ime? ')
+#       print("Pozdravljen, ', ime, 'bi vadil poštevanko? ")
+#       a = int(input('Pa dajva. Vpiši prvi faktor: '))
+#       int(input("Pa še drugi faktor: "))
+#       rezultat = a*b
+#       c = input("Koliko, misliš, znaša produkt? ")
+#       print("Napisal si, da je", a, "krat", b, "enako", c)
+#       print("Pravilen odgovor je", rezulat) 
 # 
-# Nalogo reši z uporabo f-nizov, brez da v pomožne spremenljivke shraniš dvakratnik in trikratnik.
+# Ko boš odprl nalogo, te napačni program že čaka. Poskusi ga prevesti in popravi!
 # =============================================================================
-s = int(input('> Vnesi celo število: '))
-print(f'Dvakratnik števila {s} je {s*2}, trikratnik pa {s*3}.')
+ime = input('Kako ti je ime? ')
+print(f"Pozdravljen, {ime} bi vadil poštevanko? ")
+a = int(input('Pa dajva. Vpiši prvi faktor: '))
+b = int(input('Pa še drugi faktor: '))
+rezultat = a*b
+c = input('Koliko, misliš, znaša produkt? ')
+print('Napisal si, da je', a, 'krat', b, 'enako', c)
+print('Pravilen odgovor je', rezultat)
+
 
 
 
@@ -639,18 +641,31 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDM2OSwidXNlciI6OTc4NH0:1t0b0n:j2Yxxo90kkuqF0iGdWlrFUoaiRYHyxhkG4KoFAN9Is8"
+        ] = "eyJwYXJ0Ijo0MDM2MSwidXNlciI6OTc4NH0:1t0bU4:DHQ7uRqtRUuXrUEoKr0Wpedfe4bHKGAMHVOxxDHWB_o"
         try:
-            testi = [0, 1, 2, 3, 4, 51]
+            with Check.input(['Matija', '10', '15', '115']):
+                if Check.output(Check.current_part['solution'], [
+                'Kako ti je ime? Matija',
+                'Pozdravljen, Matija bi vadil poštevanko? ',
+                'Pa dajva. Vpiši prvi faktor: 10',
+                'Pa še drugi faktor: 15',
+                'Koliko, misliš, znaša produkt? 115',
+                'Napisal si, da je 10 krat 15 enako 115',
+                'Pravilen odgovor je 150'
+            ]):
             
-            for vhod in testi:
-                with Check.input([str(vhod)]):
-                    Check.output(
-                        Check.current_part['solution'], 
-                        [ 
-                            f"> Vnesi celo število: {vhod}",
-                            f'Dvakratnik števila {vhod} je {2 * vhod}, trikratnik pa {3 * vhod}.'
-                        ])
+                    with Check.input(['Matija', '3', '5', '15']):
+                        Check.output(Check.current_part['solution'], [
+                        'Kako ti je ime? Matija',
+                        'Pozdravljen, Matija bi vadil poštevanko? ',
+                        'Pa dajva. Vpiši prvi faktor: 3',
+                        'Pa še drugi faktor: 5',
+                        'Koliko, misliš, znaša produkt? 15',
+                        'Napisal si, da je 3 krat 5 enako 15',
+                        'Pravilen odgovor je 15'
+                    ])
+            
+            print('\n')
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:

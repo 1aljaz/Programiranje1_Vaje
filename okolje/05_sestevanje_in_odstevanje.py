@@ -1,28 +1,33 @@
 # =============================================================================
-# f-nizi
+# Seštevanje in odštevanje
 #
-# Nize v Pythonu lahko sestavljamo tudi s pomočjo f-nizov. Ti so posebej uporabni,
-# kadar so deli izpisa odvisni od vrednosti spremenljivk v programu, ki jih ne 
-# poznamo vnaprej. Če je, na primer, vrednost spremenljivke `starost` enaka 16,
-# ukaz
-# 
-#       print(f"Star sem {starost} let.")
-# 
-# v konzolo izpiše
-# 
-#       Star sem 16 let.
-# =====================================================================@040369=
+# Pri zahtevi za podatke in pri izpisih bodite pozorni! TOMO zahteva, da
+# se program obnaša natanko tako, kot kažejo zgledi!
+# =====================================================================@040362=
 # 1. podnaloga
-# Poleg vrednosti in spremenljivk, lahko v zavite oklepaje vpišemo tudi izraze.
-# Sestavi program, ki uporabnika vpraša po celem številu in izpiše niz kot kaže primer (uporabnik vnese število 4):
+# Napiši program, ki uporabnika vpraša za celo število, potem pa mu doda 42 in
+# izpiše rezultat v obliki, ki je zapisana spodaj.
 # 
-#       > Vnesi celo število: 4
-#       Dvakratnik števila 4 je 8, trikratnik pa 12.
+# Na primer:
 # 
-# Nalogo reši z uporabo f-nizov, brez da v pomožne spremenljivke shraniš dvakratnik in trikratnik.
+#     Vpiši poljubno celo število: 7
+#     Za 42 povečano število 7 je 49.
 # =============================================================================
-s = int(input('> Vnesi celo število: '))
-print(f'Dvakratnik števila {s} je {s*2}, trikratnik pa {s*3}.')
+s = int(input('Vpiši poljubno celo število: '))
+print(f'Za 42 povečano število {s} je {s+42}.')
+# =====================================================================@040363=
+# 2. podnaloga
+# Napiši program, ki uporabnika vpraša za celo število, ki ga zmanjša za 20 in
+# izpiše rezultat v obliki, ki je zapisana spodaj.
+# 
+# Na primer:
+# 
+#     Vpiši poljubno celo število: 53
+#     Za 20 zmanjšano število 53 je 33.
+# =============================================================================
+s = int(input('Vpiši poljubno celo število: '))
+print(f'Za 20 zmanjšano število {s} je {s-20}.')
+
 
 
 
@@ -639,18 +644,42 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDM2OSwidXNlciI6OTc4NH0:1t0b0n:j2Yxxo90kkuqF0iGdWlrFUoaiRYHyxhkG4KoFAN9Is8"
+        ] = "eyJwYXJ0Ijo0MDM2MiwidXNlciI6OTc4NH0:1t0bU4:AVBfoL2B5K9kaWVtuqj3mG2YV7374MiKYSNLwmWuyuk"
         try:
-            testi = [0, 1, 2, 3, 4, 51]
+            vhod = ['9', '123', '0', '-10']
+            izhod = [['Vpiši poljubno celo število: 9', 'Za 42 povečano število 9 je 51.'],
+                      ['Vpiši poljubno celo število: 123', 'Za 42 povečano število 123 je 165.'],
+                      ['Vpiši poljubno celo število: 0', 'Za 42 povečano število 0 je 42.'],
+                      ['Vpiši poljubno celo število: -10', 'Za 42 povečano število -10 je 32.']]
             
-            for vhod in testi:
-                with Check.input([str(vhod)]):
-                    Check.output(
-                        Check.current_part['solution'], 
-                        [ 
-                            f"> Vnesi celo število: {vhod}",
-                            f'Dvakratnik števila {vhod} je {2 * vhod}, trikratnik pa {3 * vhod}.'
-                        ])
+            for i in range(len(vhod)):
+                with Check.input([vhod[i]]):
+                    if not Check.output(Check.current_part['solution'], izhod[i]):
+                        break
+        except TimeoutError:
+            Check.error("Dovoljen čas izvajanja presežen")
+        except Exception:
+            Check.error(
+                "Testi sprožijo izjemo\n  {0}",
+                "\n  ".join(traceback.format_exc().split("\n"))[:-2],
+            )
+
+    if Check.part():
+        Check.current_part[
+            "token"
+        ] = "eyJwYXJ0Ijo0MDM2MywidXNlciI6OTc4NH0:1t0bU4:f_Y35lQ8WcACJXu1Qus6i5xJ91s5GLadwrY9rlB-aLo"
+        try:
+            vhod = ['29', '123', '5', '-10']
+            izhod = [['Vpiši poljubno celo število: 29', 'Za 20 zmanjšano število 29 je 9.'],
+                     ['Vpiši poljubno celo število: 123', 'Za 20 zmanjšano število 123 je 103.'],
+                     ['Vpiši poljubno celo število: 5', 'Za 20 zmanjšano število 5 je -15.'],
+                     ['Vpiši poljubno celo število: -10', 'Za 20 zmanjšano število -10 je -30.'],
+                    ]
+            
+            for i in range(len(vhod)):
+                with Check.input([vhod[i]]):
+                    if not Check.output(Check.current_part['solution'], izhod[i]):
+                        break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:

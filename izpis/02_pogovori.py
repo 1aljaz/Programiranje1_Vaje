@@ -12,7 +12,7 @@
 # Sedaj še sami napišite program, ki bo izpisal vašo starost v letih.
 # Pri tem se lahko zlažete ;-), ampak ne preveč!
 # =============================================================================
-
+print(20)
 # =====================================================================@040367=
 # 2. podnaloga
 # Napišite program, ki bo z vami na hitro poklepetal.
@@ -31,6 +31,11 @@
 #     To je moja najljubša hrana!
 #     Žal se mi mudi. Želim vam prijeten dan!
 # =============================================================================
+print('Pozdravljeni, jaz sem Robotko!')
+ime = input('Kako vam je ime? ')
+print(f'{ime}, vaše ime mi je všeč.')
+k = input('Kaj ste imeli včeraj za kosilo? ')
+print('To je moja najljubša hrana!\nŽal se mi mudi. Želim vam prijeten dan!')
 
 
 

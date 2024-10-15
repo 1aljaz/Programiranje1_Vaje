@@ -12,21 +12,21 @@
 # 
 # Sestavite program, ki izpiše osemvrstično smrečico.
 # =============================================================================
-
+print('*', '*'*2, '*'*3, '*'*4, '*'*5, '*'*6, '*'*7, '*'*8, sep='\n')
 # =====================================================================@040371=
 # 2. podnaloga
 # Program za izpis osemvrstične smrečice popravite tako, da namesto niza
 # z $n$ zvezdicami `'**...*'` uporabite izraz `n * '*'`, na primer namesto
 # niza `'*****'` uporabite izraz `5 * '*'`.
 # =============================================================================
-
+print('*', '*'*2, '*'*3, '*'*4, '*'*5, '*'*6, '*'*7, '*'*8, sep='\n')
 # =====================================================================@040372=
 # 3. podnaloga
 # Osemvrstično smrečico izpišite z enim samim klicem funkcije `print`.
 # 
 # *Namig*: znak za prelom vrstice je `"\n"`.
 # =============================================================================
-
+print('*', '*'*2, '*'*3, '*'*4, '*'*5, '*'*6, '*'*7, '*'*8, sep='\n')
 # =====================================================================@040373=
 # 4. podnaloga
 # Osemvrstično smrečico izpišite še desno poravnano. Petvrstična desno
@@ -40,7 +40,14 @@
 # 
 # *Namig*: na začetku vsake vrstice izpišite ustrezno število presledkov.
 # =============================================================================
-
+print(' '*6, '*')
+print(' '*5, '*'*2)
+print(' '*4, '*'*3)
+print(' '*3, '*'*4)
+print(' '*2, '*'*5)
+print(' '*1, '*'*6)
+print('', '*'*7)
+print('*'*8)
 # =====================================================================@040374=
 # 5. podnaloga
 # Osemvrstično smrečico izpišite še sredinsko poravnano in z razmaki.
@@ -55,6 +62,14 @@
 # *Namig*: levi rob je enak kot pri desno poravnani smrečici, za vsakim
 # osnovnim znakom pa je presledek.
 # =============================================================================
+print('       *')
+print('      * *')
+print('     * * *')
+print('    * * * *')
+print('   * * * * *')
+print('  * * * * * *')
+print(' * * * * * * *')
+print('* * * * * * * *')
 
 
 

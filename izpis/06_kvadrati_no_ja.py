@@ -13,6 +13,9 @@
 # Pri tem ne smete uporabiti ne zanke `for` in ne `while`!
 # =============================================================================
 n = 8 # namesto 8 je velikost kvadrata
+niz = n*'X'
+niz+='\n'
+print(n*niz,)
 # =====================================================================@040376=
 # 2. podnaloga
 # Izpišite prazen kvadrat, sestavljen iz znaka v spremenljivki `sestava` in 
@@ -29,9 +32,13 @@ n = 8 # namesto 8 je velikost kvadrata
 # Tudi sedaj ne smete uporabiti ne `for` in ne `while`. Prav tako smete uporabiti
 # le en `print`!
 # =============================================================================
-n2 = 2 # namesto 2 je velikost kvadrata
+n2 = 5 # namesto 2 je velikost kvadrata
 sestava = '?' # namesto ? je lahko poljuben znak
 
+top = n2*sestava + '\n'
+filler = sestava + (n2-2)*' ' + sestava + '\n'
+
+print(top, filler*(n2-2), top, sep='')
 
 
 

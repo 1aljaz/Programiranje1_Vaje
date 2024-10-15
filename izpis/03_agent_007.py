@@ -17,7 +17,9 @@
 # V tem zgledu je uporabnik natipkal niza Janez in Blond, ostalo pa je
 # izpisal program sam.
 # =============================================================================
-
+ime = input('Vnesi ime: ')
+priimek = input('Vnesi priimek: ')
+print(f'Jaz sem {priimek}, {ime} {priimek}.')
 
 
 

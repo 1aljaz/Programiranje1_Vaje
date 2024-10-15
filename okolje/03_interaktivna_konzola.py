@@ -1,28 +1,25 @@
 # =============================================================================
-# f-nizi
+# Interaktivna konzola
 #
-# Nize v Pythonu lahko sestavljamo tudi s pomočjo f-nizov. Ti so posebej uporabni,
-# kadar so deli izpisa odvisni od vrednosti spremenljivk v programu, ki jih ne 
-# poznamo vnaprej. Če je, na primer, vrednost spremenljivke `starost` enaka 16,
-# ukaz
-# 
-#       print(f"Star sem {starost} let.")
-# 
-# v konzolo izpiše
-# 
-#       Star sem 16 let.
-# =====================================================================@040369=
+# S pomočjo *interaktivne konzole* izračunajte odgovore spodnjih nalog.
+# =====================================================================@040358=
 # 1. podnaloga
-# Poleg vrednosti in spremenljivk, lahko v zavite oklepaje vpišemo tudi izraze.
-# Sestavi program, ki uporabnika vpraša po celem številu in izpiše niz kot kaže primer (uporabnik vnese število 4):
+# Vpišite vrednost produkta števil $123456789$ in $987654321$.
 # 
-#       > Vnesi celo število: 4
-#       Dvakratnik števila 4 je 8, trikratnik pa 12.
-# 
-# Nalogo reši z uporabo f-nizov, brez da v pomožne spremenljivke shraniš dvakratnik in trikratnik.
+# Kot rešitev napišite zgolj ustrezno število in ne izraz s katerim ga izračunate!
 # =============================================================================
-s = int(input('> Vnesi celo število: '))
-print(f'Dvakratnik števila {s} je {s*2}, trikratnik pa {s*3}.')
+121932631112635269
+# =====================================================================@040359=
+# 2. podnaloga
+# Vpišite izraz, katerega vrednost je enaka $1 + 2 + 3 + 4 + 5$.
+# =============================================================================
+15
+# =====================================================================@040360=
+# 3. podnaloga
+# Vpišite izraz, katerega vrednost je enaka $1 + 2 + \dots + 2016$.
+# =============================================================================
+2033136
+
 
 
 
@@ -639,18 +636,54 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDM2OSwidXNlciI6OTc4NH0:1t0b0n:j2Yxxo90kkuqF0iGdWlrFUoaiRYHyxhkG4KoFAN9Is8"
+        ] = "eyJwYXJ0Ijo0MDM1OCwidXNlciI6OTc4NH0:1t0bU4:g9-3T8Rs_jOSDYGmaBnMPCyJOI29KEYliTaey9yxUq0"
         try:
-            testi = [0, 1, 2, 3, 4, 51]
-            
-            for vhod in testi:
-                with Check.input([str(vhod)]):
-                    Check.output(
-                        Check.current_part['solution'], 
-                        [ 
-                            f"> Vnesi celo število: {vhod}",
-                            f'Dvakratnik števila {vhod} je {2 * vhod}, trikratnik pa {3 * vhod}.'
-                        ])
+            try:
+                if int(Check.current_part['solution']) != 121932631112635269:
+                    Check.error('Število, ki ste ga vpisali, je napačno.')
+            except:
+                Check.error('Napisati morate celo število.')
+        except TimeoutError:
+            Check.error("Dovoljen čas izvajanja presežen")
+        except Exception:
+            Check.error(
+                "Testi sprožijo izjemo\n  {0}",
+                "\n  ".join(traceback.format_exc().split("\n"))[:-2],
+            )
+
+    if Check.part():
+        Check.current_part[
+            "token"
+        ] = "eyJwYXJ0Ijo0MDM1OSwidXNlciI6OTc4NH0:1t0bU4:cGveRWeTs9t8tTrQ1rZZscopE0yZFdH_Aa1V7xoCDdk"
+        try:
+            try:
+                if int(eval(Check.current_part['solution'])) != 15:
+                    Check.error('Izraz predstavlja napačno število.')
+            except:
+                Check.error('Napisati morate izraz, ki predstavlja celo število.')
+        except TimeoutError:
+            Check.error("Dovoljen čas izvajanja presežen")
+        except Exception:
+            Check.error(
+                "Testi sprožijo izjemo\n  {0}",
+                "\n  ".join(traceback.format_exc().split("\n"))[:-2],
+            )
+
+    if Check.part():
+        Check.current_part[
+            "token"
+        ] = "eyJwYXJ0Ijo0MDM2MCwidXNlciI6OTc4NH0:1t0bU4:bHZTxDFT-Ik9FviPHCqL0UkIFYECKAERZCUgUwv4C4k"
+        try:
+            try:
+                rezultat = eval(Check.current_part['solution'])
+                if type(rezultat) == float:
+                    Check.error('Ste morda uporabili običajno deljenje namesto celoštevilskega?')
+                elif type(rezultat) != int:
+                    Check.error('Izraz ne predstavlja števila.')
+                elif rezultat != 2033136:
+                    Check.error('Izraz predstavlja napačno število.')
+            except:
+                Check.error('Napisati morate veljaven izraz.')
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:

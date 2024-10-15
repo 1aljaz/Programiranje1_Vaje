@@ -12,7 +12,7 @@
 # 
 #        Živjo! Le tako naprej!
 # =============================================================================
-
+print('Živjo! Le tako naprej!')
 # =====================================================================@040365=
 # 2. podnaloga
 # Sedaj pa poskusi izpisati naslednje dva stavka, vsakega v svoji vrstici:
@@ -20,7 +20,7 @@
 #      Ti je tole prelahko?
 #      Nasvidenje v naslednji nalogi!
 # =============================================================================
-
+print('Ti je tole prelahko?\nNasvidenje v naslednji nalogi!')
 
 
 

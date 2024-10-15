@@ -1,28 +1,30 @@
 # =============================================================================
-# f-nizi
+# Oddajanje rešitev
 #
-# Nize v Pythonu lahko sestavljamo tudi s pomočjo f-nizov. Ti so posebej uporabni,
-# kadar so deli izpisa odvisni od vrednosti spremenljivk v programu, ki jih ne 
-# poznamo vnaprej. Če je, na primer, vrednost spremenljivke `starost` enaka 16,
-# ukaz
-# 
-#       print(f"Star sem {starost} let.")
-# 
-# v konzolo izpiše
-# 
-#       Star sem 16 let.
-# =====================================================================@040369=
+# Naloge na Tomu rešujete tako, da v datoteko (v prazen prostor za
+# komentarjem, ki vsebuje navodila) vpišete rešitev in pritisnete tipko
+# `F5`. S tem se zaženejo testi, ki preverijo pravilnost rešitve.
+# =====================================================================@040355=
 # 1. podnaloga
-# Poleg vrednosti in spremenljivk, lahko v zavite oklepaje vpišemo tudi izraze.
-# Sestavi program, ki uporabnika vpraša po celem številu in izpiše niz kot kaže primer (uporabnik vnese število 4):
-# 
-#       > Vnesi celo število: 4
-#       Dvakratnik števila 4 je 8, trikratnik pa 12.
-# 
-# Nalogo reši z uporabo f-nizov, brez da v pomožne spremenljivke shraniš dvakratnik in trikratnik.
+# Vpišite poljubno celo število ter nalogo pošljite na Tomota.
 # =============================================================================
-s = int(input('> Vnesi celo število: '))
-print(f'Dvakratnik števila {s} je {s*2}, trikratnik pa {s*3}.')
+5
+# =====================================================================@040356=
+# 2. podnaloga
+# Vpišite celo število, a ne kateregakoli. Če želite ugotoviti, katero je
+# pravo, berite opozorila, ki jih sporoča Tomo.
+# =============================================================================
+314
+# =====================================================================@040357=
+# 3. podnaloga
+# Vpišite število, ki je uradna rešitev prve podnaloge.
+# 
+# Uradno rešitev lahko na Tomotu vidite šele takrat, ko podnalogo pravilno
+# rešite. Uradno rešitev se vam vedno splača pogledati in jo primerjati s
+# svojo rešitvijo.
+# =============================================================================
+192837465
+
 
 
 
@@ -639,18 +641,52 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDM2OSwidXNlciI6OTc4NH0:1t0b0n:j2Yxxo90kkuqF0iGdWlrFUoaiRYHyxhkG4KoFAN9Is8"
+        ] = "eyJwYXJ0Ijo0MDM1NSwidXNlciI6OTc4NH0:1t0bU4:pT4YHFOUM-SMJXPtYY94Zz5zMNFbs-GRFf0SP_dNF0c"
         try:
-            testi = [0, 1, 2, 3, 4, 51]
-            
-            for vhod in testi:
-                with Check.input([str(vhod)]):
-                    Check.output(
-                        Check.current_part['solution'], 
-                        [ 
-                            f"> Vnesi celo število: {vhod}",
-                            f'Dvakratnik števila {vhod} je {2 * vhod}, trikratnik pa {3 * vhod}.'
-                        ])
+            try:
+                int(eval(Check.current_part["solution"]))
+            except:
+                Check.error("Napisati morate celo število.")
+        except TimeoutError:
+            Check.error("Dovoljen čas izvajanja presežen")
+        except Exception:
+            Check.error(
+                "Testi sprožijo izjemo\n  {0}",
+                "\n  ".join(traceback.format_exc().split("\n"))[:-2],
+            )
+
+    if Check.part():
+        Check.current_part[
+            "token"
+        ] = "eyJwYXJ0Ijo0MDM1NiwidXNlciI6OTc4NH0:1t0bU4:hzTLDziFDpqp-zhlz0AHyzs_sjCZmlJbqyVeozWeuJI"
+        try:
+            try:
+                x = int(eval(Check.current_part["solution"]))
+                if x != 314:
+                    if x != 42:
+                        Check.error("Število, ki ste ga vpisali, je napačno. Mogoče je pravi odgovor 42?")
+                    else:
+                        Check.error("Število 42 ni odgovor na vsa vprašanja. Pravi odgovor je 314.")
+            except:
+                Check.error("Napisati morate celo število.")
+        except TimeoutError:
+            Check.error("Dovoljen čas izvajanja presežen")
+        except Exception:
+            Check.error(
+                "Testi sprožijo izjemo\n  {0}",
+                "\n  ".join(traceback.format_exc().split("\n"))[:-2],
+            )
+
+    if Check.part():
+        Check.current_part[
+            "token"
+        ] = "eyJwYXJ0Ijo0MDM1NywidXNlciI6OTc4NH0:1t0bU4:WLYPmmT-SHelIZ4LVmItSTMEEN4kpYwjzLZ84hDaz74"
+        try:
+            try:
+                if int(eval(Check.current_part["solution"])) != 192837465:
+                    Check.error("Število, ki ste ga vpisali, je napačno.")
+            except:
+                Check.error("Napisati morate celo število.")
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
