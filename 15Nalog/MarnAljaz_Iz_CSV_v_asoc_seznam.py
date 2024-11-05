@@ -25,7 +25,6 @@ def pretvori(imeVhodna:str, imeIzhodna:str):
                     data = l.strip().split(',')
                     if len(data) != len(headder): # ce je vec ali manj elementov v vrstici, vrzemo error
                         raise IndexError(f"Premalo/preveliko elementov v vrstici {vrstice}. z vsebino '{l.strip()}' v datoteki '{imeVhodna}'.")
-                    print(data)
                     for i in range(len(headder)): # Zdruzimo elemente v touple
                         asoc.append((headder[i], data[i]))
                     # Naredimo string, v katerega damo vse stvari in ga napisemo v file

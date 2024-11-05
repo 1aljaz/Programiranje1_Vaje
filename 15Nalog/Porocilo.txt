@@ -1,0 +1,95 @@
+1. Datoteka z ulomki
+    Ideja:
+        Iz datoteke berem ulomke in cela števila. Ulomke množim s števcem in imenovalcem,
+        cela števila množim s števcem. Na koncu dobim neokrajsan ulomek.
+    Algoritem:
+        Odprem datoteko in berem vsako vrstico posebaj. Ker vem, da so ulomki zapisani kot 15/23
+        vem, da lahko poizkusim vrstico splitat glede na '/'. Če gre, potem pomnozim z glavnim števcem in
+        glavnim imenovalcem, če ne gre potem vem, da je v vrstici ali številka ali nek string(lahko prazen).
+        Ker to vem lahko probam vrstico pretvoriti v število. Če to dela, je to celo število in zmnožim to celo število
+        in števec. Drugače je vrstica napačna in vržem ValueError. Ce se slucajno zgodi, da sta stevec in imenovalec
+        v ulomku oba negativna ali pa je imenovalec negativen, oba pomnozim z -1
+2. Dolzina
+    Ideja:
+        Ideja tega razreda je, da imam dve količini. Ena je enota (to so dovoljene enote: m, dm, cm, mm) in druga je količina(sepravi dolžina, do
+        do nekega objekta). Te de dve količini bom v nadaljevanju klical dolžina. V dolžini mora biti koliko pozitivno število in
+        enota ena izmed dovoljenih. Dolzino lahko izpišemo in množimo s celim pozitivnim številom iz leve in iz desne.
+        Lahko pretvorimo katerokoli enoto v mm. Lahko tudi najdemo najkrajšo razdalijo v seznamu dolžin.
+    Algoritem:
+        Najprej definiram dovoljene_enote. V __init__ preverim, če sta koliko in enota validna(koliko > 0 in enota
+        v dovoljene_enote). Definiram oba getter-ja in setter za koliko. Potem definiram __str__ za lep izpis. 
+        Definiram tudi levo in desno množenje s celim število in sicer s isinstance. Pri funkciji pretvori,
+        pretvorim tako, da pogledam v prej definirani slovar, kjer me čaka pretvorba 1 enote v mm. Na koncu Definiram
+        classmethod najkrajsa_razdalija. V min_razdalija se shrani minimalna vrednost v podanem arrayju dolzine. V najkrajse se shrani zadnja taka, ki
+        je enaka najkrajsi razdaliji. Potem to vrnem kot objekt tipa cls.
+3. Enomestna števila
+    Ideja:
+        Najti vsa števila, ki ne nobeni strani tega števila ni nobenega drugega števila.
+    Algoritem:
+        Za to nalogo sem uporabil regularne izraze. Tale regularni izraz '(?<!\d)\d(?!\d)' pomeni:
+        Tole (?<!\d)\d pomeni: Pogleda, da kar je pred trenutno številki, ni številka. Tole \d(?!\d) pa pomeni enako, 
+        samo v drugo smer. Pogleda, da kar je za trenurno številko, ni številka. Potem najdem vse take, ki temu
+        regularnemnu izrazu ustrezajo. Ker vem, da re.findall vrne seznam touplov, lahko pogledam samo dolzino
+        tega seznama.
+4. CSV v asociativen seznam
+    Ideja:
+        Ideja je, da iz neke csv datoteke dobimo headder in z njeno pomočjo naredimo asociativno seznam vseh vrstic v csv datoteki.
+        Ta asociativen seznam je potem potrebno zapisati v datoteko.
+    Algoritem:
+        Najprej je potrebno preveriti, ali vhodna datoteka obstaja. Če obstaja potem jo odpremo in preberemo prvo vrstico. Prvo vrstico
+        shranim v headder seznam. Potem preberem vsako naslednji vrstico in primerjam velikost splitanega arraya z velikostjo arraya
+        headderjev. Če sta enaki potem vem, da je vredu, drugače vržem error.  V asoc array appendm touple v obliki (el. headderja, el. data),
+        da dobim želeno obliko asociativnega arraya. Potem vse sestavim v sstring in zapišem v datoteko.
+5. CSV v HTML
+    Ideja:
+        Ideja je, da dobim neko datoteko v obliki csv in jo pretvorim v html razpredelnico.
+    Algoritem:
+        Odprem datoteko(B) iz katere berem in v katero pišem(P). V P napišem prvo značko za tabelo. Potem grem brati vsako vrstico datoteke B. Ker vem, da
+        vsakič, ko berem preberem eno vrstico, v P napišem <tr> znak za začetek vrstice. Vem, da so v vrstici 3-je elementi, zato jih razpakiram iz splita in
+        zapišem v P s pripadajočimi značkami. Zaključim s tem da zapišem zaključek značke <\table>.
+
+6. Kvader
+    Ideja:
+        Ideja je, da imamo nek razred, v katerem je predstavljen kvader s stranicami visina, globina in sirina. Razred lahko množimo s pozitivnim številom z leve
+        ali desne. Lahko izpišemo površino in prostornino kvadrata. Prav tako lahko iz seznama kvadrov izpišemo najnižjega.
+    Algoritem:
+        V __init__ preverimo validnost stranic. Vse morajo biti pozitivne. Potem definiramo levo in desno množenje razreda s celim pozitivnim številom. Z isinstance
+        preverim, da stvar, ki proba množiti razed je int ali float. Potem definiram setterje in getterje. Definiram tudi lastnost povrsina in lastnost ploscina. Definiram staticno
+        metodo, ki vrne volumen razreda, podanega kot argument. Na koncu pa iz seznama kvadrov izberem zadnjega najnizjega. To storim tako, da najprej s for stavkom čez vse visina in najdem najnizjo.
+        Potem grem čez cel seznam kvadrov in izberem zadnjega takega, ki ima najmanjšo višino. 
+7. Kvadratna enacba
+    Ideja:
+        Izračunam ničle kvadratne enačbe.
+    Algoritem:
+        Najprej izračunam determinato, nato pa vrnem seznam dveh vrednosti. Te vrednosti sta ničli podane kvadratne enačbe.
+8. Masa
+    Ideja:
+        Ideja je, da imamo nek razred, v katerem je predstavljena masa nečesa s količino in enoto. Maso lahko množimo s pozitivnim celim številom in lahko seštevamo dve masi med sabo, pri čimer
+        prevzamemo enoto leve mase. Imamo množnost pretvoriti maso v katerokoli drugo dovoljeno enoto. Iz seznama mas lahko izberemo največjo. Lahko tudi izpišemo vsoto 20 mas in izberemo enoto,
+        ki se v teh masah največkrat pojavi.
+    Algoritem:
+9. Mnozimo se
+    Ideja:
+    Algoritem:
+10. Na datoteko brez oklepajev:
+    Ideja:
+    Algoritem:
+11. Obracamo obracamo omacarbo
+    Ideja:
+        Iz datoteke beremo besede. Ko pridemo do besede, ki ima pred njenim začetkom -, jo obrnemo in - izbrišemo. Vse besede potem zapišemo v drugo datoteko.
+    Algoritem:
+        Najprej preverimo obstoj vhodne datoteke. Če ne obstaja 42x v izhodno datoteko napištemo "Tudi pri težjih problemih smo že odpovedali.". Če pa datoteka obstaja, odpremo
+        vhodno datoteko za branje in izhodno za pisanje. Potem bero vsako vrstico posebej. Splitamo vrstico v seznam, iz katerega vzamemo posamezne besede, preverimo, če je
+        pred katero od njih -. Če je jo obrnemo in - izbrišemo. Potem vsako besedo + presledek napišemo v izhodno datoteko. Dodamo še znake za novo vrstico in zapremo podatkovna tokova. 
+    12. Ruchtzwertzovo zaporedje
+    Ideja:
+    Algoritem:
+13. Valj
+    Ideja:
+    Algoritem:
+14. Zoprna sedmica
+    Ideja:
+        V tabeli poišče sedmice in jih izbriše. Funkcije vrne št. števil, ki so deljiva s 7 in vsoto tistih, ki niso.
+    Algoritem:
+        Najprej definiramo seznam, v katerega bomo shranjevali št. števil, ki so deljiva s 7 in vsoto tistih, ki niso. Potem gremo čez seznam
+        in vsak el. pogledamo. Če je večkratnik št. 7  rezultatu na 0-tem mestu prištejemo 1 in popamo element na tem mestu, drugače pa rezultatu na 1. mestu prištejemo el. sam.

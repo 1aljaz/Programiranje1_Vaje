@@ -1,6 +1,6 @@
 import math
 
-def nicleKvEnacbe(a,b,c):
+def nicleKvEnacbe(a:int,b:int,c:int):
     """
         Vrne nicle kvadratne enacbe.
     """

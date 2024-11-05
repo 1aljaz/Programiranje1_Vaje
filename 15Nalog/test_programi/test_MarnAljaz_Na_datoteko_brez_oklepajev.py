@@ -1,8 +1,9 @@
 import unittest
 import sys
 import os
+from Settings import *
 
-sys.path.append(os.path.abspath("C:/Users/azoma/Documents/GitHub/Programiranje1_Vaje/15Nalog/"))
+sys.path.append(os.path.abspath(PATH_TO_PROGRAMS))
 
 import MarnAljaz_Na_datoteko_brez_oklepajev as m
 
