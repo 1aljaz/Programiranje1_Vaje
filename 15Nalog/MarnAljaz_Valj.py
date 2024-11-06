@@ -19,13 +19,14 @@ class Valj:
             raise ValueError("Ne mores mnoziti z negativnim stevilom!")
         if isinstance(x, (int, float)):
             return Valj(self._polmer, self._visina*x)
+        
+    def __rmul__(self, x):
+        return self.__mul__(x)
     
     def __str__(self):
         return f"Valj z visino: {self._visina}, in polmerom: {self._polmer}"
     
-    def __rmul__(self, x):
-        return self.__mul__(x)
-    
+
     # Definirani setterji in getterji ter obseg
     @property
     def polmer(self):
@@ -50,16 +51,16 @@ class Valj:
         # Vrne volumen zaokrozen na zaokrozitveno napako
         return round(2*math.pi*cls._polmer*cls._visina, cls.zaokrozitvena_napaka)
 
+    def povrsina(self):
+        # Vrne povrsino valja, zaokrozenega na zaokrozitveno napako
+        return round(2*math.pi*self._polmer + self._polmer*self._visina, self.zaokrozitvena_napaka)
+
     @classmethod
     def najnizji_val(cls, valji):
         # Vrne zadnji najnizji valj med podanimi v array-ju
         min_visina = min(valj.visina for valj in valji)
         najnizji = next(valj for valj in reversed(valji) if valj.visina == min_visina)
         return cls(najnizji.polmer, najnizji.visina)
-    
-    def povrsina(self):
-        # Vrne povrsino valja, zaokrozenega na zaokrozitveno napako
-        return round(2*math.pi*self._polmer + self._polmer*self._visina, self.zaokrozitvena_napaka)
 
 v = Valj(5, 6)
 v1 = Valj(1, 2)
