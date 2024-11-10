@@ -1,4 +1,5 @@
 # Odstanim .pyc file
 
 *.pyc
+15Nalog/*.pyc
 /TODO
