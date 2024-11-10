@@ -77,12 +77,13 @@ class Masa():
 
     @classmethod
     def najvecja_masa(cls, mase):
+        """Vrne najveco maso v podanem arrayu mas."""
         najvecja = max(mase, key = lambda masa: masa.pretvori_kolicino_v_novo_enoto("g"))
         return cls(najvecja.kolicina, najvecja.enota)
     
     @classmethod
     def sestej(cls, mase):
-        # sesteje vse mase v array-ju podane kot argument in jih vrne v najpogosteji enoti, ter kot nov objekt tipa cls
+        """sesteje vse mase v array-ju podane kot argument in jih vrne v najpogosteji enoti, ter kot nov objekt tipa cls"""
         enote = {}
         for masa in mase:
             enota = masa._enota

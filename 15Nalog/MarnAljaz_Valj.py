@@ -5,7 +5,7 @@ class Valj:
     zaokrozitvena_napaka = 2
 
     def __init__(self, polmer:int, visina:int):
-        # Pregledamo validnost argumentov
+        """Pregledamo validnost argumentov"""
         if polmer < 0:
             raise ValueError("Polmer mora biti pozitive!")
         if visina < 0:
@@ -48,16 +48,16 @@ class Valj:
 
     @staticmethod
     def volumen(cls):
-        # Vrne volumen zaokrozen na zaokrozitveno napako
+        """Vrne volumen zaokrozen na zaokrozitveno napako"""
         return round(2*math.pi*cls._polmer*cls._visina, cls.zaokrozitvena_napaka)
 
     def povrsina(self):
-        # Vrne povrsino valja, zaokrozenega na zaokrozitveno napako
+        """Vrne povrsino valja, zaokrozenega na zaokrozitveno napako"""
         return round(2*math.pi*self._polmer + self._polmer*self._visina, self.zaokrozitvena_napaka)
 
     @classmethod
     def najnizji_val(cls, valji):
-        # Vrne zadnji najnizji valj med podanimi v array-ju
+        """Vrne zadnji najnizji valj med podanimi v array-ju"""
         min_visina = min(valj.visina for valj in valji)
         najnizji = next(valj for valj in reversed(valji) if valj.visina == min_visina)
         return cls(najnizji.polmer, najnizji.visina)
