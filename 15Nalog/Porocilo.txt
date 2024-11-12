@@ -24,7 +24,7 @@
         je enaka najkrajsi razdaliji. Potem to vrnem kot objekt tipa cls.
 3. Enomestna števila
     Ideja:
-        Najti vsa števila, ki ne nobeni strani tega števila ni nobenega drugega števila.
+        Potrebno je najti vsa števila, ki na nobeni strani tega števila ni nobenega drugega števila.
     Algoritem:
         Za to nalogo sem uporabil regularne izraze. Tale regularni izraz '(?<!\d)\d(?!\d)' pomeni:
         Tole (?<!\d)\d pomeni: Pogleda, da kar je pred trenutno številki, ni številka. Tole \d(?!\d) pa pomeni enako, 
@@ -47,49 +47,91 @@
         Odprem datoteko(B) iz katere berem in v katero pišem(P). V P napišem prvo značko za tabelo. Potem grem brati vsako vrstico datoteke B. Ker vem, da
         vsakič, ko berem preberem eno vrstico, v P napišem <tr> znak za začetek vrstice. Vem, da so v vrstici 3-je elementi, zato jih razpakiram iz splita in
         zapišem v P s pripadajočimi značkami. Zaključim s tem da zapišem zaključek značke <\table>.
-
 6. Kvader
     Ideja:
         Ideja je, da imamo nek razred, v katerem je predstavljen kvader s stranicami visina, globina in sirina. Razred lahko množimo s pozitivnim številom z leve
         ali desne. Lahko izpišemo površino in prostornino kvadrata. Prav tako lahko iz seznama kvadrov izpišemo najnižjega.
     Algoritem:
         V __init__ preverimo validnost stranic. Vse morajo biti pozitivne. Potem definiramo levo in desno množenje razreda s celim pozitivnim številom. Z isinstance
-        preverim, da stvar, ki proba množiti razed je int ali float. Potem definiram setterje in getterje. Definiram tudi lastnost povrsina in lastnost ploscina. Definiram staticno
-        metodo, ki vrne volumen razreda, podanega kot argument. Na koncu pa iz seznama kvadrov izberem zadnjega najnizjega. To storim tako, da najprej s for stavkom čez vse visina in najdem najnizjo.
-        Potem grem čez cel seznam kvadrov in izberem zadnjega takega, ki ima najmanjšo višino. 
+        preverim, da stvar, ki proba množiti razed je int ali float. Potem definiram setterje in getterje. Definiram tudi lastnost povrsina in lastnost ploscina. 
+        Definiram statično metodo, ki vrne volumen razreda, podanega kot argument. Na koncu pa iz seznama kvadrov izberem zadnjega najnizjega. To storim tako, 
+        da najprej s for stavkom čez vse visina in najdem najnižjo. Potem grem čez cel seznam kvadrov in izberem zadnjega takega, ki ima najmanjšo višino. 
 7. Kvadratna enacba
     Ideja:
-        Izračunam ničle kvadratne enačbe.
+        Izračunati ničle kvadratne enačbe.
     Algoritem:
         Najprej izračunam determinato, nato pa vrnem seznam dveh vrednosti. Te vrednosti sta ničli podane kvadratne enačbe.
 8. Masa
     Ideja:
-        Ideja je, da imamo nek razred, v katerem je predstavljena masa nečesa s količino in enoto. Maso lahko množimo s pozitivnim celim številom in lahko seštevamo dve masi med sabo, pri čimer
-        prevzamemo enoto leve mase. Imamo množnost pretvoriti maso v katerokoli drugo dovoljeno enoto. Iz seznama mas lahko izberemo največjo. Lahko tudi izpišemo vsoto 20 mas in izberemo enoto,
-        ki se v teh masah največkrat pojavi.
+        Ideja je, da imamo nek razred, v katerem je predstavljena masa nečesa s količino in enoto. Maso lahko množimo s pozitivnim celim številom in lahko seštevamo dve masi 
+        med sabo, pri čimer prevzamemo enoto leve mase. Imamo množnost pretvoriti maso v katerokoli drugo dovoljeno enoto. Iz seznama mas lahko izberemo največjo. 
+        Lahko tudi izpišemo vsoto vseh podanih mas in pri tem uporabimo maso, ki se v teh masah največkrat pojavi.
     Algoritem:
+        Najprej definiramo slovar dovoljenih mas in njihovih pretvorb v grame. V konstruktorju potem preverim, če je podana enota v tem slovarju in če je kolicina nenegativna.
+        Potem definiram izpis in kako se masi seštevata med sabo. Prav tako definiram množenje, iz leve in desne, mas s celim številom. Nato definiram funkcijo, 
+        ki pretovri maso v katero koli drugo validno enoto. Potem definiram setterje in getterje. Potem definiramo funkcijo, ki dano enoto pretvori v grame, 
+        s pomočjo prej definiranega slovarja dovoljenih enot. V metodi največja masa, najdemo največjo maso, tako da vse pretvorimo v g. To največjo maso potem vrnemo kot nov 
+        objekt. Potem definiramo se eno metodo sestej, ki sprejme array mas. Potem grem čez vsako maso v arrayu in pogledam njeno enoto. Te enote si zapišem v slovar, 
+        kjer tudi dobim največjkrat uporabljeno enoto. Nato vse mase iz seznama pretvorim v najveckrat uporavljeno enoto in jih sestejem. To potem vrnem kot nov objekt.
+
+        V programu za testiranje metode sestej, najprej definiram dovoljene mase, maksimalno količino in koliko mas hočemo. Potem zgeneriram polovico teh mas, 
+        obrnem dobljeni array in ga priključim koncu zgeneriranega arraya. Potem zaženem metodo seštej in izpišem rezultat. 
+        Nato prvo maso pomnožim s 3 in še enkrat zaženem metodo seštej in izpišem rezultat.
 9. Mnozimo se
     Ideja:
+        Iz datoteke prebrati števila in jih zmnožiti v neokrajšan ulomek.
     Algoritem:
+        Odprem datoteko in berem iz nje vrstice. Poizkusim splitat line glede na '/'. Če to gre potem imam ulomek in ga pomnožim z glavni_imenovalec in glavni_stevec. 
+        Če ne gre potem vem, da je vrstici ali smet ali številka. Poizkusim pretvoriti vrstico v števliko. Če to gre potem pomnožim števec s tem številom, drugače je v 
+        vrstici smet in vržem error.
+        Na koncu še pogledam, če sta glavni_imenovalec in glavni_stevec negativna ali pa je negativen samo glavni_imenovalec. Če karkoli od tega drži potem pomnožim oba z -1.
+
 10. Na datoteko brez oklepajev:
     Ideja:
+        V podani tekstovni datoteku moramo najti pravilno postavljene oklepaje in zaklepaje in iz datoteke izbrisati oklepaje in vse kar je med njimi.
+        Če oklepaj ni zaprt pa je potrebno javiti napako.
     Algoritem:
+        Odprem datoteko in s for zanko berem vsako vrstico posebaj. Vsako vrstico pregledujem s še eno for zanko. Definiram način za oklepaje.
+        Ko najdem oklepaj grem v način za oklepaje in si vsak znak zapomnem. Če pridem do zaklepaja končam iz načinom za oklepaje in si zapomnim še zaklepaj.
+        Ko pridem do konca vrstice padem izven for-a in pogledam, če se je način za oklepaje zaključil. Če se ni array dam "NAPAKA", če pa je pa iz vrstice izbrišem
+        vse kar sem si prej zapomil. To potem dodam v array, ki ga na koncu ko vse preberem prepišem v izhodno datoteko.
 11. Obracamo obracamo omacarbo
     Ideja:
         Iz datoteke beremo besede. Ko pridemo do besede, ki ima pred njenim začetkom -, jo obrnemo in - izbrišemo. Vse besede potem zapišemo v drugo datoteko.
     Algoritem:
-        Najprej preverimo obstoj vhodne datoteke. Če ne obstaja 42x v izhodno datoteko napištemo "Tudi pri težjih problemih smo že odpovedali.". Če pa datoteka obstaja, odpremo
-        vhodno datoteko za branje in izhodno za pisanje. Potem bero vsako vrstico posebej. Splitamo vrstico v seznam, iz katerega vzamemo posamezne besede, preverimo, če je
-        pred katero od njih -. Če je jo obrnemo in - izbrišemo. Potem vsako besedo + presledek napišemo v izhodno datoteko. Dodamo še znake za novo vrstico in zapremo podatkovna tokova. 
+        Najprej preverimo obstoj vhodne datoteke. Če ne obstaja 42x v izhodno datoteko napištemo "Tudi pri težjih problemih smo že odpovedali.". Če pa datoteka obstaja, 
+        odpremo vhodno datoteko za branje in izhodno za pisanje. Potem bero vsako vrstico posebej. Splitamo vrstico v seznam, iz katerega vzamemo posamezne besede, 
+        preverimo, če je pred katero od njih -. Če je jo obrnemo in - izbrišemo. Potem vsako besedo + presledek napišemo v izhodno datoteko. 
+        Dodamo še znake za novo vrstico in zapremo podatkovna tokova. 
     12. Ruchtzwertzovo zaporedje
     Ideja:
+        Imeti funkcijo, ki nam pove ali je podano zaporedje Ruchtzwertzovo.
     Algoritem:
+        Najprej pogledamo, če je podano zaporedje daljše od 0 členov. Če ni vrnemo False, drugače pa gremo iz for zanko od 1. do dolžine-1 člena v zaporedju.
+        Vmes gledamo absolutno vrednost razlike sosednjih čelnov. Če razlika ni 0, 1 ali n potem vrnemo False, drugače gledamo naslednje člene.
+        Če se zanka izvede brez, da bi se vrnil False, vrnemo True.
 13. Valj
     Ideja:
+        Ideja je, da imamo nek razred, v katerem je predstavljen valj, s polmerom in višino. Valj lahko množimo s celim nenegativnim številom z leve in desne strani.
+        Imamo možnost računanje volumna, površine in obsega osnovne ploskve. Prav tako moramo najti zadnji najnižji valj v seznamu.
     Algoritem:
+        V konstruktorju preverimo, da sta polmer in visina nenegativna. Če nista potem vržemo napako. Potem definiramo množenje iz leve in desne, ter izpis. Nato definiramo
+        getterje in setterje, ter računanje obsega. Nato definiramo statično metodo za računanje volumna ter funkcijo za računanje površine. Na koncu definiramo metodo,
+        ki more najti zadnji najnižji valj iz podanega seznama. To naredimo tako, da najdemo najmanjšo višino v sezamu s pomočjo funkcije min. Potem uporabimo funkcijo next,
+        ki vrne prvi tak element. To da vzame zadnjega takega sem dosegel tako, da sem seznam obrnil in geldal od zadaj naprej.
+
 14. Zoprna sedmica
     Ideja:
         V tabeli poišče sedmice in jih izbriše. Funkcije vrne št. števil, ki so deljiva s 7 in vsoto tistih, ki niso.
     Algoritem:
         Najprej definiramo seznam, v katerega bomo shranjevali št. števil, ki so deljiva s 7 in vsoto tistih, ki niso. Potem gremo čez seznam
-        in vsak el. pogledamo. Če je večkratnik št. 7  rezultatu na 0-tem mestu prištejemo 1 in popamo element na tem mestu, drugače pa rezultatu na 1. mestu prištejemo el. sam.
+        in vsak el. pogledamo. Če je večkratnik št. 7  rezultatu na 0-tem mestu prištejemo 1 in popamo element na tem mestu, 
+        drugače pa rezultatu na 1. mestu prištejemo el. sam.
+
+15. Družabne števke
+    Ideja:
+        Ideja je najti števke, ki se na levi ali desni dotikajo druge števke.
+    Algoritem:
+        Z regularnimi izrazi sem našel vse števke, ki imajo števke na svoji desni, imajo števke na svoji levi in števke, ki imajo števko na obseh straneh.
+        Količino teh števk sem izračunal tako, da sem pogledal dolžino arraya ustrezajo1 in ustrezajo2, ki ga ustvari re.findall. Tema dolžinama sem odštel dolžino
+        arraya, v katerem so števke, ki imajo števko na obeh straneh in s tem preprečil duplikate.

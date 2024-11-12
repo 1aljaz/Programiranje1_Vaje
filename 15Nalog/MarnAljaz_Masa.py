@@ -45,6 +45,8 @@ class Masa():
 
     def pretvori_kolicino_v_novo_enoto(self, nova_enota):
         """Pretovri kolicino v katerokoli drugo dovoljeno enoto"""
+        if nova_enota not in dovoljene:
+            raise TypeError("Enota, v katero hočete pretvoriti, ne obstaja!")
         return round(self._kolicina * (self.dovoljene_enote[self._enota] / self.dovoljene_enote[nova_enota]), self.zaokrozitvena_napaka)
 
     # Definirani getterji in setterji
@@ -75,12 +77,13 @@ class Masa():
 
     @classmethod
     def najvecja_masa(cls, mase):
+        """Vrne najveco maso v podanem arrayu mas."""
         najvecja = max(mase, key = lambda masa: masa.pretvori_kolicino_v_novo_enoto("g"))
-        return Masa(najvecja.kolicina, najvecja.enota)
+        return cls(najvecja.kolicina, najvecja.enota)
     
     @classmethod
     def sestej(cls, mase):
-        # sesteje vse mase v array-ju podane kot argument in jih vrne v najpogosteji enoti, ter kot nov objekt tipa cls
+        """sesteje vse mase v array-ju podane kot argument in jih vrne v najpogosteji enoti, ter kot nov objekt tipa cls"""
         enote = {}
         for masa in mase:
             enota = masa._enota
@@ -96,7 +99,9 @@ class Masa():
 
 # Definiramo dovoljene enote in randomiziramo kolicino in enoto
 dovoljene = ["kg", "dag", "funt", "g"]
-mase = [Masa(random.randint(1, 1000), dovoljene[random.randint(0, 3)]) for i in range(10)]
+max_kolicina = 1000
+koliko_mas = 20
+mase = [Masa(random.randint(1, max_kolicina), dovoljene[random.randint(0, 3)]) for i in range(koliko_mas//2)]
 
 # Sestavimo mase in obrnjen array mase
 mase = mase + mase[::-1]

@@ -13,7 +13,7 @@ def Obrni(imeVhod:str, imeIzhod:str):
         with open (imeVhod, "r") as fo:
             with open(imeIzhod, "w") as fw:
                 for l in fo:
-                    nizi = l.strip().split(' ') # Odtstranim odvecne presledke na zacetku in koncu povedi (Domneval sem, da morajo presledki (oz. vec njih) med besedami ostati).
+                    nizi = l.strip().split(' ') 
                     for n in nizi:
                         if n[:1] == '-':
                             n = n[1:]    

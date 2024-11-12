@@ -37,7 +37,7 @@ class Dolzina():
         return f"{self.koliko:.1f} {self.enota}"
     
     def __mul__(self, x):
-        # Preveri validnost x-a (ni manjsi od 0 in je celo stevilo ali realno)
+        """Preveri validnost x-a (ni manjsi od 0 in je celo stevilo ali realno)"""
         if x < 0:
             raise ValueError("Ne mores mnoziti z negativnim stevilom")
         if isinstance(x, (int, float)):

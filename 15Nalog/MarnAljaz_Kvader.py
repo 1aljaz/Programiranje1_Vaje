@@ -39,10 +39,12 @@ class Kvader():
     
     @property
     def povrsina(self):
+        """Vrne povrsino kvadrata."""
         return 2*self._globina*self._sirina + 2*self._globina*self._visina + 2*self._visina*self._sirina
 
     @property
     def ploscina(self):
+        """Vrne ploscino osnovne ploskve."""
         return self._globina*self._sirina
     
     @visina.setter
@@ -59,12 +61,12 @@ class Kvader():
     
     @staticmethod
     def volumen(cls):
-        # Vrne volumen razreda podanega kot argument
+        """Vrne volumen razreda podanega kot argument"""
         return cls._visina*cls._globina*cls._sirina
 
     @classmethod
     def najnizji_kvadrat(cls, kvadrati):
-        # Vrne najnizji kvadrat array-ju, ki je podan kot argument
+        """Vrne najnizji kvadrat array-ju, ki je podan kot argument"""
         min_visina = min(kvadrat.visina for kvadrat in kvadrati)
         najnizji = next(kvadrat for kvadrat in reversed(kvadrati) if kvadrat.visina == min_visina)
         return cls(najnizji.visina, najnizji.globina, najnizji.sirina)
