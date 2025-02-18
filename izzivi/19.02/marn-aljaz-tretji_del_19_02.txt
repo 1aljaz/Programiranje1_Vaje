@@ -1,0 +1,25 @@
+1. Kaj izpiše prva koda in ZAKAJ:
+
+print(fun1(m_T, stev))  -> None (ker funkcija nima return vrednosti)
+print(m_T)              -> [42, 2, 3] (ker seznam je spremenljiv objekt in se spremeni tudi izven funkcije)
+print(stev)             -> 1 (ker je število nespremenljiv objekt in se sprememba v funkciji "ne prenese ven")
+
+Razlaga:
+- Funkcija fun1 vrne None, ker nima return stavka z vrednostjo
+- Seznam m_T se spremeni, ker je seznam spremenljiv objekt. tab[0] je v bistvu kazalec na m_T[0],
+  ko spremenimo tab[0], spremenimo tudi m_T[0]
+- Stevilo 1 se ne spremeni, ker je nespremenljiv objekt. Ko funkcija spremeni n, ne vpliva na stevilo 1.
+
+
+2.
+Namesto ... moramo napisati:
+tab = tab.copy() ali tab = tab[:]
+Razlaga:
+- tab = tab.copy() ali tab = tab[:] ustvari nov seznam z istimi elementi kot originalni seznam, originalnega seznama ne referenciramo več
+
+3.
+Samo s popravkom ... ne moremo popraviti funckije tako, da bo print(stev) izpisal 42, ker je stev nespremenljiv objekt in ga v pythonu ni mogoče referencirati
+oz. ustvariti kazalec, ki kaže v pomnilnik kjer je shranjena spremenljiva stev.
+
+Mogoče pa je v pythonu simulirati kazalec, ki kaže na število stev, če bi število stev seznam, ki bi vseboval samo en element, število 1, ki
+bi ga funkcija spremenila v 42.
