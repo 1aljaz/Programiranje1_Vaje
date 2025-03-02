@@ -12,7 +12,7 @@ def vsota_stevk(n):
 
 def vsota_crk(niz:str):
     """
-    Vrne vsoto crk besede niz.
+    Vrne vsoto crk besede po ascii vrednostih v nizu.
     """
     sum = 0
     for crka in niz:
@@ -40,8 +40,7 @@ def lazji_besede(x, y):
     Verzija funkcije lazji, ki namesto stevil sortira besede.
     Vrne True, ce je vsota crk x manjsa kot vsota crk y.
     """
-
-    return vsota_crk(x) <= vsota_crk(y)
+    return vsota_crk(x) < vsota_crk(y)
 
 
 def quicksort_narascajoce(tab:list):
@@ -103,7 +102,7 @@ def quicksort_besed_v1(tab:list):
     rez = []
 
     while len(tab) > 0:
-        manjsa = "ZZZZZZZZZZZZ"
+        manjsa = "z" * 100 
         indeks = 0
         for i in range(0, len(tab)):
             if lazji_besede(tab[i], manjsa):
@@ -122,7 +121,7 @@ def quicksort_besed_v2(tab:list):
     rez = []
 
     while len(tab) > 0:
-        manjsa = "ZZZZZZZZZZZZ"
+        manjsa = "z" * 100 
         indeks = 0
         for i in range(0, len(tab)):
             if tab[i] < manjsa:
@@ -176,8 +175,16 @@ class Test(unittest.TestCase):
 
     # Besede func. v1   
     def test_besede_func_v1(self):
-        self.assertEqual(quicksort_besed_v1(['a', 'b', 'c', 'd', 'aa', 'bb', 'z']), ['a', 'b', 'c', 'd', 'aa', 'bb', 'z'])     
-        self.assert
-        
+        self.assertEqual(quicksort_besed_v1(['a', 'b', 'c', 'd', 'aa', 'bb', 'z']), ['a', 'b', 'c', 'd', 'z', 'aa', 'bb'])     
+        self.assertEqual(quicksort_besed_v1(['zebra', 'abc', 'python', 'a']), ['a', 'abc', 'zebra', 'python'])
+        self.assertEqual(quicksort_besed_v1(['AAA', 'aaa', 'ZZZ', 'zzz']), ['AAA', 'ZZZ', 'aaa', 'zzz'])
+    
+    # Besede func. v2
+    def test_besede_func_v2(self):
+        self.assertEqual(quicksort_besed_v2(['a', 'b', 'c', 'd', 'aa', 'bb', 'z']), ['a', 'aa', 'b', 'bb', 'c', 'd', 'z'])     
+        self.assertEqual(quicksort_besed_v2(['zebra', 'abc', 'python', 'a']), ['a', 'abc', 'python', 'zebra'])
+        self.assertEqual(quicksort_besed_v2(['AAA', 'aaa', 'ZZZ', 'zzz']), ['AAA', 'ZZZ', 'aaa', 'zzz'])
+        self.assertEqual(quicksort_besed_v2(['cat', 'Car', 'bat', 'Bar']), ['Bar', 'Car', 'bat', 'cat'])
+
 if __name__ == "__main__":
     unittest.main()

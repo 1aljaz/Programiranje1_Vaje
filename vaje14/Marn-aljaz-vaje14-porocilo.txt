@@ -1,0 +1,10 @@
+1. Tole je standardni quicksort, ki začne s sortiranjem na začetku.
+Postopek je jasen. Edina stvar, ki pa je malo dvoumna je:
+V postopku piše, da sortiramo dokler seznam ni prazen, nikoli pa ne omeni,
+da kaj iz seznama izbrišemo. Bilo je implicirano, da iz seznama brišemo
+elemente, dokler ni prazen tako, da težav nisem imel.
+
+
+Postopek sortiranja je od Ambroza Pleška.
+
+2. Nič novega.
