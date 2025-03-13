@@ -1,77 +1,63 @@
 # =============================================================================
-# Množice
-# =====================================================================@040645=
+# Analiza obiskovalcev 2
+# =====================================================================@042853=
 # 1. podnaloga
-# Novo množico lahko definiramo tako, da vzamemo elemente in jih napišemo znotraj
-# zavitih oklepajev:`{}`. Elementi morajo biti nespremenljivi (števila,
-# nizi, nabori ...).
-# 
-# Če želimo ustvariti prazno množico, izraz `{}` ni
-# ustrezen (ker s tem dobimo prazen slovar). Zato moramo uporabiti `set()`.
-# Funkcijo `set()`uporabljamo tudi za pretvorbo
-# drugih tipov (na primer tabele) v množice.
-# 
-# Sestavite funkcijo `mnozica(el1, el2, el3)`, ki vrne množico elementov `el1`, `el2` in `el3`.
-# Predpostavite lahko, da so vsi elementi nespremenljivi (in so torej lahko elementi
-# v množici. Na primer:
-# 
-#     >>> mnozica(1, 1, 1)
-#     {1}
-#     >>> mnozica('', ' ', 'beseda')
-#     {'', ' ', 'beseda'}
+# Sestavi funkcijo `vsi_obiskovalci(obiski_po_dnevih)`, ki vrne množico obiskovalcev,
+# ki so spletno stran obiskali vsaj enkrat.
 # =============================================================================
-def mnozica(el1, el2, el3):
-    """Vrne mnozico s tremi elementi."""
-    mnoz = set()
-    mnoz.add(el1)
-    mnoz.add(el2)
-    mnoz.add(el3)
-    return mnoz
-# =====================================================================@040646=
-# 2. podnaloga
-# Sestavite funkcijo `mnozica2(sez)`, ki vrne množico elementov seznama `sez`.
-# Predpostavite lahko, da so vsi elementi seznama nespremenljivi.
-# Na primer:
-# 
-#     >>> mnozica2([1, 2, 3, 4, 1, 2])
-#     {1, 2, 3, 4}
-#     >>> mnozica2(['a', '1', 'hej', 5, '', ' '])
-#     {'', 5, ' ', 'hej', '1', 'a'}
-# =============================================================================
-def mnozica2(sez):
-    """Vrne mnozico narjeneo iz seznama sez."""
-    return set(sez)
-# =====================================================================@040647=
-# 3. podnaloga
-# Napišite funkcijo `spremeni(mn, el1, el2)`, ki vrne mnozico `mn`, kateri
-# doda element `el1` in odvzame element `el2`.
-# Pomagajte si z metodama `add()` ali `update()` ter
-# `discard()` ali `remove()` (`remove()` nam v primeru, da želimo odstraniti
-# element, ki ga ni v množici, javi napako,
-# medtem ko `discard()` v tem primeru ne naredi nič).
-# Na primer:
-# 
-#     >>> spremeni({1, 2}, 4, 5)
-#     {1, 2, 4}
-# =============================================================================
-def spremeni(mn, el1, el2):
-    """Vrne mnozico, kateri doda el1 in odstrani el2."""
-    mn.add(el1)
-    mn.discard(el2)
+def vsi_obiskovalci(obiski_po_dnevih):
+    """Vrne mnozico vseh obiskovalcev."""
+    mn = set()
+    for  m in obiski_po_dnevih:
+        mn = mn | m
     return mn
-# =====================================================================@040648=
-# 4. podnaloga
-# Napišite funkcijo `presek_unija(mn1, mn2, mn3)`, ki najprej izračuna presek množic
-# `mn1` in `mn2`, nato pa vrne unijo preseka in množice `mn3`.
-# Pomagajte si z metodama `intersection()` in `union()`.
-# Na primer:
-# 
-#     >>> presek_unija({1, 2}, {2, 3}, {2})
-#     {2}
+# =====================================================================@042854=
+# 2. podnaloga
+# Sestavi funkcijo `samo_prvic(obiski_po_dnevih)`, ki vrne množico obiskovalcev,
+# ki so spletno stran obiskali le prvi dan.
 # =============================================================================
-def presek_unija(mn1, mn2, mn3):
-    """Vrne unijo preseka, mn1 in mn2, in mn3."""
-    return mn1 & mn2 | mn3
+def samo_prvic(obiski_po_dnevih):
+    """Vrne mnozico, ki so obiskali stran samo prvič."""
+    mn = set(obiski_po_dnevih[0])
+    for m in obiski_po_dnevih:
+        if m == mn:
+            continue
+        mn = mn - m
+    return mn
+# =====================================================================@042859=
+# 3. podnaloga
+# Sestavi funkcijo `natanko_enkrat(obiski_po_dnevih)`, ki vrne obiskovalce, ki
+# se po prvem obisku na spletno stran niso vrnili.
+# =============================================================================
+def natanko_enkrat(obiski_po_dnevih):
+    """Vrne mnozico obiskovalcev, ki so obiskali stran samo enkrat."""
+    unija = set()
+    presek = set(obiski_po_dnevih[0])
+    for m in obiski_po_dnevih:
+        unija = unija | m
+        presek = presek & m
+    return unija - presek
+# =====================================================================@042860=
+# 4. podnaloga
+# Sestavi funkcijo `povratnost(obiski_po_dnevih)`, ki vrne tabelo, ki ima na i-tem
+# mestu uspešnost i-tega dneva. Ta je definirana z deležem uporabnikov, ki so 
+# se naslednji dan vrnili na stran izmed vseh uporabnikov, ki so ta in naslednji
+# dan obiskali stran. Če dva zaporedna dni ni bilo obiskovalcev, naj bo na 
+# ustreznem mestu v tabeli `None`.
+# =============================================================================
+def povratnost(obiski_po_dnevih):
+    """Vrne seznam uspešnosti."""
+    rez = []
+    for i in range(1, len(obiski_po_dnevih)):
+        if len(obiski_po_dnevih[i]) + len(obiski_po_dnevih[i-1]) == 0:
+            rez.append(None)
+            continue
+        presek = obiski_po_dnevih[i-1] & obiski_po_dnevih[i]
+        rez.append(len(presek)/len(obiski_po_dnevih[i] | obiski_po_dnevih[i-1]))
+
+    return rez
+
+
 
 
 
@@ -689,12 +675,35 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY0NSwidXNlciI6OTc4NH0:1tpNmC:jI5IW_H1fWcbbMYaVgAmrxYODSA_Eyp5G3E65E3g-RM"
+        ] = "eyJwYXJ0Ijo0Mjg1MywidXNlciI6OTc4NH0:1tru0j:K96u9O4NJeaAFpYe_SX6U64FFNVt94syPjhLxXOmX58"
         try:
-            Check.equal('mnozica(1, 1, 1)', {1}) and \
-            Check.equal('mnozica("a", "1", "hej")', {'hej', '1', 'a'}) and \
-            Check.equal('mnozica("", " ", "")', {"", " "}) and \
-            Check.equal('mnozica(1, 1, 2)', {1, 2})
+            IMENA = ["Manghost", "Rebelf", "Spreest", "Coyoteerex", "EmbarrasedBullet", "ViciousPetal", "BrightRoach", "CarelessSpike", "OceanFry", "CurlyEnigma"]
+            
+            dnevi0 = [set(), set(), set(), set()]
+            
+            dnevi1 = [
+                set(IMENA[::2]),
+                set(IMENA[1::2])
+            ]
+            
+            dnevi2 = [{IMENA[i]} for i in range(len(IMENA))]
+            
+            dnevi3 = [
+                set(IMENA[::2]),
+                set(IMENA[::3])
+            ]
+            
+            
+            testi = [
+                (dnevi0, set()),
+                (dnevi1, set(IMENA)),
+                (dnevi2, set(IMENA)),
+                (dnevi3, {x for i, x in enumerate(IMENA) if i % 2 == 0 or i % 3 == 0})
+            ]
+            
+            for vhod, pricakovano in testi:
+                if not Check.equal(f'vsi_obiskovalci({vhod})', pricakovano):
+                    break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -706,12 +715,34 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY0NiwidXNlciI6OTc4NH0:1tpNmC:vzq-XMtgdINBeqF0XjERQSaiTodCqDfWmM3OgJBpQog"
+        ] = "eyJwYXJ0Ijo0Mjg1NCwidXNlciI6OTc4NH0:1tru0j:LPAM_3WMDYfCr-W0AYKnCvK0rW7ylKBBT4a_ZNuYvQg"
         try:
-            Check.equal('mnozica2([1, 1, 1, 1, 1])', {1}) and \
-            Check.equal('mnozica2(["a", "1", "hej",  "", " "])', {'',  ' ', 'hej', '1', 'a'}) and \
-            Check.equal('mnozica2([1, 2, 3, 4, 1, 2])', {1, 2, 3, 4}) and \
-            Check.equal('mnozica2([])', set())
+            IMENA = ["Manghost", "Rebelf", "Spreest", "Coyoteerex", "EmbarrasedBullet", "ViciousPetal", "BrightRoach", "CarelessSpike", "OceanFry", "CurlyEnigma"]
+            
+            dnevi0 = [set(), set(), set(), set()]
+            
+            dnevi1 = [
+                set(IMENA[::2]),
+                set(IMENA[1::2])
+            ]
+            
+            dnevi2 = [{IMENA[i]} for i in range(len(IMENA))]
+            
+            dnevi3 = [
+                set(IMENA[::2]),
+                set(IMENA[::3])
+            ]
+            
+            testi = [
+                (dnevi0, set()),
+                (dnevi1, set(IMENA[::2])),
+                (dnevi2, {IMENA[0]}),
+                (dnevi3, {x for i, x in enumerate(IMENA) if i % 2 == 0 and not i % 3 == 0})
+            ]
+            
+            for vhod, pricakovano in testi:
+                if not Check.equal(f'samo_prvic({vhod})', pricakovano):
+                    break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -723,11 +754,34 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY0NywidXNlciI6OTc4NH0:1tpNmC:BzbX9xx-2w30jzAf59pUvO2pEa1UdGuFUagzyP7LzS4"
+        ] = "eyJwYXJ0Ijo0Mjg1OSwidXNlciI6OTc4NH0:1tru0j:tSY0IY1BQnEo8arHoqZLsMSgiktbWLGW0ftsJJJtJDM"
         try:
-            Check.equal('spremeni({1, 2, 3}, 7, 1)', {2, 3, 7}) and \
-            Check.equal('spremeni({"", " ", "abc"}, "", "a")', {'', ' ', 'abc'}) and \
-            Check.equal('spremeni(set(), "", " ")', {''})
+            IMENA = ["Manghost", "Rebelf", "Spreest", "Coyoteerex", "EmbarrasedBullet", "ViciousPetal", "BrightRoach", "CarelessSpike", "OceanFry", "CurlyEnigma"]
+            
+            dnevi0 = [set(), set(), set(), set()]
+            
+            dnevi1 = [
+                set(IMENA[::2]),
+                set(IMENA[1::2])
+            ]
+            
+            dnevi2 = [{IMENA[i]} for i in range(len(IMENA))]
+            
+            dnevi3 = [
+                set(IMENA[::2]),
+                set(IMENA[::3])
+            ]
+            
+            testi = [
+                (dnevi0, set()),
+                (dnevi1, set(IMENA)),
+                (dnevi2, set(IMENA)),
+                (dnevi3, {x for i, x in enumerate(IMENA) if (i % 2 == 0) != (i % 3 == 0)})
+            ]
+            
+            for vhod, pricakovano in testi:
+                if not Check.equal(f'natanko_enkrat({vhod})', pricakovano):
+                    break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -739,11 +793,39 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY0OCwidXNlciI6OTc4NH0:1tpNmC:zEhsLQP2OkqJpSTlJmVerldlgKlGqcGwe2qIAgKMRAo"
+        ] = "eyJwYXJ0Ijo0Mjg2MCwidXNlciI6OTc4NH0:1tru0j:-p7MxLMTm3YgwfoWvcTfvSEeHZYwyHa1vPehlfQ4R_8"
         try:
-            Check.equal('presek_unija({1, 2, 3}, {2, 3}, {4, 5})', {2, 3, 4, 5}) and \
-            Check.equal('presek_unija({"a"}, {"a", "b"}, {"b"})', {"a", "b"}) and \
-            Check.equal('presek_unija(set(), set(), set())', set())
+            IMENA = ["Manghost", "Rebelf", "Spreest", "Coyoteerex", "EmbarrasedBullet", "ViciousPetal", "BrightRoach", "CarelessSpike", "OceanFry", "CurlyEnigma"]
+            
+            dnevi0 = [set(), set(), set(), set()]
+            
+            dnevi1 = [
+                set(IMENA[::2]),
+                set(IMENA[1::2])
+            ]
+            
+            dnevi2 = [set(IMENA[i:i+2]) for i in range(len(IMENA)-1)]
+            
+            dnevi3 = [set(IMENA[i:i+3]) for i in range(len(IMENA)-2)]
+            
+            dnevi4 = [
+                set(IMENA[::2]),
+                set(IMENA[::3])
+            ]
+            
+            import math
+            
+            testi = [
+                (dnevi0, [None, None, None]),
+                (dnevi1, [0]),
+                (dnevi2, [1/3]*(len(dnevi2)-1)),
+                (dnevi3, [1/2]*(len(dnevi3)-1)),
+                (dnevi4, [math.ceil(len(IMENA)/6) / (math.ceil(len(IMENA)/3) + math.ceil(len(IMENA)/2) - math.ceil(len(IMENA)/6))])
+            ]
+            
+            for vhod, pricakovano in testi:
+                if not Check.equal(f'povratnost({vhod})', pricakovano):
+                    break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:

@@ -1,77 +1,47 @@
 # =============================================================================
-# Množice
-# =====================================================================@040645=
+# Analiza obiskovalcev
+#
+# Na spletno stran se prijavljajo uporabniki z različnimi uporabniškimi imeni. 
+# Vsak dan shranimo množico imen uporabnikov, ki so obiskali stran.
+# Da bi lahko spletno stran izboljšali, želimo analizirati obiskovanost spletne strani.
+# =====================================================================@042849=
 # 1. podnaloga
-# Novo množico lahko definiramo tako, da vzamemo elemente in jih napišemo znotraj
-# zavitih oklepajev:`{}`. Elementi morajo biti nespremenljivi (števila,
-# nizi, nabori ...).
-# 
-# Če želimo ustvariti prazno množico, izraz `{}` ni
-# ustrezen (ker s tem dobimo prazen slovar). Zato moramo uporabiti `set()`.
-# Funkcijo `set()`uporabljamo tudi za pretvorbo
-# drugih tipov (na primer tabele) v množice.
-# 
-# Sestavite funkcijo `mnozica(el1, el2, el3)`, ki vrne množico elementov `el1`, `el2` in `el3`.
-# Predpostavite lahko, da so vsi elementi nespremenljivi (in so torej lahko elementi
-# v množici. Na primer:
-# 
-#     >>> mnozica(1, 1, 1)
-#     {1}
-#     >>> mnozica('', ' ', 'beseda')
-#     {'', ' ', 'beseda'}
+# Napiši funkcijo `povratniki(prvi_dan, drugi_dan)`, ki sprejme množici obiskovalcev
+# za dva različna dneva in vrne množico obiskovalcev, ki so stran obiskali
+# oba dneva.
 # =============================================================================
-def mnozica(el1, el2, el3):
-    """Vrne mnozico s tremi elementi."""
-    mnoz = set()
-    mnoz.add(el1)
-    mnoz.add(el2)
-    mnoz.add(el3)
-    return mnoz
-# =====================================================================@040646=
+def povratniki(prvi_dan, drugi_dan):
+    """
+        Vrne presek mnozic.
+    """
+    return prvi_dan & drugi_dan
+# =====================================================================@042850=
 # 2. podnaloga
-# Sestavite funkcijo `mnozica2(sez)`, ki vrne množico elementov seznama `sez`.
-# Predpostavite lahko, da so vsi elementi seznama nespremenljivi.
-# Na primer:
-# 
-#     >>> mnozica2([1, 2, 3, 4, 1, 2])
-#     {1, 2, 3, 4}
-#     >>> mnozica2(['a', '1', 'hej', 5, '', ' '])
-#     {'', 5, ' ', 'hej', '1', 'a'}
+# Napiši funkcijo `nenavduseni(prvi_dan, drugi_dan)`, ki sprejme množici obiskovalcev
+# za dva različna dneva in vrne množico obiskovalcev, ki so stran obiskali
+# samo prvi dan.
 # =============================================================================
-def mnozica2(sez):
-    """Vrne mnozico narjeneo iz seznama sez."""
-    return set(sez)
-# =====================================================================@040647=
+def nenavduseni(prvi_dan, drugi_dan):
+    """Vrne mnozico ljudi, ki so v prvi_dan in ne v drugi dan."""
+    return prvi_dan - drugi_dan
+# =====================================================================@042851=
 # 3. podnaloga
-# Napišite funkcijo `spremeni(mn, el1, el2)`, ki vrne mnozico `mn`, kateri
-# doda element `el1` in odvzame element `el2`.
-# Pomagajte si z metodama `add()` ali `update()` ter
-# `discard()` ali `remove()` (`remove()` nam v primeru, da želimo odstraniti
-# element, ki ga ni v množici, javi napako,
-# medtem ko `discard()` v tem primeru ne naredi nič).
-# Na primer:
-# 
-#     >>> spremeni({1, 2}, 4, 5)
-#     {1, 2, 4}
+# Napiši funkcijo `vsaj_enkrat(prvi_dan, drugi_dan)`, ki sprejme množici obiskovalcev
+# za dva različna dneva in vrne množico obiskovalcev, ki so stran obiskali
+# vsaj enkrat.
 # =============================================================================
-def spremeni(mn, el1, el2):
-    """Vrne mnozico, kateri doda el1 in odstrani el2."""
-    mn.add(el1)
-    mn.discard(el2)
-    return mn
-# =====================================================================@040648=
+def vsaj_enkrat(prvi_dan, drugi_dan):
+    """Vrne mnozico ljudi, ki so obiskali drugi dan ali prvi dan."""
+    return prvi_dan | drugi_dan
+# =====================================================================@042852=
 # 4. podnaloga
-# Napišite funkcijo `presek_unija(mn1, mn2, mn3)`, ki najprej izračuna presek množic
-# `mn1` in `mn2`, nato pa vrne unijo preseka in množice `mn3`.
-# Pomagajte si z metodama `intersection()` in `union()`.
-# Na primer:
-# 
-#     >>> presek_unija({1, 2}, {2, 3}, {2})
-#     {2}
+# Napiši funkcijo `samo_enkrat(prvi_dan, drugi_dan)`, ki sprejme množici obiskovalcev
+# za dva različna dneva in vrne množico obiskovalcev, ki so stran obiskali
+# samo enkrat.
 # =============================================================================
-def presek_unija(mn1, mn2, mn3):
-    """Vrne unijo preseka, mn1 in mn2, in mn3."""
-    return mn1 & mn2 | mn3
+def samo_enkrat(prvi_dan, drugi_dan):
+    """Vrne množico ljudi, ki so obiskali stran samo enkrat."""
+    return (prvi_dan | drugi_dan) - (prvi_dan & drugi_dan)
 
 
 
@@ -689,12 +659,23 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY0NSwidXNlciI6OTc4NH0:1tpNmC:jI5IW_H1fWcbbMYaVgAmrxYODSA_Eyp5G3E65E3g-RM"
+        ] = "eyJwYXJ0Ijo0Mjg0OSwidXNlciI6OTc4NH0:1tru0j:oAneqx6LnGbO2ZeaZEGpTUh34HcafgkB1iFgjnBot20"
         try:
-            Check.equal('mnozica(1, 1, 1)', {1}) and \
-            Check.equal('mnozica("a", "1", "hej")', {'hej', '1', 'a'}) and \
-            Check.equal('mnozica("", " ", "")', {"", " "}) and \
-            Check.equal('mnozica(1, 1, 2)', {1, 2})
+            IMENA = ["Manghost", "Rebelf", "Spreest", "Coyoteerex", "EmbarrasedBullet", "ViciousPetal", "BrightRoach", "CarelessSpike", "OceanFry", "CurlyEnigma"]
+            
+            testi = [
+                (set(), set(), set()),  # Ni bilo obiskovalcev
+                (set(), set(IMENA), set()), # Prvi dan ni bilo obiskovalcev
+                (set(IMENA), set(), set()), # Drugi dan ni bilo obiskovalcev
+                (set(IMENA), set(IMENA), set(IMENA)), # Oba dni so bili isti obiskovalci
+                (set(IMENA[::2]), set(IMENA[1::2]), set()), # Med dnevoma ni bilo istih obiskovalcev
+                (set(IMENA[::2]), set(IMENA[::3]), set(IMENA[::6])), # Nekatere dni so bili isti obiskovalci
+                (set(IMENA[::2]), set(IMENA[::4]), set(IMENA[::4])), # Drugi dan je obiskala polovica tistih iz prvega dne in nihče drug
+            ]
+            
+            for obiskovalci1, obiskovalci2, pricakovano in testi:
+                if not Check.equal(f"povratniki({obiskovalci1}, {obiskovalci2})", pricakovano):
+                    break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -706,12 +687,23 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY0NiwidXNlciI6OTc4NH0:1tpNmC:vzq-XMtgdINBeqF0XjERQSaiTodCqDfWmM3OgJBpQog"
+        ] = "eyJwYXJ0Ijo0Mjg1MCwidXNlciI6OTc4NH0:1tru0j:L3JfoV3gDKc8gxWsIJfMlIvl1z_qjEyMDgvXRIlVo9Q"
         try:
-            Check.equal('mnozica2([1, 1, 1, 1, 1])', {1}) and \
-            Check.equal('mnozica2(["a", "1", "hej",  "", " "])', {'',  ' ', 'hej', '1', 'a'}) and \
-            Check.equal('mnozica2([1, 2, 3, 4, 1, 2])', {1, 2, 3, 4}) and \
-            Check.equal('mnozica2([])', set())
+            IMENA = ["Manghost", "Rebelf", "Spreest", "Coyoteerex", "EmbarrasedBullet", "ViciousPetal", "BrightRoach", "CarelessSpike", "OceanFry", "CurlyEnigma"]
+            
+            testi = [
+                (set(), set(), set()),  # Ni bilo obiskovalcev
+                (set(), set(IMENA), set()), # Prvi dan ni bilo obiskovalcev
+                (set(IMENA), set(), set(IMENA)), # Drugi dan ni bilo obiskovalcev
+                (set(IMENA), set(IMENA), set()), # Oba dni so bili isti obiskovalci
+                (set(IMENA[::2]), set(IMENA[1::2]), set(IMENA[::2])), # Med dnevoma ni bilo istih obiskovalcev
+                (set(IMENA[::2]), set(IMENA[::3]), {ime for i, ime in enumerate(IMENA) if i % 2 == 0 and i % 3 != 0}), # Nekatere dni so bili isti obiskovalci
+                (set(IMENA[::2]), set(IMENA[::4]), set(IMENA[2::4])), # Drugi dan je obiskala polovica tistih iz prvega dne in nihče drug
+            ]
+            
+            for obiskovalci1, obiskovalci2, pricakovano in testi:
+                if not Check.equal(f"nenavduseni({obiskovalci1}, {obiskovalci2})", pricakovano):
+                    break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -723,11 +715,23 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY0NywidXNlciI6OTc4NH0:1tpNmC:BzbX9xx-2w30jzAf59pUvO2pEa1UdGuFUagzyP7LzS4"
+        ] = "eyJwYXJ0Ijo0Mjg1MSwidXNlciI6OTc4NH0:1tru0j:G6vvps91YmLTnBcjlekFBaOszCU45NEwFc5CEr1aj_Y"
         try:
-            Check.equal('spremeni({1, 2, 3}, 7, 1)', {2, 3, 7}) and \
-            Check.equal('spremeni({"", " ", "abc"}, "", "a")', {'', ' ', 'abc'}) and \
-            Check.equal('spremeni(set(), "", " ")', {''})
+            IMENA = ["Manghost", "Rebelf", "Spreest", "Coyoteerex", "EmbarrasedBullet", "ViciousPetal", "BrightRoach", "CarelessSpike", "OceanFry", "CurlyEnigma"]
+            
+            testi = [
+                (set(), set(), set()),  # Ni bilo obiskovalcev
+                (set(), set(IMENA), set(IMENA)), # Prvi dan ni bilo obiskovalcev
+                (set(IMENA), set(), set(IMENA)), # Drugi dan ni bilo obiskovalcev
+                (set(IMENA), set(IMENA), set(IMENA)), # Oba dni so bili isti obiskovalci
+                (set(IMENA[::2]), set(IMENA[1::2]), set(IMENA)), # Med dnevoma ni bilo istih obiskovalcev
+                (set(IMENA[::2]), set(IMENA[::3]), {ime for i, ime in enumerate(IMENA) if i % 2 == 0 or i % 3 == 0}), # Nekatere dni so bili isti obiskovalci
+                (set(IMENA[::2]), set(IMENA[::4]), set(IMENA[::2])), # Drugi dan je obiskala polovica tistih iz prvega dne in nihče drug
+            ]
+            
+            for obiskovalci1, obiskovalci2, pricakovano in testi:
+                if not Check.equal(f"vsaj_enkrat({obiskovalci1}, {obiskovalci2})", pricakovano):
+                    break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -739,11 +743,23 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY0OCwidXNlciI6OTc4NH0:1tpNmC:zEhsLQP2OkqJpSTlJmVerldlgKlGqcGwe2qIAgKMRAo"
+        ] = "eyJwYXJ0Ijo0Mjg1MiwidXNlciI6OTc4NH0:1tru0j:oICTs2rARcDONxfc0IC49xEP7I0er3UAF2iL4gwBfsA"
         try:
-            Check.equal('presek_unija({1, 2, 3}, {2, 3}, {4, 5})', {2, 3, 4, 5}) and \
-            Check.equal('presek_unija({"a"}, {"a", "b"}, {"b"})', {"a", "b"}) and \
-            Check.equal('presek_unija(set(), set(), set())', set())
+            IMENA = ["Manghost", "Rebelf", "Spreest", "Coyoteerex", "EmbarrasedBullet", "ViciousPetal", "BrightRoach", "CarelessSpike", "OceanFry", "CurlyEnigma"]
+            
+            testi = [
+                (set(), set(), set()),  # Ni bilo obiskovalcev
+                (set(), set(IMENA), set(IMENA)), # Prvi dan ni bilo obiskovalcev
+                (set(IMENA), set(), set(IMENA)), # Drugi dan ni bilo obiskovalcev
+                (set(IMENA), set(IMENA), set()), # Oba dni so bili isti obiskovalci
+                (set(IMENA[::2]), set(IMENA[1::2]), set(IMENA)), # Med dnevoma ni bilo istih obiskovalcev
+                (set(IMENA[::2]), set(IMENA[::3]), {ime for i, ime in enumerate(IMENA) if (i % 2 == 0) != (i % 3 == 0)}), # Nekatere dni so bili isti obiskovalci
+                (set(IMENA[::2]), set(IMENA[::4]), set(IMENA[2::4])), # Drugi dan je obiskala polovica tistih iz prvega dne in nihče drug
+            ]
+            
+            for obiskovalci1, obiskovalci2, pricakovano in testi:
+                if not Check.equal(f"samo_enkrat({obiskovalci1}, {obiskovalci2})", pricakovano):
+                    break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:

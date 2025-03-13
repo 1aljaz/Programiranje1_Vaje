@@ -1,77 +1,59 @@
 # =============================================================================
-# Množice
-# =====================================================================@040645=
+# Kavarna Tomo
+#
+# Kavarna Tomo je izvedla anketo med svojimi strankami in jih vprašala:
+# 
+#     Ali imate radi kavo? (odgovorili z "da" ali "ne")
+#     Ali imate radi čaj? (odgovorili z "da" ali "ne")
+#     Ali imate radi kakav? (odgovorili z "da" ali "ne")
+# 
+# Podatke so zbrali v obliki treh množic:
+# 
+#     `ljubitelji_kave` – množica ID-jev strank, ki imajo radi kavo.
+#     `ljubitelji_caja` – množica ID-jev strank, ki imajo radi čaj.
+#     `ljubitelji_kakava` – množica ID-jev strank, ki imajo radi kakav.
+# =====================================================================@042855=
 # 1. podnaloga
-# Novo množico lahko definiramo tako, da vzamemo elemente in jih napišemo znotraj
-# zavitih oklepajev:`{}`. Elementi morajo biti nespremenljivi (števila,
-# nizi, nabori ...).
-# 
-# Če želimo ustvariti prazno množico, izraz `{}` ni
-# ustrezen (ker s tem dobimo prazen slovar). Zato moramo uporabiti `set()`.
-# Funkcijo `set()`uporabljamo tudi za pretvorbo
-# drugih tipov (na primer tabele) v množice.
-# 
-# Sestavite funkcijo `mnozica(el1, el2, el3)`, ki vrne množico elementov `el1`, `el2` in `el3`.
-# Predpostavite lahko, da so vsi elementi nespremenljivi (in so torej lahko elementi
-# v množici. Na primer:
-# 
-#     >>> mnozica(1, 1, 1)
-#     {1}
-#     >>> mnozica('', ' ', 'beseda')
-#     {'', ' ', 'beseda'}
+# Napišite funkcijo `pijejo_vse(radi_kavo, radi_caj, radi_kakav)`, ki vrne množico
+# anketirancev, ki imajo radi vse tri tople napitke.
 # =============================================================================
-def mnozica(el1, el2, el3):
-    """Vrne mnozico s tremi elementi."""
-    mnoz = set()
-    mnoz.add(el1)
-    mnoz.add(el2)
-    mnoz.add(el3)
-    return mnoz
-# =====================================================================@040646=
+def pijejo_vse(radi_kavo, radi_caj, radi_kakav):
+    """Vrne množico ljudi, ki pijejo vse."""
+    return radi_kavo & radi_kakav & radi_caj
+# =====================================================================@042856=
 # 2. podnaloga
-# Sestavite funkcijo `mnozica2(sez)`, ki vrne množico elementov seznama `sez`.
-# Predpostavite lahko, da so vsi elementi seznama nespremenljivi.
-# Na primer:
-# 
-#     >>> mnozica2([1, 2, 3, 4, 1, 2])
-#     {1, 2, 3, 4}
-#     >>> mnozica2(['a', '1', 'hej', 5, '', ' '])
-#     {'', 5, ' ', 'hej', '1', 'a'}
+# Sestavite funkcijo `vsi_anketiranci(radi_kavo, radi_caj, radi_kakav)`, ki vrne
+# množico vseh sodelujočih v anketi (vseh, ki imajo radi katerega od napitkov).
 # =============================================================================
-def mnozica2(sez):
-    """Vrne mnozico narjeneo iz seznama sez."""
-    return set(sez)
-# =====================================================================@040647=
+def vsi_anketiranci(radi_kabo, radi_caj, radi_kakav):
+    """Vrne mnozico vseh ljudi ki so bili akentirani."""
+    return radi_caj | radi_kabo | radi_kakav
+# =====================================================================@042857=
 # 3. podnaloga
-# Napišite funkcijo `spremeni(mn, el1, el2)`, ki vrne mnozico `mn`, kateri
-# doda element `el1` in odvzame element `el2`.
-# Pomagajte si z metodama `add()` ali `update()` ter
-# `discard()` ali `remove()` (`remove()` nam v primeru, da želimo odstraniti
-# element, ki ga ni v množici, javi napako,
-# medtem ko `discard()` v tem primeru ne naredi nič).
-# Na primer:
-# 
-#     >>> spremeni({1, 2}, 4, 5)
-#     {1, 2, 4}
+# Sestavite funkcijo `nekaj_s_kakavom(radi_kavo, radi_caj, radi_kakav)`, ki vrne
+# množico vseh, ki pijejo kakav s kavo ali čajem (ne pa z obojim).
 # =============================================================================
-def spremeni(mn, el1, el2):
-    """Vrne mnozico, kateri doda el1 in odstrani el2."""
-    mn.add(el1)
-    mn.discard(el2)
-    return mn
-# =====================================================================@040648=
+def nekaj_s_kakavom(radi_kavo, radi_caj, radi_kakav):
+    """Vrne množico vseh, ki pijejo kakav s kavo ali s čajem."""
+    return ((radi_kakav & radi_caj) | (radi_kakav & radi_kavo)) - (radi_kavo & radi_caj & radi_kavo)
+# =====================================================================@042858=
 # 4. podnaloga
-# Napišite funkcijo `presek_unija(mn1, mn2, mn3)`, ki najprej izračuna presek množic
-# `mn1` in `mn2`, nato pa vrne unijo preseka in množice `mn3`.
-# Pomagajte si z metodama `intersection()` in `union()`.
-# Na primer:
-# 
-#     >>> presek_unija({1, 2}, {2, 3}, {2})
-#     {2}
+# Izkazalo se je, da funkcija `vsi_anketiranci` ne deluje pravilno. Obstajajo
+# namreč obiskovalci Kavarne Tomo, ki so sodelovali v anketi, a ne pijejo nobenega 
+# izmed napitkov (morda se ob odličnih Tomovih slaščicah raje osvežijo s hladnimi napitki).
+#  
+# Na srečo vemo, da se anketirancem dodelijo zaporedne številke ID, začenši z 1.
+# Sestavite funkcijo 
+# `hladni(radi_kavo, radi_caj, radi_kakav, st_sodelujocih)`, ki
+# poleg množic ljubiteljev posameznih napitkov sprejme še število sodelujočih v
+# anketi in vrne IDje vseh anketirancev, ki nimajo radi nobenega izmed toplih napitkov.
 # =============================================================================
-def presek_unija(mn1, mn2, mn3):
-    """Vrne unijo preseka, mn1 in mn2, in mn3."""
-    return mn1 & mn2 | mn3
+def hladni(radi_kavo, radi_caj, radi_kakav, st_sodelujocih):
+    """Vrne mnozico tistih, ki nimajo radi ne caja, ne kakava in ne kave."""
+
+    sodelujoci = set([i for i in range(1, st_sodelujocih+1)])
+    return sodelujoci - (radi_caj | radi_kakav | radi_kavo)
+
 
 
 
@@ -689,12 +671,22 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY0NSwidXNlciI6OTc4NH0:1tpNmC:jI5IW_H1fWcbbMYaVgAmrxYODSA_Eyp5G3E65E3g-RM"
+        ] = "eyJwYXJ0Ijo0Mjg1NSwidXNlciI6OTc4NH0:1tru0j:RB5aQGZDMF4g5flCbFk1CtYE62CauIuJqhvSJ2On7bU"
         try:
-            Check.equal('mnozica(1, 1, 1)', {1}) and \
-            Check.equal('mnozica("a", "1", "hej")', {'hej', '1', 'a'}) and \
-            Check.equal('mnozica("", " ", "")', {"", " "}) and \
-            Check.equal('mnozica(1, 1, 2)', {1, 2})
+            testi = [
+                ({1, 2, 3, 6}, {2, 3, 4, 7}, {3, 5, 6, 7}, {3}),    # 1. oseba 3 ima rada vse
+                (set(), {2, 3, 4}, {3, 5, 6}, set()),               # 2. ena množica je prazna - nihče nima rad vseh treh
+                ({1, 2, 3}, {1, 2, 3}, {1, 2, 3}, {1, 2, 3}),       # 3. vse množice so enake - vsi imajo radi vse pijače
+                ({1, 2}, {3, 4}, {5, 6}, set()),                    # 4. ni prekrivanja - nihče nima rad vseh treh
+                ({1, 2, 3, 4}, {1, 2, 5, 6}, {1, 2, 7, 8}, {1, 2}), # 5. 1 in dva imata rada vse, ostali pa le po eno
+                ({1, 2, 3, 4, 9}, {2, 3, 5, 6, 10}, {3, 4, 6, 7, 11}, {3}), # 6.
+                (set(), set(), set(), set()),                               # 7. ni anketirancev
+                (set(), set(), {1, 2, 3, 4}, set()),                        # 8. vsi pijejo kakav
+            ]
+            
+            for kava, caj, kakav, pricakovano in testi:
+                if not Check.equal(f'pijejo_vse({kava}, {caj}, {kakav})', pricakovano):
+                    break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -706,12 +698,22 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY0NiwidXNlciI6OTc4NH0:1tpNmC:vzq-XMtgdINBeqF0XjERQSaiTodCqDfWmM3OgJBpQog"
+        ] = "eyJwYXJ0Ijo0Mjg1NiwidXNlciI6OTc4NH0:1tru0j:1pGLeCvuHnjk8_OqswWTMNb26nOQPKDqGv4WZira4NQ"
         try:
-            Check.equal('mnozica2([1, 1, 1, 1, 1])', {1}) and \
-            Check.equal('mnozica2(["a", "1", "hej",  "", " "])', {'',  ' ', 'hej', '1', 'a'}) and \
-            Check.equal('mnozica2([1, 2, 3, 4, 1, 2])', {1, 2, 3, 4}) and \
-            Check.equal('mnozica2([])', set())
+            testi = [
+                ({1, 2, 3, 6}, {2, 3, 4, 7}, {3, 5, 6, 7}, {1, 2, 3, 4, 5, 6, 7}),    # 1. oseba 3 ima rada vse
+                (set(), {2, 3, 4}, {3, 5, 6}, {2, 3, 4, 5, 6}),             # 2. ena množica je prazna - nihče nima rad vseh treh
+                ({1, 2, 3}, {1, 2, 3}, {1, 2, 3}, {1, 2, 3}),               # 3. vse množice so enake - vsi imajo radi vse pijače
+                ({1, 2}, {3, 4}, {5, 6}, {1, 2, 3, 4, 5, 6}),               # 4. ni prekrivanja - nihče nima rad vseh treh
+                ({1, 2, 3, 4}, {1, 2, 5, 6}, {1, 2, 7, 8}, {1, 2, 3, 4, 5, 6, 7, 8}), # 5. 1 in dva imata rada vse, ostali pa le po eno
+                ({1, 2, 3, 4, 9}, {2, 3, 5, 6, 10}, {3, 4, 6, 7, 11}, {1, 2, 3, 4, 5, 6, 7, 9, 10, 11}), # 6.
+                (set(), set(), set(), set()),                               # 7. ni anketirancev
+                (set(), set(), {1, 2, 3, 4}, {1, 2, 3, 4}),                 # 8. vsi pijejo kakav
+            ]
+            
+            for kava, caj, kakav, pricakovano in testi:
+                if not Check.equal(f'vsi_anketiranci({kava}, {caj}, {kakav})', pricakovano):
+                    break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -723,11 +725,23 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY0NywidXNlciI6OTc4NH0:1tpNmC:BzbX9xx-2w30jzAf59pUvO2pEa1UdGuFUagzyP7LzS4"
+        ] = "eyJwYXJ0Ijo0Mjg1NywidXNlciI6OTc4NH0:1tru0j:1b19MgQfM3mQC5lfIEZj3EimcNH28_GD8QNUsZ-TDMo"
         try:
-            Check.equal('spremeni({1, 2, 3}, 7, 1)', {2, 3, 7}) and \
-            Check.equal('spremeni({"", " ", "abc"}, "", "a")', {'', ' ', 'abc'}) and \
-            Check.equal('spremeni(set(), "", " ")', {''})
+            testi = [
+                ({1, 2, 3, 6}, {2, 3, 4, 7}, {3, 5, 6, 7}, {6, 7}),    # 1. oseba 3 ima rada vse
+                (set(), {2, 3, 4}, {3, 5, 6}, {3}),                    # 2. ena množica je prazna - nihče nima rad vseh treh
+                ({1, 2, 3}, {1, 2, 3}, {1, 2, 3}, set()),              # 3. vse množice so enake - vsi imajo radi vse pijače
+                ({1, 2}, {3, 4}, {5, 6}, set()),                       # 4. ni prekrivanja - nihče nima rad vseh treh
+                ({1, 2, 3, 4}, {1, 2, 5, 6}, {1, 2, 7, 8}, set()),     # 5. 1 in dva imata rada vse, ostali pa le po eno
+                ({1, 2, 3, 4, 9}, {2, 3, 5, 6, 10}, {3, 4, 6, 7, 9, 10}, {4, 6, 9, 10}), # 6.
+                (set(), set(), set(), set()),                               # 7. ni anketirancev
+                (set(), set(), {1, 2, 3, 4}, set()),                 # 8. vsi pijejo kakav
+                ({1, 2}, {3, 4}, {1, 2, 3, 4}, {1, 2, 3, 4}),                 # 8. vsi pijejo kakav
+            ]
+            
+            for kava, caj, kakav, pricakovano in testi:
+                if not Check.equal(f'nekaj_s_kakavom({kava}, {caj}, {kakav})', pricakovano):
+                    break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -739,11 +753,19 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY0OCwidXNlciI6OTc4NH0:1tpNmC:zEhsLQP2OkqJpSTlJmVerldlgKlGqcGwe2qIAgKMRAo"
+        ] = "eyJwYXJ0Ijo0Mjg1OCwidXNlciI6OTc4NH0:1tru0j:6k4TO_1pIK-xd5-eipFA1W5JEkBIkImJjUyKiblBtwU"
         try:
-            Check.equal('presek_unija({1, 2, 3}, {2, 3}, {4, 5})', {2, 3, 4, 5}) and \
-            Check.equal('presek_unija({"a"}, {"a", "b"}, {"b"})', {"a", "b"}) and \
-            Check.equal('presek_unija(set(), set(), set())', set())
+            testi = [
+                ({1, 2, 3, 6}, {2, 3, 4, 7}, {3, 5, 6, 7}, 7, set()),  # 1. vsi pijejo tople napitke
+                (set(), set(), set(), 10, set(range(1, 11))),          # 2. vsi pijejo hladne napitke
+                ({1, 2, 3}, {1, 2, 3}, {1, 2, 3}, 4, {4}),             # 3. le zadnji ne pije toplih napitkov
+                ({1}, {3}, {2}, 3, set()),                             # 4.
+                ({1, 6, 9, 7, 2}, {9, 1, 6, 8}, {1, 6, 2, 9}, 10, {3, 4, 5, 10}), # 5.
+            ]
+            
+            for kava, caj, kakav, n, pricakovano in testi:
+                if not Check.equal(f'hladni({kava}, {caj}, {kakav}, {n})', pricakovano):
+                    break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
