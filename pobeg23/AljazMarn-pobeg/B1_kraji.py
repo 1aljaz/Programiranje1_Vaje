@@ -21,7 +21,11 @@ def najboljsi_kraj(seznam_krajev: list):
         try:
             razmerje = samoglasniki_v_imenu / soglasniki_v_imenu
         except ZeroDivisionError:
+<<<<<<< HEAD
             razmerje = 0
+=======
+            razmerje = -1
+>>>>>>> 73458c05e872ea184a24bb77aab1f6bbac43fa46
         if razmerje > maks[1]:
             maks = [kraj, razmerje]
 
