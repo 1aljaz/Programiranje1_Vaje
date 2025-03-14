@@ -1,0 +1,3 @@
+Programe sem preveril s https://codebeautify.org/python-formatter-beautifier z njim sem odpravil nepotrebne prazne vrstice in popravil 
+kakšne morebitne odvečne presledke ali v deklaracijah ali pa na koncu vrstic.
+
