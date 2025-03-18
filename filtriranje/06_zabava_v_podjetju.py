@@ -24,6 +24,7 @@ def vecje(zaposlen):
     return zaposlen[2], zaposlen[1]
 
 def zvesti(zaposleni):
+    """Vrne urejen seznam zaposlenih, ki delajo ze 20 let"""
     if zaposleni:
         return sorted([zaposlen for zaposlen in zaposleni if 2025 - zaposlen[2] > 20], key=vecje)
     return []
