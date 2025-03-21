@@ -1,6 +1,6 @@
 import math
 
-def ena(mn):
+def enaa(mn):
     """Razdeli na pol z uporabo slicinga.
        Razlaga:
         velikost mnozice razdelimo na polovico in zaokrožimo navzgor.
@@ -13,16 +13,16 @@ def ena(mn):
     return set(mn[:sredina]), set(mn[sredina:])
 
 
-def dve(mn):
+def dvee(mn):
     """Funkcija razdeli množico na pol s pomočjo funkcije enumerate.
 
        Razlaga:
        Fuknciaj enumerate vsakemu elementu doda njegovo zaporedno številko.
        Množici se doda vsak element dokler je njegova zaporedna številka manjša
-       od polovice dolžine originalne množice. Vrnemo samo prvo polovico.
+       od polovice dolžine originalne množice.
     """
     return set([x for i, x in enumerate(mn) if i < len(mn)/2]), mn - set([x for i, x in enumerate(mn) if i < len(mn)/2])
-def tri(mn):
+def trii(mn):
     """Razdeli mn. na pol v dve mnozici mnA in mnB.
        
        Razlaga:
