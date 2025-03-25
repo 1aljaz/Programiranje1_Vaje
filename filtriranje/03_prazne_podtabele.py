@@ -1,54 +1,41 @@
 # =============================================================================
-# Slovenske besede
-# =====================================================================@040660=
+# Prazne podtabele
+#
+# Dana je tabela tabel. Določene tabele so prazne. Vrni novo tabelo brez teh praznih tabel.
+# =====================================================================@042871=
 # 1. podnaloga
-# Na [http://bos.zrc-sazu.si/sbsj.html](http://bos.zrc-sazu.si/sbsj.html) je
-# 354.205 različnih besed iz gesel zbirke Besede slovenskega jezika.
-# Program
-# 
-#        import urllib.request
-#        naslov = "http://bos.zrc-sazu.si/sbsj.html" 
-#        vir = urllib.request.urlopen(naslov)
-#        vse = vir.read().decode()
-#        besede = vse.split('\n')[5:-5]
-#        print(besede[0])
-#        print(besede[-1])
-# 
-# poskuša iz te datoteke narediti tabelo vseh besed in izpisati prvo in zadnjo.
-# Ampak kot vidimo,
-# smo na začetku odrezali premalo. Prav tako se nismo znebili konca ...
-# Sestavite funkcijo `vrni_besedo(n)`, ki vrne n-ti besedo iz te datoteke.
-# Posamezno besedo oklestite tudi zadnjih petih znakov, ki so
-# (lahko je v drugem OS malo drugače!)` '<br>\r'`.
-# Če je n neustrezen (torej ni veljaven indeks v tabeli), vrni `None`!
-# Zgledi tu predpostavljajo (to je veljalo dec. 2019), da je tu 354205 besed!
-# 
-#         >>> vrni_besedo(354204)
-#         žžžžk
-#         >>> vrni_besedo(354205)
-#         None
-#         >>> vrni_besedo(-354500)
-#         None
-#         >>> vrni_besedo(0)
-#         a
-#         >>> vrni_besedo(-1)
-#         žžžžk
+# Pripravi vsaj 4 testne primere.
 # =============================================================================
-import urllib.request
-naslov = "http://bos.zrc-sazu.si/sbsj.html"
-vir = urllib.request.urlopen(naslov)
-vse = vir.read().decode()
-besede = vse.split('\n')[5:-5]
-# =====================================================================@040661=
+testi = [([[], [12], [1, 2, 3]], [[12], [1, 2, 3]], "Navadno"),
+         ([[], [], [], []], [], "Vse prazne podtabele"),
+         ([[1, 2], [2, 3], ['K'], [12]], [[1, 2], [2, 3], ['K'], [12]], "Vse polne podtabele"),
+         ([[None], [None, None, None], [[[[[]]]]]], [[None], [None, None, None], [[[[[]]]]]], "Grde tabele")]
+# =====================================================================@042872=
 # 2. podnaloga
-# Sestavite funkcijo `same_razlicne(zacetek)`, ki vrne množico vseh tistih slovenskih
-# besed, ki se začno z nizom `zacetek` in jih sestavljajo same različne črke!
-# 
-#        >>> same_razlicne('mate')
-#        {'mate', 'maternik', 'materski', 'matec', 'matenski',
-#         'matek', 'maten', 'matevž', 'maternski', 'mater', 'materin'}
+# Napiši funkcijo `brez_praznih(tabela)`, ki reši zgoraj opisani problem brez funkcije
+# `filter`.
 # =============================================================================
+def brez_praznih(tabela):
+    """Vrne tabelo brez praznih tabel"""
+    return [x for x in tabela if x]
+# =====================================================================@042873=
+# 3. podnaloga
+# Napiši funkcijo `filter_neprazne(tabela)`, ki s pomočjo funkcije `filter` reši
+# zgoraj opisani problem. 
+# 
+# <details><summary>Namig</summary>
+# Uporabi vedenje o tem, kako Python vrednoti tabele, ki nastopajo na mestih, kjer pričakujemo logično vrednost.
+# Podoben prijem ste na predavanjih srečali pri preverjanju praštevilskosti.
+# </details>
+# =============================================================================
+def je_neprazna(tab):
+    if tab:
+        return True
+    return False
 
+def filter_neprazne(tabela):
+    """Vrne tabelo brez praznih tabel"""
+    return list(filter(je_neprazna, tabela))
 
 
 
@@ -666,18 +653,22 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY2MCwidXNlciI6OTc4NH0:1tqBYH:wTYDhW0lR8IY0z3IOV8PNs4_X_mChpElP3aNLv4hr94"
+        ] = "eyJwYXJ0Ijo0Mjg3MSwidXNlciI6OTc4NH0:1tvGkE:ri_WZTJacodNymUTrdO-Y9kUG6PcgEaEziask5egvzo"
         try:
-            print('Preverjanje 1. dela traja nekaj časa (tam do 30 sekund!)')
-            # testi tu predpostavljajo (to je veljalo dec. 2019),
-            # da je tu 354205 besed!
-            Check.equal('vrni_besedo(354204)', 'žžžžk') and \
-            Check.equal('vrni_besedo(0)', 'a') and \
-            Check.equal('vrni_besedo(-1)', 'žžžžk') and \
-            Check.equal('vrni_besedo(354205)', None) and \
-            Check.equal('vrni_besedo(1000000000)', None) and \
-            Check.equal('vrni_besedo(242)', 'abrakadabra') and \
-            Check.equal('vrni_besedo(1000)', 'adrema')
+            testi_ok = True
+            try:
+                if not isinstance(testi, list):
+                    Check.error("Testi niso zapisani v tabeli.")
+                    testi_ok = False
+                elif not len(testi) >= 4:
+                    Check.error("Tabela s testi vsebuje premalo testov.")
+                    testi_ok = False
+                elif not all(map(lambda x: len(x) == 3, testi)):
+                    Check.error("Testi so zapisani v napačni obliki.")
+                    testi_ok = False
+            except:
+                Check.error("Testi niso shranjeni v spremenljivki testi.")
+                testi_ok = False
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -689,13 +680,96 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY2MSwidXNlciI6OTc4NH0:1tqBYH:zRE8-dQALxPd3Iq50OFEgyMUWPhdyhC1i-sm_saH7RQ"
+        ] = "eyJwYXJ0Ijo0Mjg3MiwidXNlciI6OTc4NH0:1tvGkE:V_ItvgZ1pwpIffpXtoHbO0FG5GPX3XMwwgcqWxr2hOs"
         try:
-            print('Preverjanje 2. dela traja nekaj časa (tam do 30 sekund!)')
-            Check.equal("same_razlicne('matem')", set()) and \
-            Check.equal("same_razlicne('ribez')", {'ribezlov', 'ribezov', 'ribez', 'ribezljast'}) and \
-            Check.equal("same_razlicne('final')", {'finale'}) and \
-            Check.equal("same_razlicne('mate')", {'mate', 'maternik', 'materski', 'matec', 'matenski', 'matek', 'maten', 'matevž', 'maternski', 'mater', 'materin'})
+            nadaljuj = testi_ok
+            
+            # Preverimo, da je rešitev ustrezna (brez filter)
+            if nadaljuj:
+                resitev = Check.current_part['solution']
+                if 'filter(' in resitev:
+                    Check.error("Najprej brez funkcije filter.")
+                    nadaljuj = False
+            
+            # Testiramo s testi iz prve podnaloge.
+            if nadaljuj:
+                for vhod, pricakovano, pojasnilo in testi:
+                    if not Check.equal(f'brez_praznih({vhod})', pricakovano):
+                        Check.feedback(f"Funkcija vrne napačen rezultat za primer: {pojasnilo}")
+                        nadaljuj = False
+                        break
+            
+            # Testiramo na svojih testih
+            if nadaljuj:
+                uradni_testi = [[], [[]], [[2, 4, 1], [1], [9, 9]], [["dež", "sonce"], [], ["niz", "drugi niz"], []], [[[]]]]
+                for t in uradni_testi:
+                    # Eksplicitno preverimo, če je False, ker če vrne None, lahko zgrešimo napake pri sestavljanju naloge.
+                    Check.secret(brez_praznih(t))
+            
+            # Testiramo na naključnih testih.
+            if nadaljuj:
+                import random
+                import string
+                random.seed(1)
+                for i in range(10):
+                    Check.secret(brez_praznih([[
+                        random.choice(string.ascii_letters) for _ in range(random.choice([0, 0, 0, 0, 1, 2, 3, 4]))
+                    ] for _ in range(random.randint(0, 100))]))
+        except TimeoutError:
+            Check.error("Dovoljen čas izvajanja presežen")
+        except Exception:
+            Check.error(
+                "Testi sprožijo izjemo\n  {0}",
+                "\n  ".join(traceback.format_exc().split("\n"))[:-2],
+            )
+
+    if Check.part():
+        Check.current_part[
+            "token"
+        ] = "eyJwYXJ0Ijo0Mjg3MywidXNlciI6OTc4NH0:1tvGkE:CBfyT_Dp3X_lMhCMtZzGbEv9zSZiHHgFbAVJcrz_LUI"
+        try:
+            nadaljuj = testi_ok
+            
+            # Preverimo, da je rešitev ustrezna (uporabi filter in ne uporabi lambde)
+            if nadaljuj:
+                resitev = Check.current_part['solution']
+                if 'filter(' not in resitev:
+                    Check.error("Rešitev ne uporabi funkcije filter.")
+                    nadaljuj = False
+                if "lambda" in resitev:
+                    Check.error("Nalogo reši brez anonimnih funkcij.")
+                    nadaljuj = False
+            
+            # Preverimo, če funkcija vrne pravilen tip (ne filter object)
+            if nadaljuj:
+                rez = filter_neprazne([])
+                if isinstance(rez, filter):
+                    Check.error("Pozor, funkcija filter vrne poseben tip objekta, funkcija filter_neprazne pa mora vrniti tabelo.")
+                    nadaljuj = False
+            
+            # Testiramo s testi iz prve podnaloge.
+            if nadaljuj:
+                for vhod, pricakovano, pojasnilo in testi:
+                    if not Check.equal(f'filter_neprazne({vhod})', pricakovano):
+                        Check.feedback(f"Funkcija vrne napačen rezultat za primer: {pojasnilo}")
+                        nadaljuj = False
+            
+            # Testiramo na svojih testih
+            if nadaljuj:
+                uradni_testi = [[], [[]], [[2, 4, 1], [1], [9, 9]], [["dež", "sonce"], [], ["niz", "drugi niz"], []], [[[]]]]
+                for t in uradni_testi:
+                    Check.secret(filter_neprazne(t))
+            
+            # Testiramo na naključnih testih.
+            if nadaljuj:
+                import random
+                import string
+                random.seed(1)
+                for i in range(10):
+                    filter_neprazne([[
+                        random.choice(string.ascii_letters)
+                        for _ in range(random.choice([0, 0, 0, 0, 1, 2, 3, 4]))
+                    ] for _ in range(random.randint(0, 100))])
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:

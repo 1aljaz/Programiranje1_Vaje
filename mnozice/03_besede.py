@@ -22,6 +22,9 @@
 #       "O", "B", "L"]))
 #       True
 # =============================================================================
+def vse_crke(beseda, crke):
+    """Vrne True, če množica crk vsebuje vse črke iz besede."""
+    return set(beseda) <= crke
 
 # =====================================================================@040651=
 # 2. podnaloga
@@ -38,7 +41,10 @@
 # _Namig: poskusi napisati posebno funkcijo, ki bo vrnila število različnih znakov,
 # morda ti pride prav še pri naslednjih podnalogah.
 # =============================================================================
-
+def naj_raznolika(besede):
+    """Vrne besedo z največ različnih znakov. Male in velike črke niso iste."""
+    raznolike = {beseda:len(set(beseda)) for beseda in besede}
+    return max(raznolike, key=raznolike.get)
 # =====================================================================@040652=
 # 3. podnaloga
 # Napišite funkcijo `naj_raznolika_2(besede)`, ki kot argument prejme neprazno
@@ -51,6 +57,10 @@
 #       >>> naj_raznolika_2(besede)
 #       izpit
 # =============================================================================
+def naj_raznolika_2(besede):
+    """Vrne besedo z največ različnih znakov. Male in velike črke so iste."""
+    raznolike = {beseda:len(set(beseda.lower())) for beseda in besede}
+    return max(raznolike, key=raznolike.get)
 
 # =====================================================================@040653=
 # 4. podnaloga
@@ -64,6 +74,12 @@
 #       >>> naj_raznolika_3(besede)
 #       zmagA
 # =============================================================================
+def naj_raznolika_3(besede):
+    """Vrne zadnjo besedo z največ različnih znakov. Male in velike črke so iste."""
+    raznolike = {beseda:len(set(beseda.lower())) for beseda in besede}
+    return max(reversed(raznolike), key=raznolike.get)
+
+
 
 
 
@@ -682,7 +698,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY1MCwidXNlciI6OTc4NH0:1tpNmC:rp3sZNz6b-8_TYnCZ3LshIci9jRj6l5IZ5EuDMJzXis"
+        ] = "eyJwYXJ0Ijo0MDY1MCwidXNlciI6OTc4NH0:1tqBYH:5xSlNFp5tuaNAYiGaTkEkRbfKc5IJwKvHqVoM92MTMo"
         try:
             Check.equal('vse_crke("AMFITEATER", set(["A", "M"]))', False) and \
             Check.equal('vse_crke("AMFITEATER", set(["A", "M", "F", "I", "T", "E"]))', False) and \
@@ -703,7 +719,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY1MSwidXNlciI6OTc4NH0:1tpNmC:cK1S1SvRG9bxkzdrF6lewXH1TC5Q850uEO-qaGhHvRQ"
+        ] = "eyJwYXJ0Ijo0MDY1MSwidXNlciI6OTc4NH0:1tqBYH:jBLYb-Q9NETKdxRXbxRWCLoIM5OJG1zB1ZX_mib5ArM"
         try:
             Check.equal('naj_raznolika(["izpit", "RABarbara", "zmagA", "BARabar"])', 'RABarbara') and \
             Check.equal('naj_raznolika(["ana", "berta", "cilka", "dani", "ema", "fanči", "greta", "hilda"])', 'berta') and \
@@ -721,7 +737,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY1MiwidXNlciI6OTc4NH0:1tpNmC:6AZCjS6CJfgBMoDvEgCAU9DgN8s6PZINC0573gQ1sgo"
+        ] = "eyJwYXJ0Ijo0MDY1MiwidXNlciI6OTc4NH0:1tqBYH:cIAsgDp9DSzfcABnRxFDr4Ri1RV-ZToMp2cU7D6ZmGE"
         try:
             Check.equal('naj_raznolika_2(["izpit", "RABarbara", "zmagA", "BARabar"])', 'izpit') and \
             Check.equal('naj_raznolika_2(["RABarbara", "izpit", "AnNa", "zmagA"])', 'izpit') and \
@@ -739,7 +755,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY1MywidXNlciI6OTc4NH0:1tpNmC:pZDP8_X8AqGAA9zHGpXlGHA-DwqRV60E-iuNmQ1h-no"
+        ] = "eyJwYXJ0Ijo0MDY1MywidXNlciI6OTc4NH0:1tqBYH:jdOsjX4IHsjkPq-pT8f1Pfvj_TtVNgbafpAA0GiaY94"
         try:
             Check.equal('naj_raznolika_3(["izpit", "RABarbara", "zmagA", "BARabar"])', 'zmagA') and \
             Check.equal('naj_raznolika_3(["ana", "berta", "cilka", "dani", "ema", "fanči", "greta", "hilda"])', 'hilda') and \

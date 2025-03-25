@@ -19,12 +19,26 @@
 # tistih besed (med zgoraj dobljenimi), ki imajo največ različnih črk.
 # =============================================================================
 import urllib.request
+
 naslov = "http://splasho.com/upgoer5/phpspellcheck"
 naslov += "/dictionaries/1000.dicin"
 vir = urllib.request.urlopen(naslov)
+besede = []
+
 for vr in vir:
     vrstica = vr.decode()
     print(vrstica, end='')
+    besede.append(vrstica)
+
+
+def naj_raznolika_ang_beseda():
+    """Vrne po abecedi urejeno tabelo vseh besed, ki imajo največ različnih črk."""
+    seznam = {beseda:len(set(beseda.lower())) for beseda in besede}
+    urejen = sorted(seznam.items(), key=lambda x: x[1])
+    prvih_1000 = dict(list(urejen.items())[:1000])
+    return prvih_1000.keys()
+
+
 
 
 
@@ -642,7 +656,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY1OSwidXNlciI6OTc4NH0:1tpNmC:xomPASAwYf4X2iIISC907gKw_ddY1n1tA66ejYAYG1I"
+        ] = "eyJwYXJ0Ijo0MDY1OSwidXNlciI6OTc4NH0:1tqBYH:WSB7Wc3BHDYbhxKhzqE0hk9Yqn8MwGLI9pnVhOy9Chc"
         try:
             if not Check.equal('naj_raznolika_ang_beseda()',['relationship']):
                 Check.feedback('Si po dekodiranju odstranil znak za prehod v novo vrsto?')

@@ -24,13 +24,14 @@
 #        ['Anja', 'Jožica', 'Marjetka']
 # =============================================================================
 def to_bo_moje_dekle(kandidatke, bivse):
+    """Vrne seznam deklet, ki so v kandidatkah, ne pa tudi v bivsih."""
     kandid = set(kandidatke)
     bivs = set(bivse)
-    for punca in (kandid | bivs):
-        kandid.pop(punca)
-    
-    return kandid
+    presek = kandid & bivs
+    kandid = kandid - presek
+    kandid = sorted(kandid)
 
+    return kandid
 
 
 
@@ -647,7 +648,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY0OSwidXNlciI6OTc4NH0:1tpNmC:c0o9gvlRftMqrbfRUOLy0yo694MZhLq07N9IyG0496Q"
+        ] = "eyJwYXJ0Ijo0MDY0OSwidXNlciI6OTc4NH0:1tqBYH:0hSuHWD0n8UyEWduy7cTBrXW_jMFRhE407IB7Qwh5Kk"
         try:
             if 'while' in Check.current_part['solution']:
                 Check.error("Nalogo reši brez zanke while - pomagaj si z operacijami nad množicami.")

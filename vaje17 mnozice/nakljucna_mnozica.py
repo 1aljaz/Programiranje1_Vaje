@@ -16,7 +16,7 @@ def gen2(n: int):
     """
     ne = set()
     mn = set([i for i in range(1, n)])
-    for i in range(n):
+    for i in range(100-n):
         ne.add(random.randint(1, 100))
     return mn - ne
 
@@ -67,3 +67,25 @@ def test():
         print(f"{n} - povprečni čas: {cas / 1000}")
 
 test()
+
+"""
+POROČILO:
+
+
+Rezultati:
+
+Povprečni časi (timer1): 
+10 - povprečni čas: 9.29961772635579e-06
+50 - povprečni čas: 4.386240104213357e-05
+90 - povprečni čas: 7.718700123950839e-05
+Povprečni časi (timer2):
+10 - povprečni čas: 7.743050018325448e-05
+50 - povprečni čas: 4.822689667344093e-05
+90 - povprečni čas: 1.961220847442746e-05
+Povprečni časi (timer3):
+10 - povprečni čas: 8.787403348833323e-06
+50 - povprečni čas: 2.9367491137236358e-05
+90 - povprečni čas: 5.343491164967418e-05
+
+gen1 in gen3 naraščata z n-jem, gen2 pada z n-jem. Najboljša funkcija je ali hibrid med gen1 in gen2 ali pa gen3.
+"""

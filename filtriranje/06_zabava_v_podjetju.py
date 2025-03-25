@@ -1,54 +1,45 @@
 # =============================================================================
-# Slovenske besede
-# =====================================================================@040660=
+# Zabava v podjetju
+#
+# V podjetju pripravljajo zabavo ob 100-letnici podjetja. V ta namen bodo nagradili 
+# vse zaposlene, ki so v podjetju že več kot 20 let (gledano po letnicah). Iz kadrovskega sistema so 
+# izvozili podatke v obliki tabele trojk (ime, priimek, leto zaposlitve). 
+# Sestaviti želimo funkcijo, ki vrne tabelo imen, priimkov in let zaposlitve nagrajencev. 
+# Ta naj bo urejena naraščajoče po letu zaposlitve. Znotraj istega leta pa po priimkih. 
+# Če imata dva nagrajenca isti priimek, naj bo sta urejena po imenih.
+# =====================================================================@042889=
 # 1. podnaloga
-# Na [http://bos.zrc-sazu.si/sbsj.html](http://bos.zrc-sazu.si/sbsj.html) je
-# 354.205 različnih besed iz gesel zbirke Besede slovenskega jezika.
-# Program
-# 
-#        import urllib.request
-#        naslov = "http://bos.zrc-sazu.si/sbsj.html" 
-#        vir = urllib.request.urlopen(naslov)
-#        vse = vir.read().decode()
-#        besede = vse.split('\n')[5:-5]
-#        print(besede[0])
-#        print(besede[-1])
-# 
-# poskuša iz te datoteke narediti tabelo vseh besed in izpisati prvo in zadnjo.
-# Ampak kot vidimo,
-# smo na začetku odrezali premalo. Prav tako se nismo znebili konca ...
-# Sestavite funkcijo `vrni_besedo(n)`, ki vrne n-ti besedo iz te datoteke.
-# Posamezno besedo oklestite tudi zadnjih petih znakov, ki so
-# (lahko je v drugem OS malo drugače!)` '<br>\r'`.
-# Če je n neustrezen (torej ni veljaven indeks v tabeli), vrni `None`!
-# Zgledi tu predpostavljajo (to je veljalo dec. 2019), da je tu 354205 besed!
-# 
-#         >>> vrni_besedo(354204)
-#         žžžžk
-#         >>> vrni_besedo(354205)
-#         None
-#         >>> vrni_besedo(-354500)
-#         None
-#         >>> vrni_besedo(0)
-#         a
-#         >>> vrni_besedo(-1)
-#         žžžžk
+# Pripravi vsaj 4 testne primere.
+# Pazi, da bodo podatki res ustrezih tipov.
+# Premisli, kaj je smiselen rezultat, ce v podjetju ni dogo zaposlenih!
 # =============================================================================
-import urllib.request
-naslov = "http://bos.zrc-sazu.si/sbsj.html"
-vir = urllib.request.urlopen(naslov)
-vse = vir.read().decode()
-besede = vse.split('\n')[5:-5]
-# =====================================================================@040661=
+testi=[([("Aljaz", "Marn", 2004), ("Edmond", "Kariuki", 1989), ("Efe", "Abiodun", 2021)], [("Edmond", "Kariuki", 1989), ("Aljaz", "Marn", 2004)], "Navadno"),
+        ([("Mubiru", "Shehu", 2333), ("Enyinnaya", "Idowu", 20315)], [], "Noben se ne kvalificirra"),
+        ([("Bello", "Arendse", -999), ("Simba", "Idowu", -600), ("Mojzes", "I.", -999)], [("Bello", "Arendse", -999), ("Mojzes", "I.", -999), ("Simba", "Idowu", -600)], "Vsi se kvalificirajo"),
+        ([], [], "Prazna")]
+# =====================================================================@042890=
 # 2. podnaloga
-# Sestavite funkcijo `same_razlicne(zacetek)`, ki vrne množico vseh tistih slovenskih
-# besed, ki se začno z nizom `zacetek` in jih sestavljajo same različne črke!
-# 
-#        >>> same_razlicne('mate')
-#        {'mate', 'maternik', 'materski', 'matec', 'matenski',
-#         'matek', 'maten', 'matevž', 'maternski', 'mater', 'materin'}
+# Napiši funkcijo `zvesti(zaposleni)`, ki vrne urejeno tabelo zaposlenih, ki so v podjetju
+# zaposleni več kot 20 let.
 # =============================================================================
+def vecje(zaposlen):
+    return zaposlen[2], zaposlen[1]
 
+def zvesti(zaposleni):
+    """Vrne urejen seznam zaposlenih, ki delajo ze 20 let"""
+    if zaposleni:
+        return sorted([zaposlen for zaposlen in zaposleni if 2025 - zaposlen[2] > 20], key=vecje)
+    return []
+# =====================================================================@042891=
+# 3. podnaloga
+# Napiši še funkcijo `zvesti_filter(zaposleni)`, ki naredi enako kot prejšnja funkcija,
+# le da uporabi funkcijo filter (a brez anonimnih funkcij).
+# =============================================================================
+def vr(zap):
+    return (2025 - zap[2]) > 20
+
+def zvesti_filter(zaposleni):
+    return sorted(filter(vr, zaposleni), key=vecje)
 
 
 
@@ -666,18 +657,22 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY2MCwidXNlciI6OTc4NH0:1tqBYH:wTYDhW0lR8IY0z3IOV8PNs4_X_mChpElP3aNLv4hr94"
+        ] = "eyJwYXJ0Ijo0Mjg4OSwidXNlciI6OTc4NH0:1tvGkE:NADlCg-OkBDbP3nk2gW1nJT9X4ftVL6K28_Dg82buZA"
         try:
-            print('Preverjanje 1. dela traja nekaj časa (tam do 30 sekund!)')
-            # testi tu predpostavljajo (to je veljalo dec. 2019),
-            # da je tu 354205 besed!
-            Check.equal('vrni_besedo(354204)', 'žžžžk') and \
-            Check.equal('vrni_besedo(0)', 'a') and \
-            Check.equal('vrni_besedo(-1)', 'žžžžk') and \
-            Check.equal('vrni_besedo(354205)', None) and \
-            Check.equal('vrni_besedo(1000000000)', None) and \
-            Check.equal('vrni_besedo(242)', 'abrakadabra') and \
-            Check.equal('vrni_besedo(1000)', 'adrema')
+            testi_ok = True
+            try:
+                if not isinstance(testi, list):
+                    Check.error("Testi niso zapisani v tabeli.")
+                    testi_ok = False
+                elif not len(testi) >= 4:
+                    Check.error("Tabela s testi vsebuje premalo testov.")
+                    testi_ok = False
+                elif not all(map(lambda x: len(x) == 3, testi)):
+                    Check.error("Testi so zapisani v napačni obliki.")
+                    testi_ok = False
+            except:
+                Check.error("Testi niso shranjeni v spremenljivki testi.")
+                testi_ok = False
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -689,13 +684,131 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY2MSwidXNlciI6OTc4NH0:1tqBYH:zRE8-dQALxPd3Iq50OFEgyMUWPhdyhC1i-sm_saH7RQ"
+        ] = "eyJwYXJ0Ijo0Mjg5MCwidXNlciI6OTc4NH0:1tvGkE:pS-1u81N2z4AcqG_rg77zIVtljIQDGjrutoLfbFCm1s"
         try:
-            print('Preverjanje 2. dela traja nekaj časa (tam do 30 sekund!)')
-            Check.equal("same_razlicne('matem')", set()) and \
-            Check.equal("same_razlicne('ribez')", {'ribezlov', 'ribezov', 'ribez', 'ribezljast'}) and \
-            Check.equal("same_razlicne('final')", {'finale'}) and \
-            Check.equal("same_razlicne('mate')", {'mate', 'maternik', 'materski', 'matec', 'matenski', 'matek', 'maten', 'matevž', 'maternski', 'mater', 'materin'})
+            nadaljuj = testi_ok
+            if not testi_ok:
+                Check.error("Testi iz prve podnaloge niso ustrezni.")
+            
+            # Preverimo, da je rešitev ustrezna (brez filter)
+            if nadaljuj:
+                resitev = Check.current_part['solution']
+                if 'filter(' in resitev:
+                    Check.error("Najprej brez funkcije filter.")
+                    nadaljuj = False
+                if "lambda" in resitev:
+                    Check.error("Namesto anonimne funkcije (lambda) napiši 'navadno' (poimenovano) funkcijo.")
+                    nadaljuj = False
+            
+            
+            # Testiramo s testi iz prve podnaloge.
+            if nadaljuj:
+                for vhod, pricakovano, pojasnilo in testi:
+                    if not Check.equal(f'zvesti({vhod})', pricakovano):
+                        Check.feedback(f"Funkcija vrne napačen rezultat za primer {pojasnilo}")
+                        nadaljuj = False
+                        break
+            
+            # Testiramo na svojih testih
+            if nadaljuj:
+                uradni_testi = [
+                    [], [("Juš", "Jušnik", 2019), ("Majda", "Majdič", 2015), ("Maj", "Majdič", 2024)],
+                    [("Juš", "Jušnik", 2019), ("Majda", "Majdič", 2000), ("Maj", "Majdič", 2024), ("Petra", "Petrin", 2003)], 
+                    [("Juš", "Jušnik", 2005), ("Majda", "Majdič", 2000), ("Maj", "Majdič", 2024), ("Petra", "Petrin", 2003)], 
+                    [("Juš", "Jušnik", 2000), ("Petra", "Petrin", 1998), ("Lavra", "Lavrič", 2003), ("Majda", "Majdič", 2000), ("Janja", "Majdič", 2000)], 
+                ]
+                for t in uradni_testi:
+                    Check.secret(zvesti(t))
+                
+                # Testiramo na naključnih testih.
+                import random
+                random.seed(1)
+                imena = [
+                    "Luka", "Marko", "Ana", "Maja", "Jan", "Matej", "Tina", "Sara", "Miha", "Neža",
+                    "Žiga", "Bojan", "Katarina", "David", "Aljaž", "Petra", "Nina", "Rok", "Urban", "Eva"
+                ]
+            
+                priimki = [
+                    "Novak", "Kovač", "Potočnik", "Mlakar", "Horvat", "Zupan", "Kralj", "Rozman", "Bizjak", "Kos",
+                    "Golob", "Turk", "Koren", "Vidmar", "Božič", "Kotnik", "Petek", "Hribar", "Kavčič", "Jereb"
+                ]
+                for i in range(10):
+                    tabela = list({
+                        (random.choice(imena), random.choice(priimki), random.randint(1950, 2025)) 
+                        for _ in range(random.randint(0, 100))
+                    })
+                    Check.secret(zvesti(tabela))
+        except TimeoutError:
+            Check.error("Dovoljen čas izvajanja presežen")
+        except Exception:
+            Check.error(
+                "Testi sprožijo izjemo\n  {0}",
+                "\n  ".join(traceback.format_exc().split("\n"))[:-2],
+            )
+
+    if Check.part():
+        Check.current_part[
+            "token"
+        ] = "eyJwYXJ0Ijo0Mjg5MSwidXNlciI6OTc4NH0:1tvGkE:xs9WjUxidOgLAQbVaG674l6vTX90RWAO5hG22CTolSY"
+        try:
+            nadaljuj = testi_ok
+            
+            if not testi_ok:
+                Check.error("Testi iz prve podnaloge niso ustrezni.")
+            
+            if nadaljuj:
+                resitev = Check.current_part['solution']
+                if 'filter(' not in resitev:
+                    Check.error("Rešitev ne uporabi funkcije filter.")
+                    nadaljuj = False
+                if "lambda" in resitev:
+                    Check.error("V funkciji filter uporabi pomožno funkcijo, ki vrne True za elemente, ki jih želimo ohraniti.")
+                    nadaljuj = False
+            
+            # Preverimo, če funkcija vrne pravilen tip (ne filter object)
+            if nadaljuj:
+                rez = zvesti_filter([])
+                if nadaljuj and isinstance(rez, filter):
+                    Check.error("Pozor, funkcija zvesti_filter mora vrniti tabelo.")
+                    nadaljuj = False
+            
+            if nadaljuj:
+                for vhod, pricakovano, pojasnilo in testi:
+                    if not Check.equal(f'zvesti_filter({vhod})', pricakovano):
+                        Check.feedback(f"Funkcija vrne napačen rezultat za primer {pojasnilo}")
+                        nadaljuj = False
+                        break
+            
+            # Testiramo na svojih testih
+            if nadaljuj:
+                uradni_testi = [
+                    [], [("Juš", "Jušnik", 2019), ("Majda", "Majdič", 2015), ("Maj", "Majdič", 2024)],
+                    [("Juš", "Jušnik", 2019), ("Majda", "Majdič", 2000), ("Maj", "Majdič", 2024), ("Petra", "Petrin", 2003)], 
+                    [("Juš", "Jušnik", 2005), ("Majda", "Majdič", 2000), ("Maj", "Majdič", 2024), ("Petra", "Petrin", 2003)], 
+                    [("Juš", "Jušnik", 2000), ("Petra", "Petrin", 1998), ("Lavra", "Lavrič", 2003), ("Majda", "Majdič", 2000), ("Janja", "Majdič", 2000)], 
+                ]
+                for t in uradni_testi:
+                    Check.secret(zvesti_filter(t))
+            
+            
+                # Testiramo na naključnih testih
+                import random
+                random.seed(1)
+                imena = [
+                    "Luka", "Marko", "Ana", "Maja", "Jan", "Matej", "Tina", "Sara", "Miha", "Neža",
+                    "Žiga", "Bojan", "Katarina", "David", "Aljaž", "Petra", "Nina", "Rok", "Urban", "Eva"
+                ]
+            
+                priimki = [
+                    "Novak", "Kovač", "Potočnik", "Mlakar", "Horvat", "Zupan", "Kralj", "Rozman", "Bizjak", "Kos",
+                    "Golob", "Turk", "Koren", "Vidmar", "Božič", "Kotnik", "Petek", "Hribar", "Kavčič", "Jereb"
+                ]
+                for i in range(10):
+                    tabela = list({
+                        (random.choice(imena), random.choice(priimki), random.randint(1950, 2025)) 
+                        for _ in range(random.randint(0, 100))
+                    })
+                    Check.secret(zvesti_filter(tabela))
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:

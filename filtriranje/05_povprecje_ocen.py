@@ -1,54 +1,43 @@
 # =============================================================================
-# Slovenske besede
-# =====================================================================@040660=
+# Povprečje ocen
+#
+# Dana je tabela ocen študentov pri Programiranju 1. Zanima nas, kakšno je povprečje
+# pozitivnih ocen ($ >= 6$). Če tega ni mogoče izračunati, bomo vrnili `None`.
+# =====================================================================@042885=
 # 1. podnaloga
-# Na [http://bos.zrc-sazu.si/sbsj.html](http://bos.zrc-sazu.si/sbsj.html) je
-# 354.205 različnih besed iz gesel zbirke Besede slovenskega jezika.
-# Program
-# 
-#        import urllib.request
-#        naslov = "http://bos.zrc-sazu.si/sbsj.html" 
-#        vir = urllib.request.urlopen(naslov)
-#        vse = vir.read().decode()
-#        besede = vse.split('\n')[5:-5]
-#        print(besede[0])
-#        print(besede[-1])
-# 
-# poskuša iz te datoteke narediti tabelo vseh besed in izpisati prvo in zadnjo.
-# Ampak kot vidimo,
-# smo na začetku odrezali premalo. Prav tako se nismo znebili konca ...
-# Sestavite funkcijo `vrni_besedo(n)`, ki vrne n-ti besedo iz te datoteke.
-# Posamezno besedo oklestite tudi zadnjih petih znakov, ki so
-# (lahko je v drugem OS malo drugače!)` '<br>\r'`.
-# Če je n neustrezen (torej ni veljaven indeks v tabeli), vrni `None`!
-# Zgledi tu predpostavljajo (to je veljalo dec. 2019), da je tu 354205 besed!
-# 
-#         >>> vrni_besedo(354204)
-#         žžžžk
-#         >>> vrni_besedo(354205)
-#         None
-#         >>> vrni_besedo(-354500)
-#         None
-#         >>> vrni_besedo(0)
-#         a
-#         >>> vrni_besedo(-1)
-#         žžžžk
+# Najprej testni primeri: pripravi vsaj 3.
 # =============================================================================
-import urllib.request
-naslov = "http://bos.zrc-sazu.si/sbsj.html"
-vir = urllib.request.urlopen(naslov)
-vse = vir.read().decode()
-besede = vse.split('\n')[5:-5]
-# =====================================================================@040661=
+testi = [([1, 2, 3, 4, 5, 6, 7, 8, 10], 7.75, "Navadno"),
+         ([0, 0, 0, 0, 0], None, "Vsi manjsi"),
+         ([8, 8, 8, 8], 8, "Vsi vecji")]
+# =====================================================================@042886=
 # 2. podnaloga
-# Sestavite funkcijo `same_razlicne(zacetek)`, ki vrne množico vseh tistih slovenskih
-# besed, ki se začno z nizom `zacetek` in jih sestavljajo same različne črke!
-# 
-#        >>> same_razlicne('mate')
-#        {'mate', 'maternik', 'materski', 'matec', 'matenski',
-#         'matek', 'maten', 'matevž', 'maternski', 'mater', 'materin'}
+# Napiši funkcijo `povprecje_pozitivnih(ocene)`, ki prejme tabelo ocen študentov 
+# in reši zgoraj opisani problem. Pri tem uporabi standardne pristope za delo s
+# tabelami: for zanka, funkcije za delo s tabelami, brez uporabe funkcije `filter`.
 # =============================================================================
+def povprecje_pozitivnih(ocene):
+    """Vrne ali povprecje ocen vecjih od 6 ali pa None."""
+    try:
+        return sum(x for x in ocene if x >= 6) / sum(1 for x in ocene if x >= 6)
+    except:
+        return None
+# =====================================================================@042887=
+# 3. podnaloga
+# Sedaj napiši funkcijo `povprecje_pozitivnih_filter(ocene)`, ki deluje enako
+# kot funkcija iz prejšnje podnaloge, a problem reši z uporabo funkcije `filter`
+# (a brez anonimnih funkcij).
+# =============================================================================
+def je_vecje(x):
+    return x > 5
 
+def povprecje_pozitivnih_filter(ocene):
+    """Vrne ali povprecje ocen vecjih od 6 ali pa None."""
+    vecje = list(filter(je_vecje, ocene))
+    try:
+        return sum(vecje) / len(vecje)
+    except:
+        return None
 
 
 
@@ -666,18 +655,22 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY2MCwidXNlciI6OTc4NH0:1tqBYH:wTYDhW0lR8IY0z3IOV8PNs4_X_mChpElP3aNLv4hr94"
+        ] = "eyJwYXJ0Ijo0Mjg4NSwidXNlciI6OTc4NH0:1tvGkE:qQvurH-l3vjMCigFk4ju7_wzws2od6nr46_qt9SsWtk"
         try:
-            print('Preverjanje 1. dela traja nekaj časa (tam do 30 sekund!)')
-            # testi tu predpostavljajo (to je veljalo dec. 2019),
-            # da je tu 354205 besed!
-            Check.equal('vrni_besedo(354204)', 'žžžžk') and \
-            Check.equal('vrni_besedo(0)', 'a') and \
-            Check.equal('vrni_besedo(-1)', 'žžžžk') and \
-            Check.equal('vrni_besedo(354205)', None) and \
-            Check.equal('vrni_besedo(1000000000)', None) and \
-            Check.equal('vrni_besedo(242)', 'abrakadabra') and \
-            Check.equal('vrni_besedo(1000)', 'adrema')
+            testi_ok = True
+            try:
+                if not isinstance(testi, list):
+                    Check.error("Testi niso zapisani v tabeli.")
+                    testi_ok = False
+                elif not len(testi) >= 3:
+                    Check.error("Tabela s testi vsebuje premalo testov.")
+                    testi_ok = False
+                elif not all(map(lambda x: len(x) == 3, testi)):
+                    Check.error("Testi so zapisani v napačni obliki.")
+                    testi_ok = False
+            except:
+                Check.error("Testi niso shranjeni v spremenljivki testi.")
+                testi_ok = False
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -689,13 +682,92 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY2MSwidXNlciI6OTc4NH0:1tqBYH:zRE8-dQALxPd3Iq50OFEgyMUWPhdyhC1i-sm_saH7RQ"
+        ] = "eyJwYXJ0Ijo0Mjg4NiwidXNlciI6OTc4NH0:1tvGkE:AnW54OtjRf70Qlx06NxeBbN0BM7thK29F24fCcV5swU"
         try:
-            print('Preverjanje 2. dela traja nekaj časa (tam do 30 sekund!)')
-            Check.equal("same_razlicne('matem')", set()) and \
-            Check.equal("same_razlicne('ribez')", {'ribezlov', 'ribezov', 'ribez', 'ribezljast'}) and \
-            Check.equal("same_razlicne('final')", {'finale'}) and \
-            Check.equal("same_razlicne('mate')", {'mate', 'maternik', 'materski', 'matec', 'matenski', 'matek', 'maten', 'matevž', 'maternski', 'mater', 'materin'})
+            nadaljuj = testi_ok
+            if not testi_ok:
+                Check.error("Testi iz prve podnaloge niso ustrezni.")
+            
+            # Preverimo, da je rešitev ustrezna (brez filter)
+            if nadaljuj:
+                resitev = Check.current_part['solution']
+                if 'filter(' in resitev:
+                    Check.error("Najprej brez funkcije filter.")
+                    nadaljuj = False
+            
+            # Testiramo s testi iz prve podnaloge.
+            if nadaljuj:
+                for vhod, pricakovano, pojasnilo in testi:
+                    if not Check.equal(f'povprecje_pozitivnih({vhod})', pricakovano):
+                        Check.feedback(f"Funkcija vrne napačen rezultat za primer {pojasnilo}")
+                        nadaljuj = False
+                        break
+            
+            if nadaljuj:
+                # Testiramo na svojih testih
+                uradni_testi = [[], [5, 5, 5], [6, 7, 8], [10, 10, 10, 10], [5, 8, 7, 5, 10, 8]]
+                for t in uradni_testi:
+                    Check.secret(povprecje_pozitivnih(t))
+                
+                # Testiramo na naključnih testih.
+                import random
+                random.seed(1)
+                for i in range(10):
+                    tabela = [random.choice([5, 5, 5, 5, 5, 6, 7, 8, 9, 10]) for _ in range(random.randint(0, 100))]
+                    Check.secret(povprecje_pozitivnih(tabela))
+        except TimeoutError:
+            Check.error("Dovoljen čas izvajanja presežen")
+        except Exception:
+            Check.error(
+                "Testi sprožijo izjemo\n  {0}",
+                "\n  ".join(traceback.format_exc().split("\n"))[:-2],
+            )
+
+    if Check.part():
+        Check.current_part[
+            "token"
+        ] = "eyJwYXJ0Ijo0Mjg4NywidXNlciI6OTc4NH0:1tvGkE:k2AxPFBpRZuvP3dKcXg2oGa0qKGEg3Byhk6TKcMXrlg"
+        try:
+            nadaljuj = testi_ok
+            
+            if not testi_ok:
+                Check.error("Testi iz prve podnaloge niso ustrezni.")
+            
+            if nadaljuj:
+                resitev = Check.current_part['solution']
+                if 'filter(' not in resitev:
+                    Check.error("Rešitev ne uporabi funkcije filter.")
+                    nadaljuj = False
+                if "lambda" in resitev:
+                    Check.error("V funkciji filter uporabi pomožno funkcijo, ki vrne True za elemente, ki jih želimo ohraniti.")
+                    nadaljuj = False
+            
+            # Preverimo, če funkcija vrne pravilen tip (ne filter object)
+            if nadaljuj:
+                rez = povprecje_pozitivnih_filter([])
+                if nadaljuj and isinstance(rez, filter):
+                    Check.error("Pozor, funkcija povprecje_pozitivnih_filter mora vrniti tabelo.")
+                    nadaljuj = False
+            
+            if nadaljuj:
+                for vhod, pricakovano, pojasnilo in testi:
+                    if not Check.equal(f'povprecje_pozitivnih_filter({vhod})', pricakovano):
+                        Check.feedback(f"Funkcija vrne napačen rezultat za primer {pojasnilo}")
+                        nadaljuj = False
+                        break
+            
+            if nadaljuj:
+                # Testiramo na svojih testih
+                uradni_testi = [[], [1, 3, 5], [2, 4, 6], [-2, -4, -5, -9], [1, 6, 2, -6, 1, 2, 8, -1]]
+                for t in uradni_testi:
+                    Check.secret(povprecje_pozitivnih_filter(t))
+            
+                # Testiramo na naključnih testih
+                import random
+                random.seed(1)
+                for i in range(10):
+                    tabela = [random.choice([5, 5, 5, 5, 5, 6, 7, 8, 9, 10]) for _ in range(random.randint(0, 100))]
+                    Check.secret(povprecje_pozitivnih_filter(tabela))
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:

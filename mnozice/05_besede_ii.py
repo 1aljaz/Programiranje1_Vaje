@@ -28,6 +28,15 @@
 # Namig: besedo razbijemo na množico črk s klicem `set(beseda)`, presek množic `mn1` in `mn2` pa
 # dobimo s klicem `mn1.intersection(mn2)`.
 # =============================================================================
+def podobna(beseda, tab_besed):
+    """Vrne besedo iz tab_besed, ki ima največ skupnih črk z besedo."""
+    naj = [None, 0]
+    for besede in tab_besed:
+        crke = set(besede.lower())
+        if len(crke & set(str(beseda).lower())) > naj[1]:
+            naj = [besede, len(crke & set(str(beseda).lower()))]
+    return naj[0]
+
 
 # =====================================================================@040658=
 # 2. podnaloga
@@ -40,7 +49,13 @@
 #       >>> razlicni_znaki(besede)
 #       ['Kok', 'konec', 'kralj', 'čmrlj']
 # =============================================================================
-
+def razlicni_znaki(tab_besed):
+    """Vrne urejeno tabelo besed, ki imajo vse znake različne."""
+    besede = set()
+    for beseda in tab_besed:
+        if len(set(beseda)) == len(beseda):
+            besede.add(beseda)
+    return sorted(besede)
 
 
 
@@ -658,7 +673,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY1NywidXNlciI6OTc4NH0:1tpNmC:V7m_b4gBfU_A1OauDCxGW7ae1EeGbhpS3KwlyioOEhc"
+        ] = "eyJwYXJ0Ijo0MDY1NywidXNlciI6OTc4NH0:1tqBYH:AJ20ofr7nJzS2k64zYMsp8O-j7TY561JUsxvEz4dNIw"
         try:
             if not Check.equal('podobna("merjasec", ["merjasec"])', 'merjasec'):
                 Check.error("Še enkrat preverite svojo kodo.")
@@ -711,7 +726,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY1OCwidXNlciI6OTc4NH0:1tpNmC:l8H2w54llTlt4pX-dnFyBL-UDNKoyElfgPp7_6s-Y5g"
+        ] = "eyJwYXJ0Ijo0MDY1OCwidXNlciI6OTc4NH0:1tqBYH:NaPyML8SaoSzjDKc453akY4FBJSDtGriOc1uKMIC-KY"
         try:
             if type(razlicni_znaki(['abc'])) != list:
                 Check.error("Pazite, da vaša funkcija vrne tabelo.")

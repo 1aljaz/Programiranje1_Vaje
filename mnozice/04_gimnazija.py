@@ -14,7 +14,15 @@
 # 
 # Pri tem vemo, da velja $a \in \mathbb{N}$ in $b \in \mathbb{N}$
 # =============================================================================
-
+def vrni_tri(a, b):
+    """Vrne nabor (A, B, C) - množice A, B in C."""
+    A = {30 * n for n in range(a)}
+    B = {n**3 for n in range(b) if 5 * n < b}
+    C = {5 * n for n in range(a * b) if n ** 3 < a * b}
+    A.discard(0)
+    B.discard(0)
+    C.discard(0)
+    return sorted(A), sorted(B), sorted(C)
 # =====================================================================@040655=
 # 2. podnaloga
 # Sestavite funkcijo `racuni(A, B, C)`, ki vrne nabor `(X, Y, Z)`, kjer so `X`, `Y` in `Z` naslednje množice:
@@ -26,7 +34,12 @@
 #       >>> racuni({2, 4, 6, 8, 10}, {1, 2, 3, 4}, {4, 6, 5})
 #       ({4}, {8, 10}, {4, 5, 6, 8, 10})
 # =============================================================================
-
+def racuni(A, B, C):
+    """Vrne nabor (X, Y, Z) - presek, razlika in unija množic A, B in C."""
+    X = A & B & C
+    Y = A - (B | C)
+    Z = (A - B) | C
+    return X, Y, Z
 # =====================================================================@040656=
 # 3. podnaloga
 # Sestavite funkcijo `kartezicni(A, B)`, ki vrne nabor `(X, Y)`, kjer sta `X` in `Y` množici:
@@ -37,6 +50,11 @@
 #       >>> kartezicni({1, 2, 3}, {3, 4})
 #       ({(1,3), (1,4), (2,3), (2,4), (3,3), (3,4)}, {(3,3), (3,4), (4,3), (4,4)})
 # =============================================================================
+def kartezicni(A, B):
+    """Vrne nabor (X, Y) - kartezični produkt množic A in B."""
+    X = {(a, b) for a in A for b in B}
+    Y = {(b, c) for b in B for c in B}
+    return X, Y
 
 
 
@@ -655,7 +673,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY1NCwidXNlciI6OTc4NH0:1tpNmC:9xbuRziQ86gaumZf4gawuT3sDnr2fABY7EebWuobXXE"
+        ] = "eyJwYXJ0Ijo0MDY1NCwidXNlciI6OTc4NH0:1tqBYH:M9XpRw07kQ2_sNrLd-xSIRlNSB0LodOM23pUhandPh4"
         try:
             Check.equal('vrni_tri(5, 30)', ({120, 90, 60, 30}, {8, 1, 64, 27, 125}, {5, 10, 15, 20, 25})) and \
             Check.equal('vrni_tri(1, 1)', (set(), set(), set())) and \
@@ -672,7 +690,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY1NSwidXNlciI6OTc4NH0:1tpNmC:NCuKFFOlfIYGmsduYXqNMctGmxMcmoT2NXcFl5o1GcA"
+        ] = "eyJwYXJ0Ijo0MDY1NSwidXNlciI6OTc4NH0:1tqBYH:mE02sZFQznymbCnfs4Y3CAbZnuEz806yXom74esCtdk"
         try:
             Check.equal('racuni({2, 4, 6, 8, 10}, {1, 2, 3, 4}, {4, 6, 5})', ({4}, {8, 10}, {4, 5, 6, 8, 10})) and \
             Check.equal('racuni({2, 4, 6, 8, 10}, {1, 2, 3, 4}, {5, 10, 15})', (set(), {8, 6}, {5, 6, 8, 10, 15})) and \
@@ -689,7 +707,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY1NiwidXNlciI6OTc4NH0:1tpNmC:xABSEPxW7Alx4GSlIpWGi3XclnmBfrLiFPh-PY430J4"
+        ] = "eyJwYXJ0Ijo0MDY1NiwidXNlciI6OTc4NH0:1tqBYH:hP0lNVcRNZZVRvCLpRqQRYes9AdV102pHRIup4U3H7Y"
         try:
             Check.equal('kartezicni({1}, {3})', ({(1, 3)}, {(3, 3)})) and \
             Check.equal('kartezicni({1, 2, 3}, {3, 4})', ({(1,3), (1,4), (2,3), (2,4), (3,3), (3,4)}, {(3,3), (3,4), (4,3), (4,4)})) and \
