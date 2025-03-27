@@ -7,10 +7,9 @@ def solve(l1, a1, l2, a2, lt, at):
     """
     mn = []
     
-    max_i = min((lt - l2) // l1 if l1 > 0 else 10000, 
-                 (at - a2) // a1 if a1 > 0 else 10000)
+    M_i = min((lt - l2) // l1, (at - a2) // a1)
     
-    for i in range(1, max_i + 1):
+    for i in range(1, M_i + 1):
         if (lt - l1*i) % l2 == 0:
             j = (lt - l1*i) // l2
             
