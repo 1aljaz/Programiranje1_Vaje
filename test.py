@@ -1,17 +1,12 @@
-def narascajoce_cete(tabela):
-    """Vrne tabelo vseh narascajocih cet iz zaporedja."""
-    if len(tabela) == 0:
-        return []
-    temp = [tabela[0]]
-    rez = []
-    for i in range(1, len(tabela)):
-        if tabela[i-1] >= tabela[i]:
-            print(temp)
-            rez.append(temp)
-            temp.clear()
-        temp.append(tabela[i])
-    
-#   rez.append(temp)
-    return rez
+def hitro_sestavljanje(skatla, model):
+    skupaj_skatla = {tip : sum(barve.values()) for tip, barve in skatla.items()}
+    skupaj_model = {tip : sum(barve.values()) for tip, barve in model.items()}
+    print(skupaj_skatla, skupaj_skatla, sep='\n')
+    for tip, koliko in skupaj_model.items():
+        if tip not in skupaj_skatla:
+            return False
+        if skupaj_skatla[tip] < koliko:
+            return False
+    return False
 
-print(narascajoce_cete([1, 3, 6, 3, 8, 8, 10, 12]))
+hitro_sestavljanje({'4x1': {'rdeča': 3}, '2x2': {'rdeča': 1, 'rumena': 5}}, {'4x1': {'modra': 2}, '2x2': {'rdeča': 2, 'modra': 1}})
