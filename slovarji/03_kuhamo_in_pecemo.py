@@ -670,7 +670,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY3MSwidXNlciI6OTc4NH0:1twygg:QhjNRlub44_7oSJJH5M92GpuDcQfskQ8gLpaOoeRhEY"
+        ] = "eyJwYXJ0Ijo0MDY3MSwidXNlciI6OTc4NH0:1txo2I:k1VvWlwOiI2f2htpKsFE9wXQFkZOWGEh8MocMyxhqmo"
         try:
             # POZOR: potrebno je popraviti teste, ker sedaj lahko "popravi" stari slovar
             # in vrne nov kazalec na ta popravlje slovar
@@ -692,7 +692,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY3MiwidXNlciI6OTc4NH0:1twygg:uK5ixgNRPIiXQ5tr6m288wS_WUhG3mrIpHUbMLI1LXY"
+        ] = "eyJwYXJ0Ijo0MDY3MiwidXNlciI6OTc4NH0:1txo2I:1qGZfqH_ww5O5hEnwABLryax8K_IFk5umlz-bGIxKXw"
         try:
             Check.equal("imamo_sestavine({'jajca': 3, 'moka': 500}, {'moka': 600})", False) and \
             Check.equal("imamo_sestavine({'jajca': 3, 'moka': 500}, {'moka': 1000, 'sladkor': 1000, 'jajca': 2})",
@@ -713,7 +713,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY3MywidXNlciI6OTc4NH0:1twygg:ZtdBbZwo_VbV1Dy5Pq3nDpIn10efYJhh8dkl8EctIVU"
+        ] = "eyJwYXJ0Ijo0MDY3MywidXNlciI6OTc4NH0:1txo2I:qg_umxObNry8lU7vA1i0hNACtwJM-WDrcGqtAQWvZfQ"
         try:
             Check.equal("potrebno_kupiti({'jajca': 3, 'moka': 500}, {'moka': 450, 'sladkor': 1000})",
                         {'jajca': 3, 'moka': 50}) and \

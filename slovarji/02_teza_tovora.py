@@ -115,7 +115,6 @@ def najkrajsi_opis(tovor):
 #     []
 # =============================================================================
 def najlazji_predmet(tovor):
-    """Vrne tabelo najlazjih stvari v tovorju."""
     if tovor:
         m = min(vrednost for _, vrednost in tovor.items())
         return sorted([kljuc for kljuc, vrednost in tovor.items() if vrednost == m])
@@ -737,7 +736,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY2NSwidXNlciI6OTc4NH0:1twygg:BMJXCYIznEBidRYNPJhoWd5DpuqNgunewC7FhCgH3VU"
+        ] = "eyJwYXJ0Ijo0MDY2NSwidXNlciI6OTc4NH0:1txo2I:oF1ArC4UBPpGqgTro1HZGmurbVloDOnnPYqs04UpBE8"
         try:
             selitveni_tovor = {'televizor': 17, 'postelja': 100, 'miza': 35, 'zofa': 40, 'omara': 17}
             
@@ -755,7 +754,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY2NiwidXNlciI6OTc4NH0:1twygg:JR_UbDYD2LAts3m5ARddSqD_nYnQm2LFn-nLMLYMom8"
+        ] = "eyJwYXJ0Ijo0MDY2NiwidXNlciI6OTc4NH0:1txo2I:HS5jstl-XebhA3lu3eVBAo792tl0Q2HRrPY9Eu-SzrQ"
         try:
             Check.equal(f"lahko_pelje({selitveni_tovor}, 333)", True) and \
             Check.equal(f"lahko_pelje({selitveni_tovor}, 208)", False) and \
@@ -774,7 +773,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY2NywidXNlciI6OTc4NH0:1twygg:Lcm820wHKzbcwEKaDNlrGfy01PizldlKUa-HH127UF8"
+        ] = "eyJwYXJ0Ijo0MDY2NywidXNlciI6OTc4NH0:1txo2I:FCfLLRHDRsxYeF3wsT9eCu3f0rBGq76Q356RU-_0BjQ"
         try:
             sol = Check.current_part['solution']
             if re.search(r"tovor1\s*==\s*tovor2", sol):
@@ -811,7 +810,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY2OCwidXNlciI6OTc4NH0:1twygg:z0pITj7cPJr8MBH6LkcQiaZPyPJTYa6R5zFwpEtpgW4"
+        ] = "eyJwYXJ0Ijo0MDY2OCwidXNlciI6OTc4NH0:1txo2I:eu4xeFVmCtSR9QU39D8EamfVrR3LUbpRGSBw8sRrz1w"
         try:
             Check.equal("ustrezen_tovor({0}, 18, 100)".format(selitveni_tovor),
                         {'postelja' : 100, 'miza' : 35, 'zofa': 40}) and \
@@ -833,7 +832,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY2OSwidXNlciI6OTc4NH0:1twygg:JwlUZTN3wGDwSwjVXlE4pxpScRWF7N2QX81CkxF05d0"
+        ] = "eyJwYXJ0Ijo0MDY2OSwidXNlciI6OTc4NH0:1txo2I:Gf8h4lYbU6gVN2BvHsmlE5x0VdhKGW16JEzORKW9P7Q"
         try:
             Check.equal("najkrajsi_opis({0})".format(selitveni_tovor), ['miza', 'zofa']) and \
             Check.equal("najkrajsi_opis(dict())", []) and \
@@ -855,7 +854,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY3MCwidXNlciI6OTc4NH0:1twygg:e8nWHEyrkLCzhkpxCuwnpy2F9JWFEmhRWKMTv6SWstA"
+        ] = "eyJwYXJ0Ijo0MDY3MCwidXNlciI6OTc4NH0:1txo2I:XPnz7CDxSLrNtVTSbJDupwa_nqZSECpsYwIKhEa1UgM"
         try:
             Check.equal("najlazji_predmet({0})".format(selitveni_tovor), ['omara', 'televizor']) and \
             Check.equal("najlazji_predmet(dict())", []) and \

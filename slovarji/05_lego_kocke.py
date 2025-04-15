@@ -27,7 +27,20 @@
 #     >>> slovar_kock(['2x2.rdeča', '2x2.rdeča', 'nogice.modra', '2x2.modra'])
 #     {'nogice': {'modra': 1}, '2x2': {'rdeča': 2, 'modra': 1}}
 # =============================================================================
-
+def slovar_kock(skatla):
+    """Vrne slovar kock."""
+    sl = {}
+    for kocka in skatla:
+        tip, barva = kocka.split('.')
+        if tip in sl:
+            if barva in sl[tip]:
+                sl[tip][barva] +=1
+            else:
+                sl[tip][barva] = 1
+        else:
+            sl[tip] = {}
+            sl[tip][barva] = 1
+    return sl
 # =====================================================================@040679=
 # 2. podnaloga
 # Boštjan je v sestavljanju LEGO kock zelo dober. Njegovi modeli sestojijo
@@ -47,7 +60,17 @@
 #     >>> lahko_sestavimo(skatla, model_2)
 #     False
 # =============================================================================
-
+def lahko_sestavimo(skatla, model):
+    """Vrne True ce lahko sestavimo model z kockami v skatli."""
+    for tip, barve in model.items():
+        if tip not in skatla:
+            return False
+        for barva, stevilo in barve.items():
+            if barva not in skatla[tip]:
+                return False
+            if skatla[tip][barva] < stevilo:
+                return False
+    return True
 # =====================================================================@040680=
 # 3. podnaloga
 # Boštjana ne moti, če kocke iz katerih sestavlja svoje modele, niso vse
@@ -65,7 +88,16 @@
 #     >>> hitro_sestavljanje(skatla_2, model)
 #     False
 # =============================================================================
-
+def hitro_sestavljanje(skatla, model):
+    """Vrne True ce je v skatli dovolj enega tipa kock ne glede na barvo."""
+    skupaj_skatla = {tip : sum(barve.values()) for tip, barve in skatla.items()}
+    skupaj_model = {tip : sum(barve.values()) for tip, barve in model.items()}
+    for tip, koliko in skupaj_model.items():
+        if tip not in skupaj_skatla:
+            return False
+        if skupaj_skatla[tip] < koliko:
+            return False
+    return True
 
 
 
@@ -683,7 +715,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY3OCwidXNlciI6OTc4NH0:1twygg:2pUJLUam-3sxRC5LL6iCLmrLxtjHJnWfj5Fuv2E8ooI"
+        ] = "eyJwYXJ0Ijo0MDY3OCwidXNlciI6OTc4NH0:1txo2I:QlYAlNjge2NzlvksRX4i6mtc0lml_nx7YhGTBNXgkRs"
         try:
             Check.equal("slovar_kock(['2x2.rdeča', '2x2.rdeča', 'nogice.modra', '2x2.modra'])",
                         {'nogice': {'modra': 1}, '2x2': {'rdeča': 2, 'modra': 1}}) and \
@@ -701,7 +733,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY3OSwidXNlciI6OTc4NH0:1twygg:C8cxTbyb4NT-W3VCf2RoW9sX3UyXXQ41ZWV_-6y-CG8"
+        ] = "eyJwYXJ0Ijo0MDY3OSwidXNlciI6OTc4NH0:1txo2I:xseltZvKHV0xa8lnje3Cp9sM1VPqOpO3Hw2I-4SP8bY"
         try:
             model = {'4x1': {'modra': 1}, '2x2': {'rdeča': 2, 'modra': 1}}
             skatla = {'4x1': {'modra': 3, 'rdeča': 2}, '2x2': {'rdeča': 4, 'modra': 1, 'rumena': 5}}
@@ -730,7 +762,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY4MCwidXNlciI6OTc4NH0:1twygg:PUzY1gFgiOmNJcgsHcmZ0S2rviJU9fkKFi-tuDty5x0"
+        ] = "eyJwYXJ0Ijo0MDY4MCwidXNlciI6OTc4NH0:1txo2I:dRc51ucvk7gwT6tibiQyYUH4TU2ZYSegzXP8PFf_cz0"
         try:
             model_4 = {'4x1': {'modra': 2}, '2x2': {'rdeča': 2, 'modra': 1}}
             skatla_4 = {'4x1': {'rdeča': 3}, '2x2': {'rdeča': 1, 'rumena': 5}}

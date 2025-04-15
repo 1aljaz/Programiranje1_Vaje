@@ -676,7 +676,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY2MiwidXNlciI6OTc4NH0:1twygg:oGSd4OAwRmU77knqzM6n8cXqbqQ_2cV5oKGSFPUbmbE"
+        ] = "eyJwYXJ0Ijo0MDY2MiwidXNlciI6OTc4NH0:1txo2I:LENhrbNizB0XidPKyD3E1AmVDrMInxJkTE-2jDsdML0"
         try:
             Check.equal("""unija_slovarjev([{1: 2, 5: 0}, {2: 3, 5: 6, 7: 3}, {2: 3, 8: 1, 5: 4}])""",
                         {1: [2], 5: [0, 6, 4], 2: [3, 3], 7: [3], 8: [1]}) and \
@@ -695,7 +695,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY2MywidXNlciI6OTc4NH0:1twygg:JxOeVqAG3JlxslE9X83YQuirlLEgaNCexNnHI-GC8cg"
+        ] = "eyJwYXJ0Ijo0MDY2MywidXNlciI6OTc4NH0:1txo2I:5MlJ2ZtlgrhVe_KrJyQ_gWmjrINRKp3Uzkwq0XqmHzc"
         try:
             tests = [
                  ("kljuc_max_vrednost({'foo': 1, 'bar': 7, 'baz': 100, 'qux': 20, 'quux': 30})", 'baz',
@@ -725,7 +725,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY2NCwidXNlciI6OTc4NH0:1twygg:6BiHsbbSDRf9C-96pRZNXbkSa3dJ6kd2nnTdCBBvME4"
+        ] = "eyJwYXJ0Ijo0MDY2NCwidXNlciI6OTc4NH0:1txo2I:_fV5nCh-Dpurx56GEssu0jZGPKpX6jxEJTPWrvaKcxQ"
         try:
             sl = {'foo': 1, 'bar': 7, 'baz': 100, 'qux': 20, 'quux': 30}
             Check.equal("tabela_kljucev_max_vrednost(sl)", ['baz'], env={'sl': sl})

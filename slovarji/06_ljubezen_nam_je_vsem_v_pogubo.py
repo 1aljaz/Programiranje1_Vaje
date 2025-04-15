@@ -3,12 +3,12 @@
 #
 # Veste, [od kje](https://www.wikiwand.com/sl/Ljubezen_nam_je_vsem_v_pogubo) je naslov? 
 # 
-# Otroci v šoli se hitro 'zaljubijo' drug v drugega. Socialno omrežje
-# zaljubljenosti otrok v šoli podamo s slovarjem, ki ime otroka
+# Otroci v vrtcu se hitro 'zaljubijo' drug v drugega. Socialno omrežje
+# zaljubljenosti otrok v vrtcu podamo s slovarjem, ki ime otroka
 # preslika v množico imen vseh otrok, v katere je ta otrok zaljubljen (ena oseba
 # je lahko zaljubljena v več oseb). Na primer, slovar
 # 
-#     sola = {'Ana': {'Bine', 'Cene'},
+#     vrtec = {'Ana': {'Bine', 'Cene'},
 #          'Bine': set(),
 #          'Cene': {'Bine'},
 #          'Davorka': {'Davorka'},
@@ -19,14 +19,20 @@
 # =====================================================================@040681=
 # 1. podnaloga
 # Sestavite funkcijo `narcisoidi(d)`, ki sprejme slovar zaljubljenih otrok
-# v šoli
+# v vrtcu
 # in vrne _množico_ tistih, ki ljubijo same sebe. Zgled (če je slovar
-# `sola` enak kot zgoraj):
+# `vrtec` enak kot zgoraj):
 # 
-#     >>> narcisoidi(sola)
+#     >>> narcisoidi(vrtec)
 #     {'Davorka'}
 # =============================================================================
-
+def narcisoidi(d):
+    """Vrne mnozico narcisoidnih ljudi."""
+    sl =  set()
+    for oseba, zaljubljeni in d.items():
+        if oseba in zaljubljeni:
+            sl.add(oseba)
+    return sl
 # =====================================================================@040682=
 # 2. podnaloga
 # Sestavite funkcijo `ljubljeni(d)`, ki sprejme slovar zaljubljenih otrok
@@ -37,16 +43,22 @@
 #     >>> ljubljeni(sola)
 #     {'Bine', 'Davorka', 'Cene'}
 # =============================================================================
-
+def ljubljeni(d):
+    """Vrne mnozico ljubljenih ljudi."""
+    mn = set()
+    for _, ljubljen in d.items():
+        for l in ljubljen:
+            mn.add(l)
+    return mn
 # =====================================================================@040683=
 # 3. podnaloga
-# Sestavite funkcijo `pari(d)`, ki sprejme slovar zaljubljenih otrok v šoli
+# Sestavite funkcijo `pari(d)`, ki sprejme slovar zaljubljenih otrok v vrtcu
 # in vrne
 # _množico_ vseh parov, ki so srečno zaljubljeni. Vsak par naj se pojavi
 # samo enkrat in sicer tako, da je sta zaljubljenca našteta po abecedi.
 # Na primer, če imamo slovar
 # 
-#     sola2 = {'Ana': {'Bine', 'Cene'},
+#     pari2 = {'Ana': {'Bine', 'Cene'},
 #           'Bine': {'Ana'},
 #           'Cene': {'Bine'},
 #           'Davorka': {'Davorka'},
@@ -55,7 +67,7 @@
 # kjer vidmo, da sta Ana in Bine zaljubljena, dodamo par `('Ana', 'Bine')`.
 # Zgled:
 # 
-#     >>> pari(sola2)
+#     >>> pari(pari2)
 #     {('Ana', 'Bine')}
 # 
 # V pomoč so že napisani komentarji z opisom ideje rešitve.
@@ -63,21 +75,35 @@
 def pari(d):
     """Sprejme slovar zaljubljenih in vrne množico srečno zaljubljenih parov."""
     # Ustvarimo množico, v katero bomo shranjevali pare zaljubljenih.
+    mn = set()
     # Za vsako osebo pridobimo množico njenih simpatij:
+    for oseba, ljubljen in d.items():
         # Preverimo, če katera je od njenih simpatij zaljubljena v to osebo.
+        for l in ljubljen:
+            if oseba in d[l] and oseba != l:
+                if oseba < l:
+                    mn.add((oseba, l))
+                else:
+                    mn.add((l, oseba))
         # Par dodamo, če oseba po abecednem redu nastopa pred svojo simpatijo. (s tem se tudi znebimo narcisoidov)
     # Vrnemo dobljeno množico.
-
+    return mn
 # =====================================================================@040684=
 # 4. podnaloga
 # Sestavite funkcijo `zaljubljeni_v_osebo(oseba, slovar)`, ki sprejme ime osebe ter
 # slovar zaljubljenih, vrne pa _množico_ vseh ljudi, ki v dano osebo zaljubljeni.
-# Zgled (če je slovar `sola2` enak kot zgoraj):
+# Zgled (če je slovar `vrtec2` enak kot zgoraj):
 # 
-#     >>> zaljubljeni_v_osebo('Bine', sola2)
+#     >>> zaljubljeni_v_osebo('Bine', vrtec2)
 #     {'Ana', 'Cene', 'Eva'}
 # =============================================================================
-
+def zaljubljeni_v_osebo(oseba, slovar):
+    """Vrne mn. ljudi k so zaljubljeni v osebo oseba."""
+    zaljubljeni = set()
+    for o, ljubljeni in slovar.items():
+        if oseba in ljubljeni:
+            zaljubljeni.add(o)
+    return zaljubljeni
 # =====================================================================@040685=
 # 5. podnaloga
 # Sestavite funkcijo `ustrezljivi(oseba, slovar)`, ki sprejme ime osebe ter
@@ -86,13 +112,13 @@ def pari(d):
 # bodisi zaljubljeni v dano osebo, bodisi so zaljubljeni v osebo, ki je
 # posebej ustrežljiva do nje, in tako naprej.
 # 
-# Na primer, v slovarju `sola2`, ki je definiran zgoraj,
+# Na primer, v slovarju `vrtec2`, ki je definiran zgoraj,
 # so do Ceneta posebej ustrežljivi Ana (ki je zaljubljena vanj), Bine
 # (ki je zaljubljen v Ano), Eva (ki je zaljubljena v Bineta) ter seveda
-# Cene (ki je zaljubljen v Bineta). Zgled (če je slovar `sola2` enak kot
+# Cene (ki je zaljubljen v Bineta). Zgled (če je slovar `vrtec2` enak kot
 # zgoraj):
 # 
-#     >>> ustrezljivi('Cene', sola2)
+#     >>> ustrezljivi('Cene', vrtec2)
 #     {'Ana', 'Bine', 'Cene', 'Eva'}
 # 
 # 
@@ -102,11 +128,17 @@ def ustrezljivi(oseba, slovar):
     """Sprejme ime osebe in slovar zaljubljenih ter vrne množico vseh,
        ki so do dane osebe še posebej ustrežljivi."""
     # Ustvarimo množico ustrežljivih
+    ustrezljivi = set()
     # Ustvarimo množico dodani - osebe, ki jih moramo še "preveriti".
+    dodani = set()
     # Vanjo dodamo vse, ki so zaljubljeni v dano osebo (uporabimo funkcijo iz prejšnje naloge)
+    dodani = zaljubljeni_v_osebo(oseba, slovar)
     # Dokler množica dodani ni prazna:
+    while len(dodani) > 0:
         # Dodane prestavimo v množico ustrežljivih
+        ustrezljivi = ustrezljivi & dodani
         # V množico dodanih pa dodamo vse, ki ljubijo nazadnje dodane osebe
+        
         # Ustvarimo začasno množico
         # Za vsako osebo v množici dodanih pridobimo množico oseb, ki so vanjo zaljubljene
         # (pomagamo si s funkcijo zaljubljeni_v_osebo) in jih dodamo v začasno množico
@@ -730,7 +762,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY4MSwidXNlciI6OTc4NH0:1twygg:WrnFUBs5p_iGu2aSsDx9lycrZKuMM-KCU1k5eYtJXuU"
+        ] = "eyJwYXJ0Ijo0MDY4MSwidXNlciI6OTc4NH0:1txo2I:ghJqeZ8aE00XbB9h38slSuZNtMWO8aJj3k8OUoIr0p4"
         try:
             sola = {'Ana': {'Bine', 'Cene'},
                       'Bine': set(),
@@ -753,7 +785,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY4MiwidXNlciI6OTc4NH0:1twygg:SuGv6l7K1qFAcv96PcJHBd5_RW3WIOjdKrKRkGGIjCM"
+        ] = "eyJwYXJ0Ijo0MDY4MiwidXNlciI6OTc4NH0:1txo2I:oRZKeIfZMUL5EmGYp0lOSMVnWq2Np0BGg3_v0XXtROo"
         try:
             Check.equal("ljubljeni({0})".format(sola), {'Bine', 'Davorka', 'Cene'}) and \
             Check.equal("ljubljeni({})", set()) and \
@@ -769,9 +801,9 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY4MywidXNlciI6OTc4NH0:1twygg:T8Cib1W9AOKoyVk4FH52BCUpwozOnFUVM-Wf2Bf-1h4"
+        ] = "eyJwYXJ0Ijo0MDY4MywidXNlciI6OTc4NH0:1txo2I:uvNdmoZcwuWEL9rVSl02lkOdf8JdEYxLjyG_p8SxNMk"
         try:
-            sola2 = {'Ana': {'Bine', 'Cene'},
+            vrtec2 = {'Ana': {'Bine', 'Cene'},
                        'Bine': {'Ana'},
                        'Cene': {'Bine'},
                        'Davorka': {'Davorka'},
@@ -783,7 +815,7 @@ def _validate_current_file():
                     'Davorka' : {'Davorka'},
                     'Eva' : {'Bine'}}
             
-            Check.equal("pari({0})".format(sola2), {('Ana', 'Bine')}) and \
+            Check.equal("pari({0})".format(vrtec2), {('Ana', 'Bine')}) and \
             Check.equal("pari({0})".format(sola3), {('Ana', 'Cene')}) and \
             Check.equal("pari({})", set()) and \
             Check.equal("pari({'Bana':{'Ana','Bana'}, 'Ana': {'Bana'}})", {('Ana', 'Bana')})
@@ -798,11 +830,11 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY4NCwidXNlciI6OTc4NH0:1twygg:qjo-_-nGWFMIyS2ro1E1Om7NM-9lgjyIo4VrUgcGNwc"
+        ] = "eyJwYXJ0Ijo0MDY4NCwidXNlciI6OTc4NH0:1txo2I:vYgIa1aKVZFLwtJQ3k6VQP4BqyFBHGBLDcm4KSDWPxU"
         try:
-            Check.equal("zaljubljeni_v_osebo('Cene', {0})".format(sola2), {'Ana'}) and \
-            Check.equal("zaljubljeni_v_osebo('Bine', {0})".format(sola2), {'Ana', 'Cene', 'Eva'}) and \
-            Check.equal("zaljubljeni_v_osebo('Eva', {0})".format(sola2), set()) and \
+            Check.equal("zaljubljeni_v_osebo('Cene', {0})".format(vrtec2), {'Ana'}) and \
+            Check.equal("zaljubljeni_v_osebo('Bine', {0})".format(vrtec2), {'Ana', 'Cene', 'Eva'}) and \
+            Check.equal("zaljubljeni_v_osebo('Eva', {0})".format(vrtec2), set()) and \
             Check.equal("zaljubljeni_v_osebo('Cene', {'Ana' : {'Bine', 'Cene'},"
                                                        "'Bine' : set(),"
                                                        "'Cene' : {'Bine'},"
@@ -820,9 +852,9 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY4NSwidXNlciI6OTc4NH0:1twygg:eN6QLJ41S4CWQjB-y1g2KTCJFYLCDH2T9gYLg1o5knE"
+        ] = "eyJwYXJ0Ijo0MDY4NSwidXNlciI6OTc4NH0:1txo2I:vJr3-iKc7gqAngIYMDqRH_nX2wbH4kw0xwLloplh2Lo"
         try:
-            Check.equal("ustrezljivi('Cene', {0})".format(sola2), {'Ana', 'Bine', 'Cene', 'Eva'}) and \
+            Check.equal("ustrezljivi('Cene', {0})".format(vrtec2), {'Ana', 'Bine', 'Cene', 'Eva'}) and \
             Check.equal("ustrezljivi('Cene', {})", set()) and \
             Check.equal("ustrezljivi('Cene', {'Ana' : {'Bine', 'Cene'},"
                                                        "'Bine' : set(),"

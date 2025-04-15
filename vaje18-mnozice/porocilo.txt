@@ -1,0 +1,89 @@
+Množica na dva dela:
+1. Razdeli mn. mn na k-delov z uporabo slicinga.
+
+       Razlaga:
+       Množico mn pretvorimo v seznam. V velikost_vsake izračunamo kako se mora množica razdeliti.
+       Ker vemo da je sum(velikost_vsakega) == len(mn), se lahko sprehodimo po
+       velikosti_vsakega in vzamemo vrednost, ki je zapisana v seznamu. Nato iz seznama mn vzamemo
+       toliko elementov kot jih moramo.
+2. Funkcija razdeli množico na pol s pomočjo funkcije enumerate.
+
+       Razlaga:
+       Fuknciaj enumerate vsakemu elementu doda njegovo zaporedno številko.
+       Množici se doda vsak element dokler je njegova zaporedna številka manjša
+       od polovice dolžine originalne množice.
+3. Razdeli mn. na pol v dve mnozici mnA in mnB.
+       
+       Razlaga:
+       Polovico elementov mn. mn dodamo v mnA, ostale elemente vrnemo kot razliko
+       originalne mn. in mn. mnA.
+
+
+Množice na več delov:
+1. Razdeli mn. mn na k-delov z uporabo slicinga.
+
+       Razlaga:
+       Množico mn pretvorimo v seznam. V velikost_vsake izračunamo kako se mora množica razdeliti.
+       Ker vemo da je sum(velikost_vsakega) == len(mn), se lahko sprehodimo po
+       velikosti_vsakega in vzamemo vrednost, ki je zapisana v seznamu. Nato iz seznama mn vzamemo
+       toliko elementov kot jih moramo.
+2. Funkcija razdeli množico na pol s pomočjo funkcije enumerate.
+
+       Razlaga:
+       V velikost_vsakega izracunamo koliko el. bo v vsaki podmnozici. Potem izracunamo
+       komulativno vsoto zato, da bomo vedeli kdaj nehati dajati stvari v prejsnjo podmnožico.
+       Potem pa z uporabo funkcije enumerate, damo stvari v pravilne podmnožice.
+3. Razdeli mn. na pol v dve mnozici mnA in mnB.
+       
+       Razlaga:
+       Izracunamo koliko elementov mora biti v vsaki množici. Potem pa dodajamo elemente iz
+       mnozice mn v t, ko imamo enkrat dovolj elementov v t, t dodamo med rezultate in 
+       t odstejemo od ostanka.
+
+
+Učinkovitost:
+Rezultati:
+
+Za 100 krajev:
+    Filtriranje s for stavkom:
+    10%: 0.0000038198s   |   20%: 0.0000043690s   |   50%: 0.0000056427s   |   80%: 0.0000088443s   |   100%: 0.0000113425s   |   
+    Filtriranje s funkcijo filter:
+    10%: 0.0000096124s   |   20%: 0.0000097312s   |   50%: 0.0000097642s   |   80%: 0.0000124437s   |   100%: 0.0000131390s   |
+
+Za 200 krajev:
+    Filtriranje s for stavkom:
+    10%: 0.0000096825s   |   20%: 0.0000103994s   |   50%: 0.0000161877s   |   80%: 0.0000173807s   |   100%: 0.0000226909s   |
+    Filtriranje s funkcijo filter:
+    10%: 0.0000183283s   |   20%: 0.0000184284s   |   50%: 0.0000225952s   |   80%: 0.0000250453s   |   100%: 0.0000255582s   |
+
+Za 400 krajev:
+    Filtriranje s for stavkom:
+    10%: 0.0000190480s   |   20%: 0.0000184913s   |   50%: 0.0000270639s   |   80%: 0.0000378570s   |   100%: 0.0000443812s   |
+    Filtriranje s funkcijo filter:
+    10%: 0.0000362982s   |   20%: 0.0000389074s   |   50%: 0.0000440068s   |   80%: 0.0000511213s   |   100%: 0.0000515385s   |
+
+Za 800 krajev:
+    Filtriranje s for stavkom:
+    10%: 0.0000416777s   |   20%: 0.0000464745s   |   50%: 0.0000552513s   |   80%: 0.0000772584s   |   100%: 0.0000929984s   |
+    Filtriranje s funkcijo filter:
+    10%: 0.0000760138s   |   20%: 0.0000781499s   |   50%: 0.0000871048s   |   80%: 0.0001070452s   |   100%: 0.0001175072s    |
+
+Za 1600 krajev:
+    Filtriranje s for stavkom:
+    10%: 0.0000788078s   |   20%: 0.0000778449s   |   50%: 0.0001429626s   |   80%: 0.0001911230s   |   100%: 0.0002242717s   |
+    Filtriranje s funkcijo filter:
+    10%: 0.0001504634s   |   20%: 0.0001560981s   |   50%: 0.0002123452s   |   80%: 0.0002444558s   |   100%: 0.0002733323s   |
+
+Za 3200 krajev:
+    Filtriranje s for stavkom:
+    10%: 0.0001585178s   |   20%: 0.0001823270s   |   50%: 0.0002314474s   |   80%: 0.0003439552s   |   100%: 0.0003024434s   |
+    Filtriranje s funkcijo filter:
+    10%: 0.0003312006s   |   20%: 0.0003310037s   |   50%: 0.0003635656s   |   80%: 0.0004579997s   |   100%: 0.0004036010s   |
+
+Za 6400 krajev:
+    Filtriranje s for stavkom:
+    10%: 0.0002632355s   |   20%: 0.0003652256s   |   50%: 0.0004364344s   |   80%: 0.0005188498s   |   100%: 0.0005186242s   |
+    Filtriranje s funkcijo filter:
+    10%: 0.0006027777s   |   20%: 0.0006884346s   |   50%: 0.0007100138s   |   80%: 0.0007297214s   |   100%: 0.0007066419s   |
+
+Pri vseh primerjih je bilo klasično filtirianje s for-om in append-om hitrejše od filtriranja s filter funkcijo.

@@ -711,7 +711,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY3NCwidXNlciI6OTc4NH0:1twygg:ibx4mkgsXTQv-ohNLSPh0XSM5-yPwUVRrPXNL4HsIJ4"
+        ] = "eyJwYXJ0Ijo0MDY3NCwidXNlciI6OTc4NH0:1txo2I:AgT5wmu9LCwf8bFqxXUWdC-e6b5gjaXMtDPW50Eynr8"
         try:
             Check.equal("""davcna_osnova(244.13, 22)""", 200.11)
             Check.equal("""davcna_osnova(1683.76, 9.5)""", 1537.68)
@@ -726,7 +726,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY3NSwidXNlciI6OTc4NH0:1twygg:9nXpE4bfVvWKmF0_5NH5yjDJoeYqcaOim217RbIAXhw"
+        ] = "eyJwYXJ0Ijo0MDY3NSwidXNlciI6OTc4NH0:1txo2I:7GiAoZnmDpp3wGnVWRdRhYSnVEKRFggmo52XmiKzh9w"
         try:
             artikli = {
                 'ponev': (32.74, 22),
@@ -752,7 +752,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY3NiwidXNlciI6OTc4NH0:1twygg:JyOQZqc_B1M-j2-DOe3dCYbaOCPojgcHtT7WRATGufg"
+        ] = "eyJwYXJ0Ijo0MDY3NiwidXNlciI6OTc4NH0:1txo2I:qrmD_s7srB7YZ7GUzQS5Obi7M6T-nqnUKGFenyqel5E"
         try:
             # POZOR: Študent me je opozoril, da je zadeva raèunoviodsko menda
             # narobe, ker se pri doloèanju davènih osnov ne bi smel upoštevati popust!
@@ -788,7 +788,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDY3NywidXNlciI6OTc4NH0:1twygg:AqqYaRPiavlbgQIXsjhD25vYtZfURr-dKZyStOQAvbM"
+        ] = "eyJwYXJ0Ijo0MDY3NywidXNlciI6OTc4NH0:1txo2I:UtrtBjAYCyTneH57bcd5QV1X8DiJlDcRMIFkYcKW2yQ"
         try:
             artikli = {
                 'ponev': (32.74, 22),
