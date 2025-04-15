@@ -1,17 +1,10 @@
-def narascajoce_cete(tabela):
-    """Vrne tabelo vseh narascajocih cet iz zaporedja."""
-    if len(tabela) == 0:
-        return []
-    temp = [tabela[0]]
-    rez = []
-    for i in range(1, len(tabela)):
-        if tabela[i-1] >= tabela[i]:
-            print(temp)
-            rez.append(temp)
-            temp.clear()
-        temp.append(tabela[i])
-    
-#   rez.append(temp)
-    return rez
+def skupna_dolzina(ttn):
+    dolzina = []
+    if isinstance(ttn, str):
+        dolzina.append(len(ttn))
+    elif isinstance(ttn, list):
+        for s in ttn:
+            dolzina.extend(skupna_dolzina(s))
+    return sum(dolzina)
 
-print(narascajoce_cete([1, 3, 6, 3, 8, 8, 10, 12]))
+print((skupna_dolzina(['sonce', [['dez', 'veter'], 'sneg'], [[[['mavrica']]]]])))
