@@ -1,12 +1,17 @@
-def hitro_sestavljanje(skatla, model):
-    skupaj_skatla = {tip : sum(barve.values()) for tip, barve in skatla.items()}
-    skupaj_model = {tip : sum(barve.values()) for tip, barve in model.items()}
-    print(skupaj_skatla, skupaj_skatla, sep='\n')
-    for tip, koliko in skupaj_model.items():
-        if tip not in skupaj_skatla:
-            return False
-        if skupaj_skatla[tip] < koliko:
-            return False
-    return False
+def je_sifra(sifra):
+    sl = []
+    r = []
+    for crka, slika in sifra.items():
+        for c, s in sl:
+            if crka == s:
+                s = crka
+                continue
+        sl.append((crka, slika))
+    print(sl)
+    for i in range(len(sl)):
+        if sl[i][0] != sl[i][1]:
+            r.append(sl[i])
+    return len(r) == 0
 
-hitro_sestavljanje({'4x1': {'rdeča': 3}, '2x2': {'rdeča': 1, 'rumena': 5}}, {'4x1': {'modra': 2}, '2x2': {'rdeča': 2, 'modra': 1}})
+
+je_sifra({"A":"B", "B":"C", "C": "D"})
