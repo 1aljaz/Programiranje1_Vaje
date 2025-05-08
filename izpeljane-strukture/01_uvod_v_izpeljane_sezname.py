@@ -1,87 +1,118 @@
 # =============================================================================
-# Tabele tabel nizov III
+# Uvod v izpeljane sezname
 #
-# Tabela tabel nizov je tabela, katere elementi so bodisi nizi bodisi
-# tabele tabel nizov.
-# =====================================================================@040739=
+# V tej nalogi si bomo ogledali osnove izpeljanih seznamov. Naloge bodo zato enake ali vsaj precej podobne nalogam, ki smo jih v preteklosti že reševali, a jih tokrat rešite z uporabo izpeljanih seznamov.
+# 
+# Včasih želimo ustvariti seznam (tabelo), ki ga lahko zapišemo s preprosto for zanko, na primer tabelo kvadratov celih števil med 1 in vključno 10.
+# 
+# Do sedaj smo to zapisali takole:
+# 
+# 
+#     tabela = []
+#     for i in range(1, 11):
+#         tabela.append(i**2)
+# 
+# 
+# Znamo to napisati krajše?
+# 
+# Izpeljan seznam sestavimo podobno kot navaden seznam (`[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]`), le da tokrat namesto konkretnih vrednosti v seznam vpišemo kar izraz, s katerim te vrednosti izračunamo.
+# 
+# ```
+# tabela = [i**2 for i in range(1, 11)]
+# ```
+# 
+# Kaj pa kompleksnejši izrazi? Lahko dodamo le kvadrate, ki so sodi?
+# 
+# V izpeljan seznam lahko dodamo tudi pogoj, pod katerim bomo to vrednost dodali v seznam. Na primer: 
+# 
+# ```
+# tabela = [i**2 for i in range(1, 11) if i**2 % 2 == 0]
+# ```
+# =====================================================================@040974=
 # 1. podnaloga
-# Sestavi funkcijo `max_presledki_prvi(ttn)`, ki bo vrnila niz v tabeli tabel
-# nizov `ttn`, ki vsebuje največ presledkov.Če je takih nizov več, naj vrne
-# prvega.
+# Napiši funkcijo `veckratniki(k, n)`, ki vrne seznam prvih `n` večkratnikov števila `k`,
+# kjer je $n > 0$.
 # 
-#     >>> max_presledki_prvi(['s o n c e', [['  dez  ', 'veter   '], 'sneg'], [[[['o bla k']]]]])
-#     's o n c e'
+# Funkcija naj seznam ustvari s pomočjo izpeljanega seznama - telo funkcije naj bo 
+# torej zapisano v eni vrstici. V telo funkcije se ne štejejo vrstični komentarji in
+# dokumentacijski niz. A pozor! Dokumentacijski niz zapiši v eni sami vrstici!
+# 
+# Na primer:
+# 
+#     >>> veckratniki(2, 5)
+#     [2, 4, 6, 8, 10]
+# 
+# Torej naj bo rešitev oblike
+# 
+#     def veckratniki(k, n):
+#        """Vrne prvih n večkratnikov števila k."""
+#     return [42] # namesto [42] je seveda ustrezen izraz
 # =============================================================================
-def max_presledki_prvi(ttn):
-    if isinstance(ttn, str):
-        return ttn
-    elif isinstance(ttn, list):
-        return max((max_presledki_prvi(s) for s in ttn), key=lambda ss: ss.count(' '))
-# =====================================================================@040740=
+def veckratniki(k, n):
+    """Vrne prvih n večkratnikov števila k."""
+    return [k * a for a in range(1, n+1)] 
+
+# =====================================================================@040975=
 # 2. podnaloga
-# Sestavi funkcijo `max_stevk_vsi(ttn)`, ki bo vrnila po abecedi urejeno
-# tabelo vseh nizov v
-# tabeli tabel nizov `ttn`, ki vsebujejo največje število števk.
+# Napiši funkcijo `kvadrati(stevila)`, ki ustvari nov seznam, ki vsebuje
+# kvadrate vrednosti iz seznama `stevila`.
 # 
-#     >>> max_stevk_vsi(['a123', [['00', 'abcdef'], 'a1b2c3'], [[[['386']]]]])
-#     ['386', 'a123', 'a1b2c3']
+# Funkcija naj seznam ustvari s pomočjo izpeljanega seznama - telo funkcije naj bo 
+# torej zapisano v eni vrstici. V telo funkcije se ne štejejo vrstični komentarji in
+# dokumentacijski niz. A pozor! Dokumentacijski niz zapiši v eni sami vrstici!
+# 
+# Na primer:
+# 
+#     >>> kvadrati([2, 1, 0, -1, -2, -1, 0, 1, 2])
+#     [4, 1, 0, 1, 4, 1, 0, 1, 4]
+#     >>> kvadrati([])
+#     []
+# 
+# __Namig__: Namesto, da gremo s for zanko čez range (`for i in range(...)`), 
+# gremo kar čez podani seznam `stevila`.
 # =============================================================================
-def max_stevk_vsi(ttn):
-    if isinstance(ttn, str):
-        return ttn
-    elif isinstance(ttn, list):
-        return sorted(max_stevk_vsi(s) for s in ttn)
-# =====================================================================@040741=
+def kvadrati(sez):
+    return [a*a for a in sez]
+# =====================================================================@040976=
 # 3. podnaloga
-# Sestavi funkcijo `globina(ttn)`, ki bo vrnila par (niz, globina), ki pove
-# na kateri največji globini je niz v tabeli tabel nizov `ttn`.
-# Če je takih nizov več, vrni tistega z največ števkami. Če pa je tudi teh več,
-# pa tistega, ki je najdaljši . Tak je zagotovo največ en!
+# Napiši funkcijo `odstrani_negativne(stevila)`, ki ustvari nov seznam, ki vsebuje
+# le nenegativne vrednosti iz seznama `stevila`.
 # 
-#     >>> globina(['a123', [['00', 'abcdef'], [[['a1b2c3']]], [[['3677']]]])
-#     ('a1b2c3', 4)
-#     >>> globina(['a123', ['00', 'abcdef']])
-#     ('00', 2)
-#     >>> globina(['a123', [['00', 'abcdef'], [[[['a1b2c3']]]], [[[['36']]]]])
-#     ('a1b2c3', 5)
-#     >>> globina(['a123', '100', 'abcdef'])
-#     ('a123', 1)
+# Funkcija naj seznam ustvari s pomočjo izpeljanega seznama - telo funkcije naj bo 
+# torej zapisano v eni vrstici. V telo funkcije se ne štejejo vrstični komentarji in
+# dokumentacijski niz. A pozor! Dokumentacijski niz zapiši v eni sami vrstici!
+# 
+# Na primer:
+# 
+#     >>> odstrani_negativne([2, 1, 0, -1, -2, -1, 0, 1, 2])
+#     [2, 1, 0, 0, 1, 2]
+#     >>> odstrani_negativne([1, 2, 3, 4, 5, 6])
+#     [1, 2, 3, 4, 5, 6]
+#     >>> odstrani_negativne([-1, -2, -3, -4, -5, -6])
+#     []
+#     >>> odstrani_negativne([])
+#     []
 # =============================================================================
-def koliko_stevk(niz):
-    return sum(1 for c in niz if c.isdigit())
-
-def globina(ttn):
-    nn = ""
-    ng = 0
-    for e in ttn:
-        if isinstance(ttn, str):
-            niz = e
-            g = 1
-        else:
-            niz, g = globina(e)
-            g += 1
-        
-        if g > ng:
-            ng = g
-            nn = niz
-        elif g == ng:
-            if koliko_stevk(niz) > koliko_stevk(nn):
-                nn = niz
-            elif koliko_stevk(niz) == koliko_stevk(nn) and len(niz) > len(nn):
-                nn = niz
-    return nn, ng
-
-# =====================================================================@040742=
+def odstrani_negativne(sez):
+    return [a for a in sez if a >= 0]
+# =====================================================================@040977=
 # 4. podnaloga
-# Sestavi funkcijo `globina_nizov(ttn)`, ki bo vrnila obratno po abecedi urejeno tabelo parov
-# (niz, globina), ki za vsak niz pove, na kateri globini je. 
+# Napiši funkcijo `povecaj_crke(nizi)`, ki ustvari nov seznam, ki vsebuje
+# *neprazne* nize iz seznama `nizi`, le da naj bodo ti spremenjeni v *velike tiskane črke.
 # 
-#     >>> globina_nizov(['a123', [['00', 'abcdef'], [[['a1b2c3']]]])
-#     [('abcdef', 3), ('a1b2c3', 4), ('a123', 1), ('00', 3)]
-#     >>> globina_nizov(['a123', '00', 'abcdef'])
-#     [('abcdef', 1), ('a123', 1), ('00', 1)]
+# Funkcija naj seznam ustvari s pomočjo izpeljanega seznama - telo funkcije naj bo 
+# torej zapisano v eni vrstici. V telo funkcije se ne štejejo vrstični komentarji in
+# dokumentacijski niz. A pozor! Dokumentacijski niz zapiši v eni sami vrstici!
+# 
+# Na primer:
+# 
+#     >>> povecaj_crke(["Kokos", "kraVa", "MAČKA", "kričač"])
+#     ["KOKOS", "KRAVA", "MAČKA", "KRIČAČ"]
+#     >>> povecaj_crke(["", "   x", "", "", " "])
+#     ["   X", " "]
 # =============================================================================
-
+def povecaj_crke(sez):
+    return [a.upper() for a in sez if a != ""]
 
 
 
@@ -699,16 +730,15 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDczOSwidXNlciI6OTc4NH0:1u77I1:rqovJacT8mWsUwJeIkFhdmsfAAcK3ZExlf9yRJIr9TU"
+        ] = "eyJwYXJ0Ijo0MDk3NCwidXNlciI6OTc4NH0:1u7weC:kvA9naRyozBSYCQKWwHERZlff2yQpAptVOQVUxhzfnc"
         try:
-            tests = [('''max_presledki_prvi(['s o n c e', [['  dez  ', 'veter   '], 'sneg'], [[[['o bla k']]]]])''', 's o n c e'),
-                     ('''max_presledki_prvi(['a', 'ab', 'abc'])''', 'a'),
-                     ('''max_presledki_prvi([[[[[[['       ']]]] , ' ']], '1       1'])''', '       '),
-                     ('''max_presledki_prvi(['', [[['']]]])''', '')]
-            
-            for test in tests:
-                if not Check.equal(*test):
-                    break
+            s = Check.current_part['solution']
+            true_lines = [line for line in s.split('\n') if line.strip() != "" and not any(line.strip().startswith(char) for char in ['#', '\'', '\"', 'def'])]
+            if len(true_lines) > 1:
+                Check.error("Ne pozabi - telo funkcije naj bo zapisano v eni vrstici. Ustvarjenega seznama ne shranjuj v spremenljivko, ampak ga kar takoj vrni ;)")
+            else:
+                Check.equal('veckratniki(2, 5)', [2, 4, 6, 8, 10]) and \
+                Check.equal('veckratniki(17, 2)', [17, 34])
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -720,16 +750,23 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc0MCwidXNlciI6OTc4NH0:1u77I1:awcOFB7q47HRtAJZpfP4OrEHqAVXvqj3-vnF_z4KC9c"
+        ] = "eyJwYXJ0Ijo0MDk3NSwidXNlciI6OTc4NH0:1u7weC:zpbHt1GkWcxtpzi_wv8OsL3OBwkbLQwLw5nQ5ARWXrs"
         try:
-            tests = [('''max_stevk_vsi(['a123', [['00', 'abcdef'], 'a1b2c3'], [[[['386']]]]])''', ['386', 'a123', 'a1b2c3']),
-                     ('''max_stevk_vsi(['a', 'ab', 'abc'])''', ['a', 'ab', 'abc']),
-                     ('''max_stevk_vsi([[[[[[['       ']]]] , ' ']], '1       1'])''', ['1       1']),
-                     ('''max_stevk_vsi(['', [[['']]]])''', ['', ''])]
-            
-            for test in tests:
-                if not Check.equal(*test):
-                    break
+            s = Check.current_part['solution']
+            true_lines = [line for line in s.split('\n') if line.strip() != "" and not any(line.strip().startswith(char) for char in ['#', '\'', '\"', 'def'])]
+            if len(true_lines) > 1:
+                Check.error("Ne pozabi - telo funkcije naj bo zapisano v eni vrstici. Ustvarjenega seznama ne shranjuj v spremenljivko, ampak ga kar takoj vrni ;)")
+            else:
+                testi = [
+                    ([2, 1, 0, -1, -2, -1, 0, 1, 2], [4, 1, 0, 1, 4, 1, 0, 1, 4]),
+                    ([1, 2, 3, 4, 5, 6], [1, 4, 9, 16, 25, 36]),
+                    ([-1, -2, -3, -4, -5, -6], [1, 4, 9, 16, 25, 36]),
+                    ([10], [100]),
+                    ([], [])
+                ]
+                for vhod, izhod in testi:
+                    if not Check.equal(f"kvadrati({vhod})", izhod):
+                        break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -741,16 +778,22 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc0MSwidXNlciI6OTc4NH0:1u77I1:nPxDMHCYuldFONTtgeNYZXgfemAF7Afe_1aphJQZIMY"
+        ] = "eyJwYXJ0Ijo0MDk3NiwidXNlciI6OTc4NH0:1u7weC:oNkIG53SMHBChY2-Y9GPSZypZZmRyES4AblwIBeKTLY"
         try:
-            tests = [('''globina(['a123', [['00', 'abcdef']], [[['a1b2c3']]], [[['3677']]]])''', ('3677', 4)),
-                     ('''globina(['a123', ['00', 'abcdef']])''', ('00', 2)),
-                     ('''globina(['a123', [['00', 'abcdef'], [[[['a1b2c3']]]]], [[[['36']]]]])''', ('a1b2c3', 6)),
-                     ('''globina(['a123', '100', 'abcdef'])''', ('a123', 1))]
-            
-            for test in tests:
-                if not Check.equal(*test):
-                    break
+            s = Check.current_part['solution']
+            true_lines = [line for line in s.split('\n') if line.strip() != "" and not any(line.strip().startswith(char) for char in ['#', '\'', '\"', 'def'])]
+            if len(true_lines) > 1:
+                Check.error("Ne pozabi - telo funkcije naj bo zapisano v eni vrstici. Ustvarjenega seznama ne shranjuj v spremenljivko, ampak ga kar takoj vrni ;)")
+            else:
+                testi = [
+                    ([2, 1, 0, -1, -2, -1, 0, 1, 2], [2, 1, 0, 0, 1, 2]),
+                    ([1, 2, 3, 4, 5, 6], [1, 2, 3, 4, 5, 6]),
+                    ([-1, -2, -3, -4, -5, -6], []),
+                    ([], [])
+                ]
+                for vhod, izhod in testi:
+                    if not Check.equal(f"odstrani_negativne({vhod})", izhod):
+                        break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -762,14 +805,22 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc0MiwidXNlciI6OTc4NH0:1u77I1:-HbQ8yfMGayYVDBPZWvwpwdWHCh70DstUKsshhQINeE"
+        ] = "eyJwYXJ0Ijo0MDk3NywidXNlciI6OTc4NH0:1u7weC:0wyzUHrv48ea6O51EbXglJcj02hIxIJHefdqUsm4MrE"
         try:
-            tests = [('''globina_nizov(['a123', [['00', 'abcdef']], [[['a1b2c3']]]])''', [('abcdef', 3), ('a1b2c3', 4), ('a123', 1), ('00', 3)]),
-                     ('''globina_nizov(['a123', '00', 'abcdef'])''', [('abcdef', 1), ('a123', 1), ('00', 1)])]
-            
-            for test in tests:
-                if not Check.equal(*test):
-                    break
+            s = Check.current_part['solution']
+            true_lines = [line for line in s.split('\n') if line.strip() != "" and not any(line.strip().startswith(char) for char in ['#', '\'', '\"', 'def'])]
+            if len(true_lines) > 1:
+                Check.error("Ne pozabi - telo funkcije naj bo zapisano v eni vrstici. Ustvarjenega seznama ne shranjuj v spremenljivko, ampak ga kar takoj vrni ;)")
+            else:
+                testi = [
+                    (["Kokos", "kraVa", "MAČKA", "kričač"], ["KOKOS", "KRAVA", "MAČKA", "KRIČAČ"]),
+                    (["", "   x", "", "", " "], ["   X", " "]),
+                    ([""], []),
+                    ([], [])
+                ]
+                for vhod, izhod in testi:
+                    if not Check.equal(f"povecaj_crke({vhod})", izhod):
+                        break
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:

@@ -51,11 +51,7 @@ def najkrajsi(ttn):
 #     >>> vsi_najkrajši(['sonce', [['dez', 'veter'], 'sneg'], [[[['dež']]]]])
 #     {'dez', 'dež'}
 # =============================================================================
-def vsi_najkrajsi(ttn):
-    if isinstance(ttn, str):
-        return ttn
-    elif isinstance(ttn, list):
-        return 
+
 
 
 

@@ -69,7 +69,9 @@ def stevilo_ogrlic(b, r):
 #     >>> ogrlice(2, 2)
 #     ['BBRR', 'BRBR', 'BRRB', 'RBBR', 'RBRB', 'RRBB']
 # =============================================================================
-def ogrlice(b, r):
+def ogrlice(b, r, l = None):
+    if b == 0:
+        return
     
 
 

@@ -54,7 +54,12 @@
 #         >>>koliko_napacnih(set())
 #         None
 # =============================================================================
-
+def koliko_napacnih(sscs):
+    if isinstance(sscs, list):
+        return sum(koliko_napacnih(s) for s in sscs)
+    if not isinstance(sscs, int):
+        return 1
+    
 
 
 

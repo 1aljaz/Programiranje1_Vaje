@@ -1,86 +1,39 @@
 # =============================================================================
-# Tabele tabel nizov III
+# Pretvorba v izpeljani seznam
 #
-# Tabela tabel nizov je tabela, katere elementi so bodisi nizi bodisi
-# tabele tabel nizov.
-# =====================================================================@040739=
+# V tej nalogi je že podana koda, zapisana s klasično zanko for. Zanko 
+# nadomestite z izpeljanim seznamom. Poleg pravilnosti testi preverjajo število 
+# vrstic v telesu funkcije. Telo funkcije naj bo zapisano v eni vrstici (v to kvoto 
+# ne sodijo prazne vrstice ter vrstice s komentarji in dokumentacijskimi nizi).
+# =====================================================================@040978=
 # 1. podnaloga
-# Sestavi funkcijo `max_presledki_prvi(ttn)`, ki bo vrnila niz v tabeli tabel
-# nizov `ttn`, ki vsebuje največ presledkov.Če je takih nizov več, naj vrne
-# prvega.
+# Ugotovi, kaj dela funkcija in jo pretvori v obliko z izpeljanim seznamom.
 # 
-#     >>> max_presledki_prvi(['s o n c e', [['  dez  ', 'veter   '], 'sneg'], [[[['o bla k']]]]])
-#     's o n c e'
+#        import random 
+#        def funkcija1(n, a, b):
+#            seznam = []
+#            for _ in range(n):
+#                seznam.append(random.randint(a, b))
+#            return seznam
 # =============================================================================
-def max_presledki_prvi(ttn):
-    if isinstance(ttn, str):
-        return ttn
-    elif isinstance(ttn, list):
-        return max((max_presledki_prvi(s) for s in ttn), key=lambda ss: ss.count(' '))
-# =====================================================================@040740=
+import random 
+
+def funkcija1(n, a, b):
+    return [random.randint(a, b) for i in range(n)]
+
+# =====================================================================@040979=
 # 2. podnaloga
-# Sestavi funkcijo `max_stevk_vsi(ttn)`, ki bo vrnila po abecedi urejeno
-# tabelo vseh nizov v
-# tabeli tabel nizov `ttn`, ki vsebujejo največje število števk.
+# Ugotovi, kaj dela funkcija in jo pretvori v obliko z izpeljanim seznamom.
 # 
-#     >>> max_stevk_vsi(['a123', [['00', 'abcdef'], 'a1b2c3'], [[[['386']]]]])
-#     ['386', 'a123', 'a1b2c3']
+#        def funkcija2(seznam, k):
+#            nov_seznam = []
+#            for el in seznam:
+#                if el % k == 0:
+#                    nov_seznam.append(el)
+#            return nov_seznam
 # =============================================================================
-def max_stevk_vsi(ttn):
-    if isinstance(ttn, str):
-        return ttn
-    elif isinstance(ttn, list):
-        return sorted(max_stevk_vsi(s) for s in ttn)
-# =====================================================================@040741=
-# 3. podnaloga
-# Sestavi funkcijo `globina(ttn)`, ki bo vrnila par (niz, globina), ki pove
-# na kateri največji globini je niz v tabeli tabel nizov `ttn`.
-# Če je takih nizov več, vrni tistega z največ števkami. Če pa je tudi teh več,
-# pa tistega, ki je najdaljši . Tak je zagotovo največ en!
-# 
-#     >>> globina(['a123', [['00', 'abcdef'], [[['a1b2c3']]], [[['3677']]]])
-#     ('a1b2c3', 4)
-#     >>> globina(['a123', ['00', 'abcdef']])
-#     ('00', 2)
-#     >>> globina(['a123', [['00', 'abcdef'], [[[['a1b2c3']]]], [[[['36']]]]])
-#     ('a1b2c3', 5)
-#     >>> globina(['a123', '100', 'abcdef'])
-#     ('a123', 1)
-# =============================================================================
-def koliko_stevk(niz):
-    return sum(1 for c in niz if c.isdigit())
-
-def globina(ttn):
-    nn = ""
-    ng = 0
-    for e in ttn:
-        if isinstance(ttn, str):
-            niz = e
-            g = 1
-        else:
-            niz, g = globina(e)
-            g += 1
-        
-        if g > ng:
-            ng = g
-            nn = niz
-        elif g == ng:
-            if koliko_stevk(niz) > koliko_stevk(nn):
-                nn = niz
-            elif koliko_stevk(niz) == koliko_stevk(nn) and len(niz) > len(nn):
-                nn = niz
-    return nn, ng
-
-# =====================================================================@040742=
-# 4. podnaloga
-# Sestavi funkcijo `globina_nizov(ttn)`, ki bo vrnila obratno po abecedi urejeno tabelo parov
-# (niz, globina), ki za vsak niz pove, na kateri globini je. 
-# 
-#     >>> globina_nizov(['a123', [['00', 'abcdef'], [[['a1b2c3']]]])
-#     [('abcdef', 3), ('a1b2c3', 4), ('a123', 1), ('00', 3)]
-#     >>> globina_nizov(['a123', '00', 'abcdef'])
-#     [('abcdef', 1), ('a123', 1), ('00', 1)]
-# =============================================================================
+def funkcija2(seznam, k):
+    return [el for el in seznam if el % k == 0]
 
 
 
@@ -699,16 +652,15 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDczOSwidXNlciI6OTc4NH0:1u77I1:rqovJacT8mWsUwJeIkFhdmsfAAcK3ZExlf9yRJIr9TU"
+        ] = "eyJwYXJ0Ijo0MDk3OCwidXNlciI6OTc4NH0:1u7weC:T-RWqm40IK1jQV6EgQFJwHg9ghssjlbngw0qo4UHdLU"
         try:
-            tests = [('''max_presledki_prvi(['s o n c e', [['  dez  ', 'veter   '], 'sneg'], [[[['o bla k']]]]])''', 's o n c e'),
-                     ('''max_presledki_prvi(['a', 'ab', 'abc'])''', 'a'),
-                     ('''max_presledki_prvi([[[[[[['       ']]]] , ' ']], '1       1'])''', '       '),
-                     ('''max_presledki_prvi(['', [[['']]]])''', '')]
+            random.seed(42)
+            s = Check.current_part['solution']
             
-            for test in tests:
-                if not Check.equal(*test):
-                    break
+            true_lines = [line for line in s.split('\n') if line.strip() != '' and not any(line.strip().startswith(char) for char in ['#', '\'', '\"', 'def', 'import'])]
+            pravilno = Check.equal("funkcija1(5, 1, 6)", [6, 1, 1, 6, 3])
+            if pravilno and len(true_lines) > 1:
+                Check.error("Funkcija deluje pravilno, a ne pozabi - telo funkcije naj bo zapisano v eni vrstici. Ustvarjenega seznama ne shranjuj v spremenljivko, ampak ga kar takoj vrni ;)")
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -720,56 +672,25 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc0MCwidXNlciI6OTc4NH0:1u77I1:awcOFB7q47HRtAJZpfP4OrEHqAVXvqj3-vnF_z4KC9c"
+        ] = "eyJwYXJ0Ijo0MDk3OSwidXNlciI6OTc4NH0:1u7weC:ZA8MC7S8p7_S5fnAqcUu-WSatWWUFr9ifP0imolkl-I"
         try:
-            tests = [('''max_stevk_vsi(['a123', [['00', 'abcdef'], 'a1b2c3'], [[[['386']]]]])''', ['386', 'a123', 'a1b2c3']),
-                     ('''max_stevk_vsi(['a', 'ab', 'abc'])''', ['a', 'ab', 'abc']),
-                     ('''max_stevk_vsi([[[[[[['       ']]]] , ' ']], '1       1'])''', ['1       1']),
-                     ('''max_stevk_vsi(['', [[['']]]])''', ['', ''])]
+            s = Check.current_part['solution']
             
-            for test in tests:
-                if not Check.equal(*test):
-                    break
-        except TimeoutError:
-            Check.error("Dovoljen čas izvajanja presežen")
-        except Exception:
-            Check.error(
-                "Testi sprožijo izjemo\n  {0}",
-                "\n  ".join(traceback.format_exc().split("\n"))[:-2],
-            )
-
-    if Check.part():
-        Check.current_part[
-            "token"
-        ] = "eyJwYXJ0Ijo0MDc0MSwidXNlciI6OTc4NH0:1u77I1:nPxDMHCYuldFONTtgeNYZXgfemAF7Afe_1aphJQZIMY"
-        try:
-            tests = [('''globina(['a123', [['00', 'abcdef']], [[['a1b2c3']]], [[['3677']]]])''', ('3677', 4)),
-                     ('''globina(['a123', ['00', 'abcdef']])''', ('00', 2)),
-                     ('''globina(['a123', [['00', 'abcdef'], [[[['a1b2c3']]]]], [[[['36']]]]])''', ('a1b2c3', 6)),
-                     ('''globina(['a123', '100', 'abcdef'])''', ('a123', 1))]
+            true_lines = [line for line in s.split('\n') if line.strip() != '' and not any(line.strip().startswith(char) for char in ['#', '\'', '\"', 'def', 'import'])]
             
-            for test in tests:
-                if not Check.equal(*test):
+            testi = [
+                (([1, 2, 3, 4, 5, 6], 2), [2, 4, 6]),
+                (([1, 2, 3, 4, 5, 6], 1), [1, 2, 3, 4, 5, 6]),
+                (([1, 2, 3, 4, 5, 6], 7), []),
+                (([], 1), []),
+            ]
+            pravilno = True
+            for (sez, k), izhod in testi:
+                if not Check.equal(f"funkcija2({sez}, {k})", izhod):
+                    pravilno = False
                     break
-        except TimeoutError:
-            Check.error("Dovoljen čas izvajanja presežen")
-        except Exception:
-            Check.error(
-                "Testi sprožijo izjemo\n  {0}",
-                "\n  ".join(traceback.format_exc().split("\n"))[:-2],
-            )
-
-    if Check.part():
-        Check.current_part[
-            "token"
-        ] = "eyJwYXJ0Ijo0MDc0MiwidXNlciI6OTc4NH0:1u77I1:-HbQ8yfMGayYVDBPZWvwpwdWHCh70DstUKsshhQINeE"
-        try:
-            tests = [('''globina_nizov(['a123', [['00', 'abcdef']], [[['a1b2c3']]]])''', [('abcdef', 3), ('a1b2c3', 4), ('a123', 1), ('00', 3)]),
-                     ('''globina_nizov(['a123', '00', 'abcdef'])''', [('abcdef', 1), ('a123', 1), ('00', 1)])]
-            
-            for test in tests:
-                if not Check.equal(*test):
-                    break
+            if pravilno and len(true_lines) > 1:
+                Check.error("Funkcija deluje pravilno, a ne pozabi - telo funkcije naj bo zapisano v eni vrstici. Ustvarjenega seznama ne shranjuj v spremenljivko, ampak ga kar takoj vrni ;)")
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:

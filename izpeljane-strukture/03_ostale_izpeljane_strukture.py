@@ -1,87 +1,99 @@
 # =============================================================================
-# Tabele tabel nizov III
+# Ostale izpeljane strukture
 #
-# Tabela tabel nizov je tabela, katere elementi so bodisi nizi bodisi
-# tabele tabel nizov.
-# =====================================================================@040739=
+# Podobno kot izpeljane sezname lahko tvorimo tudi slovarje in množice. 
+# 
+# Množico kvadratov naravnih števil od 1 do 5, na primer, ustvarimo tako:
+# 
+#       {x**2 for x in range(1, 6)},     # to ustvari množico {1, 4, 9, 16, 25}
+# 
+# slovar, ki ima za ključ števke od 1 do 6, vrednosti pa so ključi deljeni z dva, če je ključ
+# sod, sicer pa ključ pomnožen s 3 in povečan za 1 pa takole:
+# 
+#       {x: x//2 if x%2==0 else 3*x+1 for x in range(1, 6)}  
+#       # dobljeni slovar je {1: 4, 2: 1, 3: 10, 4: 2, 5: 16, 6: 3}
+# =====================================================================@040980=
 # 1. podnaloga
-# Sestavi funkcijo `max_presledki_prvi(ttn)`, ki bo vrnila niz v tabeli tabel
-# nizov `ttn`, ki vsebuje največ presledkov.Če je takih nizov več, naj vrne
-# prvega.
+# Napiši funkcijo `potence2(n)`, ki vrne množico potenc 2:
+# $ S = {2^i; i \in \mathbb{N}, i \leq n} $
 # 
-#     >>> max_presledki_prvi(['s o n c e', [['  dez  ', 'veter   '], 'sneg'], [[[['o bla k']]]]])
-#     's o n c e'
+# Funkcija naj množico ustvari s pomočjo izpeljane množice - telo funkcije naj bo 
+# torej zapisano v eni vrstici. V telo funkcije se ne štejejo vrstični komentarji in
+# dokumentacijski niz.
+# 
+# Na primer:
+# 
+#     >>> potence2(5)
+#     {1, 2, 4, 8, 16, 32}
 # =============================================================================
-def max_presledki_prvi(ttn):
-    if isinstance(ttn, str):
-        return ttn
-    elif isinstance(ttn, list):
-        return max((max_presledki_prvi(s) for s in ttn), key=lambda ss: ss.count(' '))
-# =====================================================================@040740=
+def potence2(n):
+    return set(2**i for i in range(n+1))
+# =====================================================================@040981=
 # 2. podnaloga
-# Sestavi funkcijo `max_stevk_vsi(ttn)`, ki bo vrnila po abecedi urejeno
-# tabelo vseh nizov v
-# tabeli tabel nizov `ttn`, ki vsebujejo največje število števk.
+# Napiši funkcijo `mnozica_sodih(stevila)`, ki vrne množico sodih elementov 
+# seznama `stevila`.
 # 
-#     >>> max_stevk_vsi(['a123', [['00', 'abcdef'], 'a1b2c3'], [[[['386']]]]])
-#     ['386', 'a123', 'a1b2c3']
+# Funkcija naj množico ustvari s pomočjo izpeljane množice - telo funkcije naj bo 
+# torej zapisano v eni vrstici. V telo funkcije se ne štejejo vrstični komentarji in
+# dokumentacijski niz.
+# 
+# Na primer:
+# 
+#     >>> mnozica_sodih([1, 4, 5, 2, 7, -8, 5, 0, 101, 2, 1])
+#     {4, 2, -8, 0}
 # =============================================================================
-def max_stevk_vsi(ttn):
-    if isinstance(ttn, str):
-        return ttn
-    elif isinstance(ttn, list):
-        return sorted(max_stevk_vsi(s) for s in ttn)
-# =====================================================================@040741=
+def mnozica_sodih(sez):
+    return set(a for a in sez if a % 2 == 0)
+# =====================================================================@040982=
 # 3. podnaloga
-# Sestavi funkcijo `globina(ttn)`, ki bo vrnila par (niz, globina), ki pove
-# na kateri največji globini je niz v tabeli tabel nizov `ttn`.
-# Če je takih nizov več, vrni tistega z največ števkami. Če pa je tudi teh več,
-# pa tistega, ki je najdaljši . Tak je zagotovo največ en!
+# Napiši funkcijo `ustvari_slovar(seznam_parov)`, ki iz seznama parov oblike `[(k_i, v_i)]` 
+# ustvari slovar, ki ima za ključe $k_i$, za vrednosti pa $v_i$.
 # 
-#     >>> globina(['a123', [['00', 'abcdef'], [[['a1b2c3']]], [[['3677']]]])
-#     ('a1b2c3', 4)
-#     >>> globina(['a123', ['00', 'abcdef']])
-#     ('00', 2)
-#     >>> globina(['a123', [['00', 'abcdef'], [[[['a1b2c3']]]], [[[['36']]]]])
-#     ('a1b2c3', 5)
-#     >>> globina(['a123', '100', 'abcdef'])
-#     ('a123', 1)
+# Funkcija naj množico ustvari s pomočjo izpeljane množice - telo funkcije naj bo 
+# torej zapisano v eni vrstici. V telo funkcije se ne štejejo vrstični komentarji in
+# dokumentacijski niz.
+# 
+# Na primer:
+# 
+#     >>> ustvari_slovar([(1, "ena"), (2, "dve"), (3, "tri"), (11, "enajst")])
+#     {1: "ena", 2: "dve", 3: "tri", 11: "enajst"}
 # =============================================================================
-def koliko_stevk(niz):
-    return sum(1 for c in niz if c.isdigit())
-
-def globina(ttn):
-    nn = ""
-    ng = 0
-    for e in ttn:
-        if isinstance(ttn, str):
-            niz = e
-            g = 1
-        else:
-            niz, g = globina(e)
-            g += 1
-        
-        if g > ng:
-            ng = g
-            nn = niz
-        elif g == ng:
-            if koliko_stevk(niz) > koliko_stevk(nn):
-                nn = niz
-            elif koliko_stevk(niz) == koliko_stevk(nn) and len(niz) > len(nn):
-                nn = niz
-    return nn, ng
-
-# =====================================================================@040742=
+def ustvari_slovar(sez):
+    return {a: b for a,b in sez}
+# =====================================================================@040983=
 # 4. podnaloga
-# Sestavi funkcijo `globina_nizov(ttn)`, ki bo vrnila obratno po abecedi urejeno tabelo parov
-# (niz, globina), ki za vsak niz pove, na kateri globini je. 
+# Napiši funkcijo `obrni_slovar(slovar)`, ki iz podanega slovarja ustvari nov seznam,
+# ki ima za ključe vrednosti starega slovarja, za vrednosti pa ključe starega slovarja.
+# Predpostaviš lahko, da se posamezna vrednost pojavi pri natanko enem ključu.
 # 
-#     >>> globina_nizov(['a123', [['00', 'abcdef'], [[['a1b2c3']]]])
-#     [('abcdef', 3), ('a1b2c3', 4), ('a123', 1), ('00', 3)]
-#     >>> globina_nizov(['a123', '00', 'abcdef'])
-#     [('abcdef', 1), ('a123', 1), ('00', 1)]
+# Funkcija naj množico ustvari s pomočjo izpeljane množice - telo funkcije naj bo 
+# torej zapisano v eni vrstici. V telo funkcije se ne štejejo vrstični komentarji in
+# dokumentacijski niz.
+# 
+# Na primer:
+# 
+#     >>> obrni_slovar({1: 3, 2: 1, 3: 4, 4: 2})
+#     {3: 1, 1: 2, 4: 3, 2: 4}
 # =============================================================================
-
+def obrni_slovar(sl):
+    return {a: b for b, a in sl.items()}
+# =====================================================================@040984=
+# 5. podnaloga
+# Napiši funkcijo `pomnozi(slovar, k)`, ki ustvari nov slovar, kjer so vrednosti 
+# slovarja pomnožene s `k`. Vključeni naj bodo le ključi, pri katerih je vrednost
+# večja od 0.
+# 
+# Funkcija naj množico ustvari s pomočjo izpeljane množice - telo funkcije naj bo 
+# torej zapisano v eni vrstici. V telo funkcije se ne štejejo vrstični komentarji in
+# dokumentacijski niz.
+# 
+# Na primer:
+# 
+#     >>> pomnozi({'jajca': 4, 'moka': 500, 'mleko': 0}, 2)
+#     {'jajca': 8, 'moka': 1000}
+# =============================================================================
+def pomnozi(sl, k):
+    return {n: ko * k for n, ko in sl.items() if ko > 0}
 
 
 
@@ -699,16 +711,14 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDczOSwidXNlciI6OTc4NH0:1u77I1:rqovJacT8mWsUwJeIkFhdmsfAAcK3ZExlf9yRJIr9TU"
+        ] = "eyJwYXJ0Ijo0MDk4MCwidXNlciI6OTc4NH0:1u7weC:HOIYXyd_yo2WXa102KNIYE-ZKce7xNiJp6uZiURMM3c"
         try:
-            tests = [('''max_presledki_prvi(['s o n c e', [['  dez  ', 'veter   '], 'sneg'], [[[['o bla k']]]]])''', 's o n c e'),
-                     ('''max_presledki_prvi(['a', 'ab', 'abc'])''', 'a'),
-                     ('''max_presledki_prvi([[[[[[['       ']]]] , ' ']], '1       1'])''', '       '),
-                     ('''max_presledki_prvi(['', [[['']]]])''', '')]
-            
-            for test in tests:
-                if not Check.equal(*test):
-                    break
+            s = Check.current_part['solution']
+            true_lines = [line for line in s.split('\n') if line.strip() != "" and not any(line.strip().startswith(char) for char in ['#', '\'', '\"', 'def'])]
+            if len(true_lines) > 1:
+                Check.error("Ne pozabi - telo funkcije naj bo zapisano v eni vrstici. Ustvarjenega seznama ne shranjuj v spremenljivko, ampak ga kar takoj vrni ;)")
+            else:
+                Check.equal('potence2(5)', {1, 2, 4, 8, 16, 32})
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -720,16 +730,14 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc0MCwidXNlciI6OTc4NH0:1u77I1:awcOFB7q47HRtAJZpfP4OrEHqAVXvqj3-vnF_z4KC9c"
+        ] = "eyJwYXJ0Ijo0MDk4MSwidXNlciI6OTc4NH0:1u7weC:6MRWXBA47sE_UfYVYZmKhLlfQj6-qEliBrJFnwIrwUk"
         try:
-            tests = [('''max_stevk_vsi(['a123', [['00', 'abcdef'], 'a1b2c3'], [[[['386']]]]])''', ['386', 'a123', 'a1b2c3']),
-                     ('''max_stevk_vsi(['a', 'ab', 'abc'])''', ['a', 'ab', 'abc']),
-                     ('''max_stevk_vsi([[[[[[['       ']]]] , ' ']], '1       1'])''', ['1       1']),
-                     ('''max_stevk_vsi(['', [[['']]]])''', ['', ''])]
-            
-            for test in tests:
-                if not Check.equal(*test):
-                    break
+            s = Check.current_part['solution']
+            true_lines = [line for line in s.split('\n') if line.strip() != "" and not any(line.strip().startswith(char) for char in ['#', '\'', '\"', 'def'])]
+            if len(true_lines) > 1:
+                Check.error("Ne pozabi - telo funkcije naj bo zapisano v eni vrstici. Ustvarjenega seznama ne shranjuj v spremenljivko, ampak ga kar takoj vrni ;)")
+            else:
+                Check.equal('mnozica_sodih([1, 4, 5, 2, 7, -8, 5, 0, 101, 2, 1])', {4, 2, -8, 0})
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -741,16 +749,16 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc0MSwidXNlciI6OTc4NH0:1u77I1:nPxDMHCYuldFONTtgeNYZXgfemAF7Afe_1aphJQZIMY"
+        ] = "eyJwYXJ0Ijo0MDk4MiwidXNlciI6OTc4NH0:1u7weC:qrsbXcoqe2wls10cv2_PM2v2GbwRYnOKcqTxj40XtKs"
         try:
-            tests = [('''globina(['a123', [['00', 'abcdef']], [[['a1b2c3']]], [[['3677']]]])''', ('3677', 4)),
-                     ('''globina(['a123', ['00', 'abcdef']])''', ('00', 2)),
-                     ('''globina(['a123', [['00', 'abcdef'], [[[['a1b2c3']]]]], [[[['36']]]]])''', ('a1b2c3', 6)),
-                     ('''globina(['a123', '100', 'abcdef'])''', ('a123', 1))]
-            
-            for test in tests:
-                if not Check.equal(*test):
-                    break
+            s = Check.current_part['solution']
+            true_lines = [line for line in s.split('\n') if line.strip() != "" and not any(line.strip().startswith(char) for char in ['#', '\'', '\"', 'def'])]
+            if len(true_lines) > 1:
+                Check.error("Ne pozabi - telo funkcije naj bo zapisano v eni vrstici. Ustvarjenega seznama ne shranjuj v spremenljivko, ampak ga kar takoj vrni ;)")
+            else:
+                Check.equal(
+                    'ustvari_slovar([(1, "ena"), (2, "dve"), (3, "tri"), (11, "enajst")])', 
+                    {1: "ena", 2: "dve", 3: "tri", 11: "enajst"})
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
@@ -762,14 +770,37 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc0MiwidXNlciI6OTc4NH0:1u77I1:-HbQ8yfMGayYVDBPZWvwpwdWHCh70DstUKsshhQINeE"
+        ] = "eyJwYXJ0Ijo0MDk4MywidXNlciI6OTc4NH0:1u7weC:YSoc98ldDnXLZaSsFBCvQNlmNc742VVAbZFgGjaPj9g"
         try:
-            tests = [('''globina_nizov(['a123', [['00', 'abcdef']], [[['a1b2c3']]]])''', [('abcdef', 3), ('a1b2c3', 4), ('a123', 1), ('00', 3)]),
-                     ('''globina_nizov(['a123', '00', 'abcdef'])''', [('abcdef', 1), ('a123', 1), ('00', 1)])]
-            
-            for test in tests:
-                if not Check.equal(*test):
-                    break
+            s = Check.current_part['solution']
+            true_lines = [line for line in s.split('\n') if line.strip() != "" and not any(line.strip().startswith(char) for char in ['#', '\'', '\"', 'def'])]
+            if len(true_lines) > 1:
+                Check.error("Ne pozabi - telo funkcije naj bo zapisano v eni vrstici. Ustvarjenega seznama ne shranjuj v spremenljivko, ampak ga kar takoj vrni ;)")
+            else:
+                Check.equal(
+                    'obrni_slovar({1: 3, 2: 1, 3: 4, 4: 2})', 
+                    {3: 1, 1: 2, 4: 3, 2: 4})
+        except TimeoutError:
+            Check.error("Dovoljen čas izvajanja presežen")
+        except Exception:
+            Check.error(
+                "Testi sprožijo izjemo\n  {0}",
+                "\n  ".join(traceback.format_exc().split("\n"))[:-2],
+            )
+
+    if Check.part():
+        Check.current_part[
+            "token"
+        ] = "eyJwYXJ0Ijo0MDk4NCwidXNlciI6OTc4NH0:1u7weC:-jQ_JDSYC7R8zk7N6h4dYvDCfDl_WooHy48lAXZ2HfQ"
+        try:
+            s = Check.current_part['solution']
+            true_lines = [line for line in s.split('\n') if line.strip() != "" and not any(line.strip().startswith(char) for char in ['#', '\'', '\"', 'def'])]
+            if len(true_lines) > 1:
+                Check.error("Ne pozabi - telo funkcije naj bo zapisano v eni vrstici. Ustvarjenega seznama ne shranjuj v spremenljivko, ampak ga kar takoj vrni ;)")
+            else:
+                Check.equal(
+                    'obrni_slovar({1: 3, 2: 1, 3: 4, 4: 2})', 
+                    {3: 1, 1: 2, 4: 3, 2: 4})
         except TimeoutError:
             Check.error("Dovoljen čas izvajanja presežen")
         except Exception:
