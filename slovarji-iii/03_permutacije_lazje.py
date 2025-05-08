@@ -27,7 +27,11 @@ def slika(perm, x):
 #     >>> je_permutacija({1: 3, 2: 5, 5: 1})
 #     False
 # =============================================================================
-
+def je_permutacija(slovar):
+    k = sorted(slovar.keys())
+    v = sorted(slovar.values())
+    m = max(max(k), max(v))
+    return list(range(1, m+1)) == v and list(range(1, m+1)) == k
 # =====================================================================@040708=
 # 3. podnaloga
 # Sestavite funkcijo `slike(permutacija, x, n)`, ki vrne zaporedje slik,

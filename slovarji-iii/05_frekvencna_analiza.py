@@ -50,10 +50,11 @@ def najpogostejsa(sl):
 # to šifrirano s Cezarjevo šifro).
 # =============================================================================
 def razbij(beseda):
+    abeceda = "abcčdefghijklmnoprsštuvzž"
     naj_crka = najpogostejsa(pogostost_crk(beseda))
-    raz = ord(naj_crka) - ord('a')
-    print(raz, naj_crka, pogostost_crk(beseda))
-    return "".join(chr(ord(c) - raz) for c in beseda)
+    zamik = abeceda.index(naj_crka) - abeceda.index('e')
+    return "".join(abeceda[(abeceda.index(c) - zamik) % len(abeceda)] for c in beseda)
+
 
 
 

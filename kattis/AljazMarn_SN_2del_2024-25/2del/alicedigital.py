@@ -19,8 +19,8 @@ def razsiri(podatki, m):
         while desno < n - 1 and podatki[desno + 1] > m:
             desno += 1
         
-        weight = sum(podatki[levo:desno + 1])
-        maksimum = max(maksimum, weight)
+        teza = sum(podatki[levo:desno + 1])
+        maksimum = max(maksimum, teza)
     
     return maksimum
 

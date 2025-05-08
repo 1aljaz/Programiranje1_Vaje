@@ -7,18 +7,20 @@ def solve(l1, a1, l2, a2, lt, at):
     """
     mn = []
     
+    # izračunamo zgornjo mejo robotov prvega tipa
     M_i = min((lt - l2) // l1, (at - a2) // a1)
     
-    for i in range(1, M_i + 1):
+    for i in range(1, M_i + 1): # i predstavlja robote prvega tipa
         if (lt - l1*i) % l2 == 0:
+            # j predstavlja robote drugega tipa
             j = (lt - l1*i) // l2
             
             if j > 0 and a1*i + a2*j == at:
-                mn.append((i, j))
+                mn.append((i, j)) 
 
     if len(mn) == 1:
-        return mn[0]
-    return -1, -1
+        return mn[0] # Rešitev obstaja
+    return -1, -1 # Rešitev ne obstaja. Ali jih je preveč ali je pa ni.
 
 
 for _ in range(int(input())):
