@@ -1,10 +1,11 @@
-def neki(k, a=None):
-    if a == None:
-        a = []
-    a.append(k)
-    return a
+def koliko(niz):
+    sl = {}
+    arr = niz.split(',')
+    for s in arr:
+        if s in sl:
+            sl[s] += 1
+        else:
+            sl[s] = 1
+        print(f"{s} {sl[s]}\n")
 
-neki(1)
-neki(2)
-neki(3)
-print(neki(4))
+koliko('Janez,Maja,Zan,Janez,Maja,Zan')
