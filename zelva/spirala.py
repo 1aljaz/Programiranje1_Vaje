@@ -12,5 +12,5 @@ def spirala(t, n):
         d+=10
         t.left(90)
 
-spirala(t, 20)
+spirala(t, 21)
 s.exitonclick()

@@ -1,20 +1,17 @@
-def pogostost_crk(besedilo):
-    sl = {}
-    for c in besedilo:
-        sl[c] = sl.get(c, 0) + 1
-    return sl
+def koliko_napacnih(sscs, t=0):
+    if not isinstance(sscs, list) and t == 0:
+        return None
 
-def najpogostejsa(sl):
-    M = max(sl.values())
-    for c, n in sl.items():
-        if n == M:
-            return c
-        
-def razbij(beseda):
-    abeceda = "abcčdefghijklmnoprsštuvzž"
-    naj_crka = najpogostejsa(pogostost_crk(beseda))
-    zamik = abeceda.index(naj_crka) - abeceda.index('e')
-    return "".join(abeceda[(abeceda.index(c) - zamik) % len(abeceda)] for c in beseda)
+    skupaj_napacni = 0
 
-print(razbij("ajzaštfjzjinrt"))
-print(len("od obstojeÄih presledkov. Tako nastale nadaljevalne vrstice se zato vedno zaÄnejo s presledkom; tiste nastale vrstice, ki nimajo ..."))
+    for s in sscs:
+        if isinstance(s, list):
+            skupaj_napacni += koliko_napacnih(s, 1)
+        elif not isinstance(s, int):
+            skupaj_napacni += 1
+
+    return skupaj_napacni
+
+
+
+print(koliko_napacnih([1, [2.0], 3, [2, 3, 4]]))
