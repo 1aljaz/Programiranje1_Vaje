@@ -1,0 +1,1 @@
+zacetna_mapa = r"C:\Users\am43532\Documents\Github\Programiranje1_Vaje\rekurzija-in-os\PythonOSRek"
