@@ -1,9 +1,11 @@
 import turtle as t
 import math
 import random
+import colorsys
 
 s = t.Screen()
 t = t.Turtle()
+t.speed(10)
 
 def hisa(turtle, velikost):
     
@@ -40,16 +42,22 @@ def pobarvana_hisa(t, velikost, fasada, streha):
     t.forward(kateta)
     t.end_fill()
 
+
 def vecHis(t, n):
+    hue = 0
     for i in range(n):
         t.penup()
-        d = random.randint(20, 50)
+        d = random.randint(20, 100)
         x = random.randint(-100, 100)
         y = random.randint(-100, 100)
         t.goto( t.pos() + (x, y))
         t.pendown()
-        pobarvana_hisa(t, )
+        pobarvana_hisa(t, d, colorsys.hsv_to_rgb(hue, 1, 1) , colorsys.hsv_to_rgb(hue, 1, 1))
+        t.setheading(0)
+        hue += 1/n
 
 
-vecHis(t, 10)
+# pobarvana_hisa(t, 100, 'red', 'blue')
+vecHis(t, 8)
+# hisa(t, 100)
 s.exitonclick()

@@ -23,6 +23,19 @@
 #          .\PythonOSrek\test1a\drevo.py
 #          .\PythonOSrek\test1a\podM\TraRa\drevo.py
 # =============================================================================
+import os
+path = "C:/Users/azoma/Documents/GitHub/Programiranje1_Vaje/rekurzija-in-os/PythonOSRek"
+def izpisi_mapet(pot_do_mape, imeDatoteke):
+    if not os.path.isdir(pot_do_mape):
+        return
+    
+    for ime in os.listdir(pot_do_mape):
+        polna_pot = os.path.join(pot_do_mape, ime)
+        if os.path.isfile(polna_pot) and ime == imeDatoteke:
+            print(polna_pot)
+        elif os.path.isdir(polna_pot):
+            izpisi_mapet(polna_pot, imeDatoteke)
+print(izpisi_mapet(path, 'drevo.py'))
 
 # =====================================================================@040803=
 # 3. podnaloga
@@ -688,7 +701,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgwMSwidXNlciI6OTc4NH0:1uEjBD:Dx9gL0kECbMFIItaRZOuRVnRiV_7t7ShbCjGfXkANak"
+        ] = "eyJwYXJ0Ijo0MDgwMSwidXNlciI6OTc4NH0:1uGwPI:tr7mafjwRr6EE-Xw3S06pqrg2LR2AkM-U1BPgKTu98s"
         try:
             pass
             ##def izpisi_velike(pot_do_mape, velikost):
@@ -714,7 +727,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgwMiwidXNlciI6OTc4NH0:1uEjBD:_hCpcrrzEDApY7oO7F3DOa1a_L0saVRHJk7Ifo69qIw"
+        ] = "eyJwYXJ0Ijo0MDgwMiwidXNlciI6OTc4NH0:1uGwPI:80j1Z09oYrxeeCO6i2tNE7eEsr-jMhxQNzAM6dn5mjU"
         try:
             pass
             ##def izpisi_mapet(pot_do_mape,imeDatoteke):
@@ -736,7 +749,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgwMywidXNlciI6OTc4NH0:1uEjBD:PA48TIY6kAbDjQ2zb-5aymyRZNcJTmbRQynWzGZkBlM"
+        ] = "eyJwYXJ0Ijo0MDgwMywidXNlciI6OTc4NH0:1uGwPI:ogGzz5QM90PGEGzxqePNLNtEeXpFTtrZg51xBw94uus"
         try:
             pass
             ##def najstevilcnejsa(mapa):
@@ -766,7 +779,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgwNCwidXNlciI6OTc4NH0:1uEjBD:LNnRMo6Vb_lDH9ikXVPGplm5NTDDvbtpE3tdMK0djDY"
+        ] = "eyJwYXJ0Ijo0MDgwNCwidXNlciI6OTc4NH0:1uGwPI:IL5ZFKpRyyhH5ESYLb88Fv4XmVKwkXnekle-Aq2z3dI"
         try:
             pass
             ##def poisci_najnovejse(pot_do_mape):
@@ -801,7 +814,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgwNSwidXNlciI6OTc4NH0:1uEjBD:8I2dOcfV0bvsNn5snC0B1H8dYD1LiXjTPTRrA1vcirc"
+        ] = "eyJwYXJ0Ijo0MDgwNSwidXNlciI6OTc4NH0:1uGwPI:c8duvPv_nyCR8bzLPfIF2yUsxLQyJuER_y9j9dS_Idg"
         try:
             pass
             ##def poisci_najnovejse(pot_do_mape):
@@ -833,7 +846,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgwNiwidXNlciI6OTc4NH0:1uEjBD:9vEbkX1Bb3nAstUMrY-tPlyYIOe8ua3Kn64FNUsEBoI"
+        ] = "eyJwYXJ0Ijo0MDgwNiwidXNlciI6OTc4NH0:1uGwPI:fKMJs0VUyJIcYS569-lIDJCCbIKfgl16nWWdpBoDqsQ"
         try:
             pass
             ##def najvecja(ime):

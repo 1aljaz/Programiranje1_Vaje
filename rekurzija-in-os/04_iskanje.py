@@ -14,6 +14,28 @@
 #         >>> poisci_velike('mapa_1', 2000)
 #         ['mapa_1\\mapa_1_1\\jovo_datoteka.txt', 'mapa_1\\mapa_1_3_abc\\bn_datoteka_556.txt']
 # =============================================================================
+import os
+path = "C:/Users/azoma/Documents/GitHub/Programiranje1_Vaje/rekurzija-in-os/PythonOSRek"
+def poisci_velike(pot, min_velikost):
+    if not os.path.isdir(pot):
+        return []
+
+    velike_datoteke = []
+
+    for ime in os.listdir(pot):
+        polna_pot = os.path.join(pot, ime)
+
+        if os.path.isfile(polna_pot):
+            if os.path.getsize(polna_pot) >= min_velikost:
+                velike_datoteke.append(polna_pot)
+        elif os.path.isdir(polna_pot):
+            velike_datoteke.extend(poisci_velike(polna_pot, min_velikost))
+
+    return velike_datoteke
+
+rezultat = poisci_velike(path, 2000)
+for dat in rezultat:
+    print(dat)
 
 # =====================================================================@040796=
 # 2. podnaloga
@@ -692,7 +714,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc5NSwidXNlciI6OTc4NH0:1uEjBD:F0Z096bPBYoJVT2_D1JoTQ9pQEip43VBRRPuAdIE7wI"
+        ] = "eyJwYXJ0Ijo0MDc5NSwidXNlciI6OTc4NH0:1uGwPI:zg8qx9wrZmSeCfL-9RLB4r3bd830VSUNYHmcmWnNIXc"
         try:
             Check.feedback("Funkcija nima testov - za pravilnost rešitve poskrbite sami.")
             # test_data = [
@@ -763,7 +785,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc5NiwidXNlciI6OTc4NH0:1uEjBD:lF-lia4_701YOuHm6Tqcvaq5E_xHruQ3T82P74XAK7A"
+        ] = "eyJwYXJ0Ijo0MDc5NiwidXNlciI6OTc4NH0:1uGwPI:nBTk23ha65zjixYbyIjFwGugtF-6Afv7rrShfxWyA7k"
         try:
             Check.feedback("Funkcija nima testov - za pravilnost rešitve poskrbite sami.")
             # Testi neodvisni od OS
@@ -814,7 +836,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc5NywidXNlciI6OTc4NH0:1uEjBD:vDgZLnQ0MhcJR9d0PVAwF8oxTbe6TtcxD7nLOnX0Wq8"
+        ] = "eyJwYXJ0Ijo0MDc5NywidXNlciI6OTc4NH0:1uGwPI:i1NxaiijyA7jYXx4oUupHe_JFWuxDpYN_iqA9Fw1278"
         try:
             Check.feedback("Funkcija nima testov - za pravilnost rešitve poskrbite sami.")
             # test_data = [
@@ -860,7 +882,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc5OCwidXNlciI6OTc4NH0:1uEjBD:H-F5OkhQEXNWvyOIC8I5imX1QPaeWxqVK7Nt0kvZ2XE"
+        ] = "eyJwYXJ0Ijo0MDc5OCwidXNlciI6OTc4NH0:1uGwPI:sZ3wBbuBB3e1XbvExKXKAZSzifZpjw8dfa3O8pzSp5M"
         try:
             Check.feedback("Funkcija poisci_najnovejse nima testov - za pravilnost rešitve poskrbite sami.")
             
@@ -915,7 +937,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc5OSwidXNlciI6OTc4NH0:1uEjBD:IjMNY-ZPptBa9IfkwUn-NC_SPKPF9lWiCh0xaGZzlrw"
+        ] = "eyJwYXJ0Ijo0MDc5OSwidXNlciI6OTc4NH0:1uGwPI:6x1OdE4FN_w9Dt6DZh3zwubHDlcCEmuAHX-aKYhuRzA"
         try:
             Check.feedback("Funkcija poisci_najnovejso_abeceda nima testov - za pravilnost rešitve poskrbite sami.")
             # test_data = [
@@ -951,7 +973,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgwMCwidXNlciI6OTc4NH0:1uEjBD:MIGDYLO65Q1vzoxttD8hmVdis1_O9dohkN6M41Q4LkU"
+        ] = "eyJwYXJ0Ijo0MDgwMCwidXNlciI6OTc4NH0:1uGwPI:Id6cZwdIaN3XpjQJWTOoe5rRp0SiCdW4Ss8GaXEnU2c"
         try:
             Check.feedback("Funkcija nima testov - za pravilnost rešitve poskrbite sami.")
             

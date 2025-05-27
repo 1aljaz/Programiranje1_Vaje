@@ -1,5 +1,3 @@
-import * from settings
-
 # =============================================================================
 # Izpisovanje  ...
 #
@@ -27,6 +25,27 @@ import * from settings
 #           yyy
 #             e.dat
 # =============================================================================
+import os
+path = "C:/Users/azoma/Documents/GitHub/Programiranje1_Vaje/rekurzija-in-os/PythonOSRek"
+def izpisi_datoteke(pot, zamik=0):
+    if not os.path.isdir(pot):
+        return
+
+    vsebina = os.listdir(pot)
+    vsebina.sort()  
+
+    for ime in vsebina:
+        polna_pot = os.path.join(pot, ime)
+        if os.path.isfile(polna_pot):
+            print('  ' * zamik + ime)
+
+    for ime in vsebina:
+        polna_pot = os.path.join(pot, ime)
+        if os.path.isdir(polna_pot):
+            print('  ' * zamik + ime)
+            izpisi_datoteke(polna_pot, zamik + 1)
+
+izpisi_datoteke(path)
 
 # =====================================================================@040793=
 # 2. podnaloga
@@ -652,7 +671,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc5MiwidXNlciI6OTc4NH0:1uEjBD:C2FHczWYUlpTRm30pUkZNbnptsbHnHdmwFpezkBzXvg"
+        ] = "eyJwYXJ0Ijo0MDc5MiwidXNlciI6OTc4NH0:1uGwPI:dn6g-DOGm82-h3kJHfdOCN0YuFAWNsPT9ZK5kwPEaJs"
         try:
             Check.feedback("Funkcija izpisi_datoteke trenutno nima testov, zato morate za testiranje rešitve poskrbeti sami.")
         except TimeoutError:
@@ -666,7 +685,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc5MywidXNlciI6OTc4NH0:1uEjBD:goRmwFqX6GT0P-h_PWNqiRDPqAiEWDQpFCb80bzg3FQ"
+        ] = "eyJwYXJ0Ijo0MDc5MywidXNlciI6OTc4NH0:1uGwPI:QTwBdpMNSNwNeGeSP-JT2z6mOxAIc27LYJXKi1es1yQ"
         try:
             Check.feedback("Funkcija izpisi_py trenutno nima testov, zato morate za testiranje rešitve poskrbeti sami.")
         except TimeoutError:

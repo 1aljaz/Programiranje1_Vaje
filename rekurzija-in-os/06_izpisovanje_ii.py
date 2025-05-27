@@ -19,6 +19,26 @@
 #        >>> poisci_datoteke('mapa_2')
 #        ['datoteka_1_1_abcd.txt', 'dolzina_vektorja.py', 'z_datoteka_1_2_e.txt', ('mapa_1_1', ['32_datoteka.txt', 'ar_datoteka_jk.txt', 'jovo_datoteka.txt', 'program_445.py', 'z_datoteka_1_2_e.txt', ('gh_mapa_zadnja', ['nova_datoteka.txt', 'test_datoteka.txt', 'zivi_program.py'])]), ('mapa_1_2', []), ('mapa_1_3_abc', ['arrested.txt', 'bn_datoteka_556.txt', 'ddatoteka.txt', 'zeta_funkcija.py'])]
 # =============================================================================
+import os
+
+def poisci_datoteke(pot):
+    if not os.path.isdir(pot):
+        return []
+
+    vse_datoteke = []
+    vse_podmape = []
+
+    for ime in sorted(os.listdir(pot)):
+        polna_pot = os.path.join(pot, ime)
+        if os.path.isfile(polna_pot):
+            vse_datoteke.append(ime)
+        elif os.path.isdir(polna_pot):
+            vse_podmape.append((ime, poisci_datoteke(polna_pot)))
+
+    return vse_datoteke + vse_podmape
+
+rezultat = poisci_datoteke('C:/Users/azoma/Documents/GitHub/Programiranje1_Vaje/rekurzija-in-os/mapa_2/mapa_2')
+print(rezultat)
 
 # =====================================================================@040808=
 # 2. podnaloga
@@ -62,7 +82,7 @@
 #          zeta_funkcija.py
 #        >>>
 # =============================================================================
-izpisi_datoteke()
+
 
 # =====================================================================@040809=
 # 3. podnaloga
@@ -692,7 +712,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgwNywidXNlciI6OTc4NH0:1uEjBD:fePO1JcESTm6U4jf9y2dKPk7wAPBA9-gYMdGYiux6so"
+        ] = "eyJwYXJ0Ijo0MDgwNywidXNlciI6OTc4NH0:1uGwPI:FPtudvKeI1xtjnTAN8C-lGEBBJ5AP0UcRzANnZY5bhs"
         try:
             Check.feedback("Funkcija nima testov - za pravilnost rešitve poskrbite sami.")
             # seznam1 = ['datoteka_1_1_abcd.txt',
@@ -749,7 +769,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgwOCwidXNlciI6OTc4NH0:1uEjBD:dJlL4lql2k5vbvD86dXkKQNKpkJOTlXS_1PwVKyvckY"
+        ] = "eyJwYXJ0Ijo0MDgwOCwidXNlciI6OTc4NH0:1uGwPI:mEaQQhDHniMgu3vztPoWGPI_N3B6VMZsmKtz8XLnqYc"
         try:
             Check.feedback("Funkcija nima testov - za pravilnost rešitve poskrbite sami.")
             
@@ -795,7 +815,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgwOSwidXNlciI6OTc4NH0:1uEjBD:cl1TnjFPo2Rw1TLlPU4OLc4GioALq7stSH7-AickwHU"
+        ] = "eyJwYXJ0Ijo0MDgwOSwidXNlciI6OTc4NH0:1uGwPI:5DeHHuWSFwNJPWWUIP2_lhIrtXDVLLORMOOyv5CAuUc"
         try:
             Check.feedback("Funkcija nima testov - za pravilnost rešitve poskrbite sami.")
             # test_data = [

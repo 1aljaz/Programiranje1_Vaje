@@ -16,6 +16,34 @@
 # (staro mapo `PythonOsRek` pobrišite!)
 # in jo razširite (nastala bo mapa `PythonOsRek` s podmapami `testX` in `EURO2012`)
 # =============================================================================
+import os
+path=r"C:\Users\azoma\Documents\GitHub\Programiranje1_Vaje\rekurzija-in-os\PythonOSRek\PythonOSRek"
+def izbrisi_prazne_mape(pot):
+    if not os.path.isdir(pot):
+        return None
+
+    st_datotek = 0
+    st_map = 0
+
+    for ime in os.listdir(pot):
+        polna_pot = os.path.join(pot, ime)
+
+        if os.path.isfile(polna_pot) and os.path.getsize(polna_pot) == 0:
+            os.remove(polna_pot)
+            st_datotek += 1
+
+        elif os.path.isdir(polna_pot):
+            pod_st_datotek, pod_st_map = izbrisi_prazne_mape(polna_pot)
+            st_datotek += pod_st_datotek
+            st_map += pod_st_map
+
+    if not os.listdir(pot):
+        os.rmdir(pot)
+        st_map += 1
+
+    return (st_datotek, st_map)
+
+print(izbrisi_prazne_mape(path))
 
 
 
@@ -634,8 +662,9 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc5NCwidXNlciI6OTc4NH0:1uEjBD:o3HuSSnkt-a5WxwBpdnUx65JKmx_df-sK2OOMoRlgyc"
+        ] = "eyJwYXJ0Ijo0MDc5NCwidXNlciI6OTc4NH0:1uGwPI:IWK5k9ldzQwrougwcBht7LHP4PbEeoGVKYzdreQsZA8"
         try:
+            osem = 0
             # # Testi neodvisni od OS
             # test_data = [
             #     (
