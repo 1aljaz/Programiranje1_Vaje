@@ -54,11 +54,29 @@
 #         >>>koliko_napacnih(set())
 #         None
 # =============================================================================
+def je_sscs(x):
+    if not isinstance(x, list):
+        return False
+    return all(isinstance(el, int) or je_sscs(el) for el in x)
+
 def koliko_napacnih(sscs):
-    if isinstance(sscs, list):
-        return sum(koliko_napacnih(s) for s in sscs)
-    if not isinstance(sscs, int):
-        return 1
+    if not isinstance(sscs, list):
+        return None
+
+    napacni = 0
+    for el in sscs:
+        if isinstance(el, int):
+            continue
+        elif isinstance(el, list):
+            if not je_sscs(el):
+                napacni += koliko_napacnih(el)
+        else:
+            napacni += 1
+
+    return napacni
+
+
+
     
 
 
