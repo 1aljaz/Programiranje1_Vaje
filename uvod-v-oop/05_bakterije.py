@@ -32,7 +32,32 @@
 #     >>> a.get_DNA()()
 #     ''
 # =============================================================================
+class Bakterija:
+    def __init__(self, DNA):
+        self._DNA = DNA
+        self._generacija = 0
+        for c in DNA:
+            if c not in "AGCT":
+                self._DNA = ""
+                break
+    
+    def set_DNA(self, DNA):
+        self._DNA = DNA
+        for c in DNA:
+            if c not in "AGCT":
+                self._DNA = ""
+                break
+    
+    def set_generacija(self, gen):
+        self._generacija = gen
 
+    def get_DNA(self):
+        return self._DNA
+    
+    def get_generacija(self):
+        return self._generacija
+    
+        
 # =====================================================================@040865=
 # 2. podnaloga
 # Bakterije se zelo rade delijo. Običajne bakterije se delijo tako, da iz ene
@@ -59,7 +84,15 @@
 #     >>> nove_bakterije[0].get_DNA()
 #     'GAAATCGGT'
 # =============================================================================
-
+    def deli(self, d):
+        if self.get_DNA() == "":
+            return []
+        
+        bak = [Bakterija(self.get_DNA()) for _ in range(d)]
+        for b in bak:
+            b.set_generacija(self.get_generacija() + 1)
+        
+        return bak
 # =====================================================================@040866=
 # 3. podnaloga
 # Bakterije se lahko tudi združujejo. Pri tem nastane nova bakterija,
@@ -86,6 +119,17 @@
 #     >>> c.get_generacija()
 #     1
 # =============================================================================
+def zdruzi(a:Bakterija, b:Bakterija):
+    if len(a.get_DNA()) < len(b.get_DNA()):
+        a, b = b, a
+
+    dna = "".join(a.get_DNA()[i] + b.get_DNA()[i] for i in range(len(b.get_DNA())))
+    dna += a.get_DNA()[len(b.get_DNA()):]
+
+    b = Bakterija(dna)
+    b.set_generacija(max(a.get_generacija(), b.get_generacija()) + 1)
+
+    return b
 
 # =====================================================================@040867=
 # 4. podnaloga
@@ -117,6 +161,15 @@
 #     >>> m.get_generacija()
 #     1
 # =============================================================================
+class Bakterija(Bakterija):
+    def mutacija(self, iz, v):
+        if len(self.get_DNA()) == 0:
+            return self
+        
+        b = Bakterija(self.get_DNA().replace(iz, v))  
+        b.set_generacija(self.get_generacija() + 1)
+
+        return b 
 
 
 

@@ -16,7 +16,11 @@
 #     >>> rex._visina
 #     60
 # =============================================================================
-
+class Pes:
+    def __init__(self, ime, starost, visina):
+        self._ime = ime
+        self._starost = starost
+        self._visina = visina
 # =====================================================================@040869=
 # 2. podnaloga
 # Sestavite razred `Macka` s konstruktorjem `__init__(self, ime, starost,
@@ -33,7 +37,11 @@
 #     >>> garfield._visina
 #     20
 # =============================================================================
-
+class Macka:
+    def __init__(self, ime, starost, visina):
+        self._ime = ime
+        self._starost = starost
+        self._visina = visina
 # =====================================================================@040870=
 # 3. podnaloga
 # V nekem zavetišču za pse in mačke vsakega, ki bi rad posvojil hišnega
@@ -56,11 +64,18 @@
 #     >>> kandidati(zivali, zelje)
 #     {("pes", "Rex"), ("pes", "As")}
 # =============================================================================
+def kandidati(zivali, zelje):
+    izbrani = set()
+    for i, z in enumerate(zivali):
+        if z.__class__.__name__.lower() != list(zelje["vrsta"])[0]:
+            zivali.pop(i)
+    
+    print(list(zivali))
 
 
 
 
-
+#            izbrani.add((list(zelje["vrsta"])[0], z._ime))
 
 
 
