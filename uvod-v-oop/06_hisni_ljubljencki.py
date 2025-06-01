@@ -66,16 +66,13 @@ class Macka:
 # =============================================================================
 def kandidati(zivali, zelje):
     izbrani = set()
-    for i, z in enumerate(zivali):
-        if z.__class__.__name__.lower() != list(zelje["vrsta"])[0]:
-            zivali.pop(i)
-    
-    print(list(zivali))
+    for z in zivali:
+        if z.__class__.__name__.lower() == list(zelje["vrsta"])[0]:
+            if z._starost >= zelje["starost"][0] and z._starost <= zelje["starost"][1]:
+                if z._visina >= zelje["visina"][0] and z._visina <= zelje["visina"][1]:
+                    izbrani.add((z.__class__.__name__.lower(), z._ime))
+    return izbrani
 
-
-
-
-#            izbrani.add((list(zelje["vrsta"])[0], z._ime))
 
 
 

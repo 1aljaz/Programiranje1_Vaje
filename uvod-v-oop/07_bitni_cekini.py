@@ -36,6 +36,9 @@
 # Parameter konstruktorja `stanje` naj bo neobvezen in v primeru, ko ni podan,
 # naj bo začetno stanje enako nič.
 # =============================================================================
+class BitniCekin:
+    def __init__(self, stanje=0):
+        self._stanje = stanje
 
 # =====================================================================@040872=
 # 2. podnaloga
@@ -48,7 +51,8 @@
 #     >>> print(racun)
 #     Število bitnih cekinov na računu: 6
 # =============================================================================
-
+    def __str__(self):
+        return f"Število bitnih cekinov na računu: {self._stanje}"
 # =====================================================================@040873=
 # 3. podnaloga
 # Sestavite metodi `dvig(self, koliko)` in `polog(self, koliko)`, ki 
@@ -62,7 +66,18 @@
 # Metoda `dvig` naj vrne `True`, če je dvig uspel in `False`, če ni.
 # Metoda `polog` naj spremeni stanje in vrne stanje na računu po pologu.
 # =============================================================================
-
+    def dvig(self, koliko):
+        if self._stanje - koliko < 0:
+            return False
+        else:
+            self._stanje -= koliko
+            return True
+    
+    def polog(self, koliko):
+        self._stanje += koliko
+        return self._stanje
+        
+        
 # =====================================================================@040874=
 # 4. podnaloga
 # Sestavite funkcijo `prenesi(racun1, racun2, koliko)`, ki iz računa `racun1`
@@ -76,7 +91,12 @@
 # Funkcija naj vrne uspešnost transakcije (`True`, če je transakcija uspela,
 # in `False`, če ni).
 # =============================================================================
-
+def prenesi(racun1, racun2, koliko):
+    if racun1.dvig(koliko):
+        racun2.polog(koliko)
+        return True
+    else:
+        return False
 
 
 
