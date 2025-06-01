@@ -28,6 +28,18 @@
 #     Jutri bo lepo vreme.
 #     Več o vremenu preberite tukaj.
 # =============================================================================
+def html2txt(vhod, izhod):
+    with open(vhod, 'r', encoding='utf-8') as f:
+        vsebina = f.read()
+    zacne_z = vsebina.find('<')
+    koncaj_z = vsebina.find('>')
+    while zacne_z != -1 and koncaj_z != -1:
+        vsebina = vsebina[:zacne_z] + vsebina[koncaj_z + 1:]
+        zacne_z = vsebina.find('<')
+        koncaj_z = vsebina.find('>')
+    with open(izhod, 'w', encoding='utf-8') as f:
+        f.write(vsebina)
+
 
 # =====================================================================@040834=
 # 2. podnaloga
@@ -64,6 +76,18 @@
 # Pozor: Pazi na zamik (število presledkov na začetku vrstic) v izhodni
 # datoteki.
 # =============================================================================
+def tabela(vhod, izhod):
+    with open(vhod, 'r', encoding='utf-8') as f:
+        with open(izhod, 'w', encoding='utf-8') as f2:
+            f2.write('<table>\n')
+            for l in f:
+                l = l.strip()
+                if l:
+                    f2.write('  <tr>\n')
+                    for i in l.split(','):
+                        f2.write(f'    <td>{i}</td>\n')
+                    f2.write('  </tr>\n')
+            f2.write('</table>\n')
 
 # =====================================================================@040835=
 # 3. podnaloga
@@ -94,6 +118,26 @@
 #       <li>obiskati sosedo.</li>
 #     </ul>
 # =============================================================================
+def seznami(vhod, izhod):
+    with open(vhod, 'r', encoding='windows-1250') as f_in, open(izhod, 'w', encoding='windows-1250') as f_out:
+        v_seznamu = False 
+
+        for vrstica in f_in:
+            if vrstica.lstrip().startswith('*'):
+                vsebina = vrstica.lstrip()[1:].lstrip()
+                if not v_seznamu:
+                    f_out.write('<ul>\n')
+                    v_seznamu = True
+                f_out.write(f'  <li>{vsebina.rstrip()}</li>\n')
+            else:
+                if v_seznamu:
+                    f_out.write('</ul>\n')
+                    v_seznamu = False
+                f_out.write(vrstica)
+
+        if v_seznamu:
+            f_out.write('</ul>\n')
+
 
 # =====================================================================@040836=
 # 4. podnaloga

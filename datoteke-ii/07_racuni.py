@@ -25,6 +25,31 @@
 #       >>> preberi(datoteka)
 #       [{'vino': (2, 20), 'voda':(1, 2)}, {'parfum': (1, 30), 'voda': (5, 10), 'čips': (2, 5)}]
 # =============================================================================
+def preberi(datoteka):
+    racuni = []
+    trenutni_racun = {}
+
+    with open(datoteka, 'r', encoding='utf-8') as f:
+        for vrstica in f:
+            vrstica = vrstica.strip()
+            if not vrstica:
+                continue
+
+            if vrstica.startswith('Račun'):
+                if trenutni_racun:
+                    racuni.append(trenutni_racun)
+                    trenutni_racun = {}
+            else:
+                izdelek, kolicina, cena = vrstica.split(':')
+                kolicina = int(kolicina)
+                cena = float(cena)
+                trenutni_racun[izdelek] = (kolicina, kolicina * cena)
+
+        if trenutni_racun:
+            racuni.append(trenutni_racun)
+
+    return racuni
+
 
 # =====================================================================@040844=
 # 2. podnaloga
@@ -33,8 +58,20 @@
 # denarja, `prodano` pa nov slovar, v katerem so ključi izdelki, vrednosti pa število
 # prodanih tovrstih izdelkov.
 # =============================================================================
+def prodaja(ime_datoteke):
+    racuni = preberi(ime_datoteke)
+    zasluzek = 0
+    prodano = {}
 
+    for racun in racuni:
+        for izdelek, (kolicina, skupna_cena) in racun.items():
+            zasluzek += skupna_cena
+            if izdelek in prodano:
+                prodano[izdelek] += kolicina
+            else:
+                prodano[izdelek] = kolicina
 
+    return (zasluzek, prodano)
 
 
 

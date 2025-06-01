@@ -49,16 +49,14 @@ def je_v_jezeru(zogica, jezero):
 def je_v_pesku(zogica, pesek):
     xz, yz = zogica
     x1, y1, x2, y2 = pesek
-    return x1 <= xz and x2 >= xz and y1 <= yz and y2 >= yz
+    return x1 <= xz <= x2 and y1 <= yz <= y2
 
 def se_izogne(pot, ovire):
     for x, y in pot:
         for o in ovire:
-            if len(o) == 3 and not je_v_jezeru((x, y), o):
-                print(f"jezero {x} {y}")
+            if len(o) == 3 and je_v_jezeru((x, y), o):
                 return False
             if len(o) == 4 and je_v_pesku((x, y), o):
-                print(f"pesek {x} {y}")
                 return False
     return True
 # =====================================================================@040828=
@@ -70,6 +68,18 @@ def se_izogne(pot, ovire):
 # Posamezni udarci so v polarnih koordinatah zapisani na datoteko, začetek pa je
 # podan kot par `(x,y)`.
 # =============================================================================
+def kje_je_zogica(datoteka, zacetek, ovire):
+    x, y = zacetek
+    pot = []
+    with open(datoteka, "r") as f:
+        for l in f:
+            r, fi = map(int, l.strip().split())
+            x += round(r*math.cos(math.radians(fi)), 3)
+            y += round(r*math.sin(math.radians(fi)), 3)
+            pot.append((x, y))
+    if se_izogne(pot, ovire):
+        return (x, y)
+    return None
 
 
 

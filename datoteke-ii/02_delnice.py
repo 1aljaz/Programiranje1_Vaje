@@ -13,6 +13,19 @@
 # ime datoteke, vrne par nabor dveh seznamov, v prvem naj bodo datumi
 # (kot nizi), v drugem pa vrednosti delnice (kot realna števila).
 # =============================================================================
+def preberi(ime_datoteke):
+    datumi = []
+    vrednosti = []
+    with open(ime_datoteke, "r") as f:
+        for l in f:
+            datum, vrednost = l.strip().split(",")
+            datumi.append(datum)
+            vrednosti.append(float(vrednost))
+    return datumi, vrednosti
+
+
+
+
 
 # =====================================================================@040830=
 # 2. podnaloga
