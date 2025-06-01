@@ -729,7 +729,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDg0NSwidXNlciI6OTc4NH0:1uIT9U:_a40j36lvpwreYr9SPbzCUTCZG2dNWl5a0XIcry6hnc"
+        ] = "eyJwYXJ0Ijo0MDg0NSwidXNlciI6OTc4NH0:1uI5xz:39wvlmcABzmCPSPGQJvpFqe7W3cUxxqgvMKcbzreRCk"
         try:
             Check.equal("""pretvori(1, 18, 7, 640)""", 4687640)
             Check.equal("""pretvori(0, 30, 0, 500)""", 1800500)
@@ -747,7 +747,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDg0NiwidXNlciI6OTc4NH0:1uIT9U:CT6ewz_1kmqAiUVUHa-StY5RTXMh_9AW8YJvkTOZNf4"
+        ] = "eyJwYXJ0Ijo0MDg0NiwidXNlciI6OTc4NH0:1uI5xz:s3fjSxUiLl0cGYNyM1LNMNJYI8La56rSj-pkM9JPH7c"
         try:
             Check.equal("""pretvori_nazaj(4687640)""", (1, 18, 7, 640))
             Check.equal("""pretvori_nazaj(1800500)""", (0, 30, 0, 500))
@@ -765,7 +765,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDg0NywidXNlciI6OTc4NH0:1uIT9U:bd8nVJwCtrqvLNYwPceuDCNkUymAlYx66bI_ANoDlVs"
+        ] = "eyJwYXJ0Ijo0MDg0NywidXNlciI6OTc4NH0:1uI5xz:UswFdLBJCPBraw7bRBauI1NnRrlvSXGZJk9FHMlWhQ4"
         try:
             with Check.in_file('kajmak.txt', ['1',
                                               '00:08:51,520 --> 00:08:53,317',

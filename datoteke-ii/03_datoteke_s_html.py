@@ -801,7 +801,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgzMywidXNlciI6OTc4NH0:1uIT9U:GvyCPEx62c_SoHxuLHl8ld-aPaAxBw3lseRd1fdmLQI"
+        ] = "eyJwYXJ0Ijo0MDgzMywidXNlciI6OTc4NH0:1uI5xz:wnmiFINxgrEEQOTt6A6_pq8kSPJmAxovQSENcbVh-Jw"
         try:
             with Check.in_file("napoved_vremena.html", [
                 "<h1>Napoved vremena</h1>",
@@ -863,7 +863,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgzNCwidXNlciI6OTc4NH0:1uIT9U:cietDFYQpVzOx1M9U6QWEPHfAixLu7fwcQntHbQZT60"
+        ] = "eyJwYXJ0Ijo0MDgzNCwidXNlciI6OTc4NH0:1uI5xz:OzbaU7kw_qsGl0Y6t9BNzAxvlpo-e3fP_T5uV8vuSfw"
         try:
             with Check.in_file("tabela.txt", [
                 "ena,dva,tri",
@@ -938,7 +938,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgzNSwidXNlciI6OTc4NH0:1uIT9U:OFVcW6_xURbAfNniRpyvKG8ny-4IWhQTKKI2LYCvkgA"
+        ] = "eyJwYXJ0Ijo0MDgzNSwidXNlciI6OTc4NH0:1uI5xz:45HU_gX6Vsm_pNnk3b8BDzzXX4BeYF1Ivsat2HtFos0"
         try:
             with Check.in_file("seznami.txt", [
                 "V trgovini moram kupiti:",
@@ -1039,7 +1039,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgzNiwidXNlciI6OTc4NH0:1uIT9U:FAJjCyG5cNAhBLlmMqPb28DwXDXJZNnR6WlXVYZ4wxs"
+        ] = "eyJwYXJ0Ijo0MDgzNiwidXNlciI6OTc4NH0:1uI5xz:mFyQap9l2rEomUazoTv1fVYAnmrFgVPu41yjlRn7Ko8"
         try:
             with Check.in_file("gnezdeni_seznami.txt", [
                 "zivali",

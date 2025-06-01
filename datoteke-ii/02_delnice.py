@@ -683,7 +683,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgyOSwidXNlciI6OTc4NH0:1uIT9U:8ZckQePNEMWl9JntB0TjP8UOrHD9pPgF_s3AlcjSTdc"
+        ] = "eyJwYXJ0Ijo0MDgyOSwidXNlciI6OTc4NH0:1uI5xz:itr7Lomxylr93DGW_QNvdzSporyV7EzPSLzlPn4Dlq4"
         try:
             _d = """2012-01-01,53.05
             2012-01-02,54.08
@@ -716,7 +716,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgzMCwidXNlciI6OTc4NH0:1uIT9U:s1Uc8J5hgQYWqnZzMOgl-lnLf8GISp-d71vK8jxInIg"
+        ] = "eyJwYXJ0Ijo0MDgzMCwidXNlciI6OTc4NH0:1uI5xz:WDmUncqT19SrfnAty_GR8HBGDmud6n7J_BW5mQw4G28"
         try:
             _d = """2012-01-01,53.05
             2012-01-02,54.08
@@ -757,7 +757,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgzMSwidXNlciI6OTc4NH0:1uIT9U:-O2abJdOrRveEvIEgtsqA2PmanvDkFe9PJ72oTlo9yQ"
+        ] = "eyJwYXJ0Ijo0MDgzMSwidXNlciI6OTc4NH0:1uI5xz:lKJj_f3d94UtcSR_ijWdk6c505fE5SnFNjMylpM8oXg"
         try:
             Check.equal("trend([])", 'negativen trend')
             Check.equal("trend([1,-1,1,-1])", 'negativen trend')
@@ -781,7 +781,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgzMiwidXNlciI6OTc4NH0:1uIT9U:kZnItyk8xqKVVhAcKQxCJZ9wqYPT4MSMQ2r2eSmeqKI"
+        ] = "eyJwYXJ0Ijo0MDgzMiwidXNlciI6OTc4NH0:1uI5xz:CRTmiV8k1vNBElzeshnag06zB1YpIg4kKOwrrbUcpC4"
         try:
             Check.equal("volatilnost('_test.1')", 0.397626399171653)
             Check.equal("volatilnost('_test.2')", 0.6798427907021705)

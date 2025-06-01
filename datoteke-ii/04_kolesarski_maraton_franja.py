@@ -707,7 +707,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgzNywidXNlciI6OTc4NH0:1uIT9U:jSeIJD_ew1Klsf2rtoU6czFQLRypcuALoFikYHYqp1A"
+        ] = "eyJwYXJ0Ijo0MDgzNywidXNlciI6OTc4NH0:1uI5xz:jcc7xyW-W1E_7OYMF-dh6vmRnQYnmoKvV3Pjcjc4EFQ"
         try:
             test_data = [
                 ("""cas_maratona('4:13:59')""", [4, 13, 59]),
@@ -729,7 +729,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgzOCwidXNlciI6OTc4NH0:1uIT9U:4b2rzKYRByow07E69IpjOxgmlUMGRf9aInUyCg6agXs"
+        ] = "eyJwYXJ0Ijo0MDgzOCwidXNlciI6OTc4NH0:1uI5xz:2XVNlTEwoZ3I9WqnbP_6dG191e7WqMpCah-5YwGUQuc"
         try:
             test_data = [
                 ("maraton_1.txt", ['4:13:59', '5:45:12','3:17:25','8:4:35','2:58:26','3:1:15'],
@@ -752,7 +752,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgzOSwidXNlciI6OTc4NH0:1uIT9U:OSHq7WbFjuhRhijnxRraVBTV6eD-RBD129BxxYhp0HY"
+        ] = "eyJwYXJ0Ijo0MDgzOSwidXNlciI6OTc4NH0:1uI5xz:NO7HqMsWFEEdLGvFxfOqfQtFjRpiZ8LbrqNlp7ZkZEw"
         try:
             test_data = [
                 ("maraton_1.txt", ['4:13:59', '5:45:12', '3:17:25', '8:4:35', '2:58:26', '3:1:15'], (4, 0, 0), 3),
@@ -777,7 +777,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDg0MCwidXNlciI6OTc4NH0:1uIT9U:--Tmn4D4IClGl6cgLY2s7jIJ3cPMq-lp8n0WrXd93Bw"
+        ] = "eyJwYXJ0Ijo0MDg0MCwidXNlciI6OTc4NH0:1uI5xz:BLkF664DfbzU9WmzF9rstrGq5CwyeAHhbwIo5G63au4"
         try:
             test_cases = [
                 ("maraton_1.txt", ['4:13:59', '5:45:12', '3:17:25', '8:4:35', '2:58:26', '3:1:15'], "maraton_11.txt",

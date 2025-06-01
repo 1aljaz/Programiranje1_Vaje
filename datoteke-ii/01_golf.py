@@ -32,6 +32,7 @@ def datoteka_polozajev(vhod, izhod):
                 x += round(r*math.cos(math.radians(fi)), 3)
                 y += round(r*math.sin(math.radians(fi)), 3)
                 g.write(f"{x:.3f} {y:.3f}\n")
+
 # =====================================================================@040827=
 # 2. podnaloga
 # Podan je seznam položajev žogic po posameznem udarcu in seznam, katerega vsak element
@@ -59,6 +60,7 @@ def se_izogne(pot, ovire):
             if len(o) == 4 and je_v_pesku((x, y), o):
                 return False
     return True
+
 # =====================================================================@040828=
 # 3. podnaloga
 # Napišite metodo `kje_je_zogica(datoteka, zacetek, ovire)`, ki
@@ -698,7 +700,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgyNiwidXNlciI6OTc4NH0:1uIT9U:9H_fJfmmoqNZHf3uZvFfGmELsIA-Satr9m5bGzscnA4"
+        ] = "eyJwYXJ0Ijo0MDgyNiwidXNlciI6OTc4NH0:1uI5xz:o0OBYxKaQ8VfagQjqACZ3S1cYDG2oeWBAzooLvGZOWk"
         try:
             def _makefile1(fname, ponovitev):
                 with open(fname, "w") as f:
@@ -760,7 +762,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgyNywidXNlciI6OTc4NH0:1uIT9U:eVtcOat5hXZmeHcOQda7VejYvdsQhsOKbKmfF3sZO2I"
+        ] = "eyJwYXJ0Ijo0MDgyNywidXNlciI6OTc4NH0:1uI5xz:WTGFPfTz484JHzMWhwFBVdDBCSBS9NkCKP1vahCG4LY"
         try:
             Check.equal("se_izogne([(0,0),(1,2),(3,4)],[(2,3,4),(1,1,2,2)])", False)
             Check.equal("se_izogne([(1,1),(1,2),(3,4)],[(2,3,14),(1,1,2,2)])", False)
@@ -784,7 +786,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDgyOCwidXNlciI6OTc4NH0:1uIT9U:ZeUB9yRinhhNBsiMWeyl8zfTF00kTwb1jcLtqpaxU0w"
+        ] = "eyJwYXJ0Ijo0MDgyOCwidXNlciI6OTc4NH0:1uI5xz:AaIKd-INpywybGDoqxqmxQCTGSheqPMUDGztuOSRDnw"
         try:
             def _makefile1(fname, n):
                 with open(fname, "w") as f:

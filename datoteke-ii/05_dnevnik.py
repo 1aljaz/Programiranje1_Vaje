@@ -706,7 +706,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDg0MSwidXNlciI6OTc4NH0:1uIT9U:NYL1dAOmrT5qh9cXwrVCmiCn2S__jh4uMtYmw_tJuVw"
+        ] = "eyJwYXJ0Ijo0MDg0MSwidXNlciI6OTc4NH0:1uI5xz:6SOYH6NzN9t3miOguwWttpRXfAT3qGT2eOVWkWnMnH4"
         try:
             # zgeld za pisanje testov z vhodnimi datotekami:
             with Check.in_file('test1.txt', ['aaaa', 'bb', 'aaa', 'ccc', 'bbbb', 'bbbb', 'bbbb', 'bbbb', 'aaaa']):

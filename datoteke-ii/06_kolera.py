@@ -727,7 +727,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDg0MiwidXNlciI6OTc4NH0:1uIT9U:ZvoGVnfA2Fs-_NZxSX_4i7Pkb18KkhcEbArAMfAlEI8"
+        ] = "eyJwYXJ0Ijo0MDg0MiwidXNlciI6OTc4NH0:1uI5xz:3mz57mhXJNThXXtYT06-LIgCWEAu54CxOlxm-aSokMs"
         try:
             with Check.in_file('kolera.txt', ['49 5', '33 8', '1 27', '23 43', '25 45', '12 8', '10 29', '3 5', '23 6', '12 32']):
                 Check.equal("povrsine_vodnjakov('kolera.txt')", [240, 420, 115, 325, 452, 206, 158, 97, 184, 303])

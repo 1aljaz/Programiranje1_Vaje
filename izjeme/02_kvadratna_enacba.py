@@ -29,8 +29,6 @@ def nicle_kv_enacbe(a, b, c):
             x2 = (-b - math.sqrt(D)) / (2*a)
             return [x1, x2]
 
-     
-  
 
 
 
@@ -133,8 +131,8 @@ def nicle_kv_enacbe(a, b, c):
 
 # ============================================================================@
 # fmt: off
-#"Če vam Python sporoča, da je v tej vrstici sintaktična napaka,
-#"se napaka v resnici skriva v zadnjih vrsticah vaše kode."
+"Če vam Python sporoča, da je v tej vrstici sintaktična napaka,"
+"se napaka v resnici skriva v zadnjih vrsticah vaše kode."
 
 "Kode od tu naprej NE SPREMINJAJTE!"
 
@@ -647,7 +645,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0Mjk1MSwidXNlciI6OTc4NH0:1uHmfA:im0lJiQO6aC9_D7Mki9KD2TLSJEvtNGec7BcOm607Qw"
+        ] = "eyJwYXJ0Ijo0Mjk1MSwidXNlciI6OTc4NH0:1uI5oC:NVYs6j5ysubKO-vaoBLKGe4uSND_w0UNhPJKPWL3-nM"
         try:
             testi_izracun = [
                 ((1, -4, 3), [1, 3]),

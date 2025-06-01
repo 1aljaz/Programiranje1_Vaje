@@ -1,3 +1,5 @@
+import os
+
 # =============================================================================
 # Pregled map in datotek
 #
@@ -20,8 +22,8 @@
 # Poti med seboj združujemo z `os.path.join`, da lahko program uporabljamo na
 # različnih operacijskih sistemih.
 # =============================================================================
-path = "C:/Users/azoma/Documents/GitHub/Programiranje1_Vaje/rekurzija-in-os/PythonOSRek"
-import os
+from settings import *
+
 def seznam_vseh_podmap(zacetna):
     sseznam = [zacetna]
     try:
@@ -37,7 +39,7 @@ def seznam_vseh_podmap(zacetna):
             sseznam += [ime]
         
     return sseznam
-print(seznam_vseh_podmap(path))
+print(seznam_vseh_podmap(zacetna_mapa))
 # =====================================================================@040789=
 # 2. podnaloga
 # Sestavite funkcijo `mape_ki_vsebujejo_datoteko(zacetna_mapa, datoteka)`, ki
@@ -49,8 +51,17 @@ print(seznam_vseh_podmap(path))
 # 
 # Če `mapa` ne opisuje poti do mape, naj funkcija vrne `None`.
 # =============================================================================
-
-
+def mape_ki_vsebujejo_datoteko(zacetna, datoteka):
+    if not os.path.isdir(zacetna):
+        return None
+    sseznam = [zacetna]
+    datoteke = os.listdir(zacetna)
+    for d in datoteke:
+        ime = os.path.join(zacetna, d)
+        i, k = os.path.splitext(ime)
+        if os.path.isfile(ime) and i+k == datoteka:
+            return True
+        elif
 # =====================================================================@040790=
 # 3. podnaloga
 # Sestavite funkcijo `koliko_datotek`, ki prešteje, koliko je vseh datotek v
@@ -688,7 +699,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc4OCwidXNlciI6OTc4NH0:1uGwPI:F3b-5Bdg1tAmlb694YyrOjkdEr-gk3zBP6CtQdThCTA"
+        ] = "eyJwYXJ0Ijo0MDc4OCwidXNlciI6OTc4NH0:1uEjBD:Is7_qLF9pwrxRK4qgSx8_jp6BlvpZPKCXT9Xg8RalVc"
         try:
             Check.feedback("Funkcija trenutno nima testov, zato morate za testiranje rešitve poskrbeti sami.")
             
@@ -740,7 +751,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc4OSwidXNlciI6OTc4NH0:1uGwPI:x1vZuR-rdwouRYunhhG7rTVEdNoL70P4NXF-bGBn8GA"
+        ] = "eyJwYXJ0Ijo0MDc4OSwidXNlciI6OTc4NH0:1uEjBD:rnTpcZA-886hC5ZjW2yUJHAyCNxV0M1MiQeZM0914yc"
         try:
             Check.feedback("Funkcija trenutno nima testov, zato morate za testiranje rešitve poskrbeti sami.")
             
@@ -805,7 +816,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc5MCwidXNlciI6OTc4NH0:1uGwPI:x4cS_gXK25lWnTTPxEkSYQoR_cRiFPMlAKMwJyEmakE"
+        ] = "eyJwYXJ0Ijo0MDc5MCwidXNlciI6OTc4NH0:1uEjBD:oNJZoeqF3-zKIX2b2SA3b2IGgObftS9hS_Cnj_q55LY"
         try:
             Check.feedback("Funkcija trenutno nima testov, zato morate za testiranje rešitve poskrbeti sami.")
             
@@ -852,7 +863,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDc5MSwidXNlciI6OTc4NH0:1uGwPI:nsIYUV_enuoqkUFbob2VggOa5NEe9wkM81_lZomzbmw"
+        ] = "eyJwYXJ0Ijo0MDc5MSwidXNlciI6OTc4NH0:1uEjBD:KMvlVp8LNcaYdX5mXj_FOmhLdk0AY_Hw7VKF5MdsWl0"
         try:
             Check.feedback("Funkcija trenutno nima testov, zato morate za testiranje rešitve poskrbeti sami.")
             

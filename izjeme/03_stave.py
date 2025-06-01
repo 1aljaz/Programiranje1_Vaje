@@ -56,7 +56,6 @@ def potreben_rezultat(skupaj, razlika):
     if t1 < 0 or t2 < 0:
         raise Exception
     return t1, t2
-    
 # =====================================================================@042954=
 # 3. podnaloga
 # Napiši program (ne funkcije), ki bo najprej prebral ime vhodne datoteke ter ime 
@@ -69,6 +68,25 @@ def potreben_rezultat(skupaj, razlika):
 # 
 # _Namig: odpiranje neobstoječe datoteke sproži napako `FileNotFoundError`._
 # =============================================================================
+import os
+vhodna_datoteka = input("Vnesi obstojeco datoteko: ")
+while not os.path.exists(vhodna_datoteka):
+    vhodna_datoteka = input("Vnesi obstojeco datoteko: ")
+izhodna = input()
+
+with open(vhodna_datoteka, "r") as f:
+    with open(izhodna, "w", encoding="utf-8") as g:
+        for l in f:
+            try:
+                skupaj, razlika = preberi_podatek(l)
+                t1, t2 = potreben_rezultat(skupaj, razlika)
+                g.write(f"{t1} {t2}\n")
+            except ValueError:
+                g.write("Napačni podatki\n")
+            except Exception:
+                g.write("Nemogoče\n")
+
+
 
 
 
@@ -687,7 +705,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0Mjk1MiwidXNlciI6OTc4NH0:1uHmfA:EGgZyn3MjbCPsSWat4kEDQLJoFdVDyMA8wiJMyaAPm4"
+        ] = "eyJwYXJ0Ijo0Mjk1MiwidXNlciI6OTc4NH0:1uI5oC:WDfgeno76735bea2u5cVTX-98WbAZufXRs8LpKzAT_E"
         try:
             testi_ok = [
                 ("40 20\n", (40, 20)),
@@ -730,7 +748,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0Mjk1MywidXNlciI6OTc4NH0:1uHmfA:001Dk5tGWQgBUX_u1kUTFyetOCXlWMLut25qgkbmScE"
+        ] = "eyJwYXJ0Ijo0Mjk1MywidXNlciI6OTc4NH0:1uI5oC:eydosvs_aS-259jRzY2wmS3eZ6F2JpLAQSfjb-U1Iso"
         try:
             testi_ok = [
                 ((40, 20), (30, 10)),
@@ -769,7 +787,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0Mjk1NCwidXNlciI6OTc4NH0:1uHmfA:DIbbhfkEowGBZ7fccNIOWymObOsfNrNFeJtMV8cPzds"
+        ] = "eyJwYXJ0Ijo0Mjk1NCwidXNlciI6OTc4NH0:1uI5oC:9J9pn_AhSE606Yg2pCTCpZRAoC4UWOp2WbMFjt-mbGU"
         try:
             vhdat_podatki = [
                 "40 20",

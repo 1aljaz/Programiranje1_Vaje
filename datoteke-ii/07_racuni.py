@@ -688,7 +688,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDg0MywidXNlciI6OTc4NH0:1uIT9U:8P8RcOmFiDf27k_47Ou5iBKOaQFxkQHoTdY9RbcDjeg"
+        ] = "eyJwYXJ0Ijo0MDg0MywidXNlciI6OTc4NH0:1uI5xz:ZvTrlmnyS2inYYbJWoIa4HWfMNlJfz_wSBnom8Yw1Vw"
         try:
             with open("_test.1","w", encoding = 'utf-8') as _f:
                 _f.write("""Račun23421\nvino:2:10\nvoda:1:2\nRačun64529\nparfum:1:30\nvoda:2:2""")
@@ -740,7 +740,7 @@ def _validate_current_file():
     if Check.part():
         Check.current_part[
             "token"
-        ] = "eyJwYXJ0Ijo0MDg0NCwidXNlciI6OTc4NH0:1uIT9U:x1cK4bnC_eQD8hFJGGJkuzhZ3C5kxrVY5L-BW2ccatc"
+        ] = "eyJwYXJ0Ijo0MDg0NCwidXNlciI6OTc4NH0:1uI5xz:snADC-LgDf8ilwlnBrFWXFxHhgInxfltu3aoDX5sc-o"
         try:
             narobe = False
             for funk, odziv in [('preberi(', 'funkcijo iz prejšnje podnaloge'),
