@@ -71,7 +71,7 @@ New folder (3)
 # Izpisuje naj polna imena (skupaj s potjo).
 # =============================================================================
 def izpisi_py(pot_do_mape):
-    for kor, map, dat in os.walk(pot_do_mape):
+    for kor, _, dat in os.walk(pot_do_mape):
         for datoteka in dat:
             if datoteka.endswith('.py'):
                 polna_pot = os.path.join(kor, datoteka)

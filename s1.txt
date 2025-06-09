@@ -1,7 +1,0 @@
-Nauci se:
-* Python,
-* Ruby.
-A ne pozabi na:
-* C# in
-* Javo.
-S tem boš pravi programer!
